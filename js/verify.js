@@ -1,11 +1,12 @@
-const APPWRITE_CONFIG = {
-  endpoint:     'https://cloud.appwrite.io/v1',
-  projectId:    'YOUR_PROJECT_ID',
-  databaseId:   'YOUR_DATABASE_ID',
-  collectionId: 'YOUR_COLLECTION_ID',
-};
+function getConfig() {
+  return window.APPWRITE_CONFIG || {};
+}
 
-const IS_CONFIGURED = !Object.values(APPWRITE_CONFIG).some(v => v.startsWith('YOUR_'));
+function isConfigured() {
+  const cfg = getConfig();
+  return cfg.endpoint && cfg.projectId && cfg.databaseId && cfg.collectionId &&
+    !Object.values(cfg).some(v => v.startsWith('YOUR_'));
+}
 
 async function verifyCertificate() {
   const input  = document.getElementById('certInput');
@@ -22,7 +23,7 @@ async function verifyCertificate() {
   hideResult();
 
   try {
-    if (!IS_CONFIGURED) {
+    if (!isConfigured()) {
       hideLoading();
       document.getElementById('setupNotice').style.display = 'block';
       return;
@@ -44,12 +45,12 @@ async function verifyCertificate() {
 }
 
 async function fetchFromAppwrite(certId) {
-  const { endpoint, projectId, databaseId, collectionId } = APPWRITE_CONFIG;
+  const { endpoint, projectId, databaseId, collectionId } = getConfig();
 
   const url = new URL(
     `${endpoint}/databases/${databaseId}/collections/${collectionId}/documents`
   );
-  url.searchParams.set('queries[]', `equal("certificate_id","${certId}")`);
+  url.searchParams.set('queries[]', `equal("certificateId","${certId}")`);
   url.searchParams.set('limit', '1');
 
   const res = await fetch(url.toString(), {
@@ -68,64 +69,37 @@ async function fetchFromAppwrite(certId) {
 }
 
 function showCertificate(cert) {
-  const isExpired = cert.expiry_date && new Date(cert.expiry_date) < new Date();
-  const statusText = isExpired ? 'Certificate Expired' : 'Certificate Valid';
-  const statusIcon = isExpired ? '⚠️' : '✅';
-
-  const issueFormatted  = formatDate(cert.issue_date);
-  const expiryFormatted = cert.expiry_date ? formatDate(cert.expiry_date) : 'No Expiry';
+  const verifiedOn = new Date().toLocaleDateString('en-IN', {
+    day: 'numeric', month: 'long', year: 'numeric'
+  });
 
   const html = `
     <div class="result-card">
-      <div class="result-header ${isExpired ? 'invalid' : ''}">
-        <div class="result-status-icon">${statusIcon}</div>
+      <div class="result-header">
+        <div class="result-status-icon">✅</div>
         <div class="result-header-text">
-          <h3>${statusText}</h3>
+          <h3>Certificate Valid</h3>
           <p>This certificate has been verified in the Selvi Infotech registry.</p>
         </div>
       </div>
       <div class="result-body">
         <div class="result-logo-row">
           <img src="logo.png" alt="Selvi Infotech" class="result-logo">
-          <div class="result-badge ${isExpired ? 'expired' : ''}">
-            ${isExpired ? '⚠ Expired' : '✓ Authentic'}
-          </div>
+          <div class="result-badge">✓ Authentic</div>
         </div>
         <div class="result-grid">
           <div class="result-field">
             <div class="field-label">Certificate ID</div>
-            <div class="field-value highlight">${escHtml(cert.certificate_id)}</div>
+            <div class="field-value highlight">${escHtml(cert.certificateId)}</div>
           </div>
           <div class="result-field">
             <div class="field-label">Student Name</div>
-            <div class="field-value">${escHtml(cert.student_name)}</div>
+            <div class="field-value">${escHtml(cert.name)}</div>
           </div>
-          <div class="result-field" style="grid-column:1/-1;">
-            <div class="field-label">Course / Program</div>
-            <div class="field-value">${escHtml(cert.course_name)}</div>
-          </div>
-          <div class="result-field">
-            <div class="field-label">Date of Issue</div>
-            <div class="field-value">${issueFormatted}</div>
-          </div>
-          <div class="result-field">
-            <div class="field-label">Valid Until</div>
-            <div class="field-value">${expiryFormatted}</div>
-          </div>
-          ${cert.grade ? `
-          <div class="result-field">
-            <div class="field-label">Grade</div>
-            <div class="field-value">${escHtml(cert.grade)}</div>
-          </div>` : ''}
-          ${cert.duration ? `
-          <div class="result-field">
-            <div class="field-label">Program Duration</div>
-            <div class="field-value">${escHtml(cert.duration)}</div>
-          </div>` : ''}
         </div>
         <div class="result-footer-note">
           🔒 This certificate was issued by <strong>Selvi Infotech Private Limited</strong>.
-          Verified on ${formatDate(new Date().toISOString().split('T')[0])}.
+          Verified on ${verifiedOn}.
         </div>
       </div>
     </div>
@@ -158,15 +132,9 @@ function showError(certId, isNetworkError = false) {
   el.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-function showLoading()  { document.getElementById('verifyLoading').style.display = 'block'; }
-function hideLoading()  { document.getElementById('verifyLoading').style.display = 'none'; }
-function hideResult()   { document.getElementById('verifyResult').style.display  = 'none'; }
-
-function formatDate(dateStr) {
-  if (!dateStr) return '—';
-  const d = new Date(dateStr + 'T00:00:00');
-  return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
-}
+function showLoading() { document.getElementById('verifyLoading').style.display = 'block'; }
+function hideLoading() { document.getElementById('verifyLoading').style.display = 'none'; }
+function hideResult()  { document.getElementById('verifyResult').style.display  = 'none'; }
 
 function escHtml(str) {
   const d = document.createElement('div');
@@ -175,7 +143,7 @@ function escHtml(str) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (!IS_CONFIGURED) {
+  if (!isConfigured()) {
     document.getElementById('setupNotice').style.display = 'block';
   }
 });
