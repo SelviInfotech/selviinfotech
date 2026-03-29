@@ -38,7 +38,9 @@ async function verifyCertificate() {
     }
   } catch (err) {
     console.error('Verification error:', err);
-    showError(certId, true);
+    hideLoading();
+    showToast('Connection Error', 'Unable to reach the certificate database. Please try again.');
+    return;
   } finally {
     hideLoading();
   }
@@ -50,8 +52,8 @@ async function fetchFromAppwrite(certId) {
   const url = new URL(
     `${endpoint}/databases/${databaseId}/collections/${collectionId}/documents`
   );
-  url.searchParams.set('queries[]', `equal("certificateId",["${certId}"])`);
-  url.searchParams.set('limit', '1');
+  url.searchParams.append('queries[]', `equal("certificateId", ["${certId}"])`);
+  url.searchParams.append('limit', '1');
 
   const res = await fetch(url.toString(), {
     headers: {
@@ -111,17 +113,16 @@ function showCertificate(cert) {
   el.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-function showError(certId, isNetworkError = false) {
-  const message = isNetworkError
-    ? 'Unable to connect to the certificate database. Please try again in a moment.'
-    : `No certificate found with the ID <strong>${escHtml(certId)}</strong>. Please check the ID and try again, or contact <a href="mailto:info@selviinfotech.com" style="color:var(--gold-500)">info@selviinfotech.com</a>.`;
-
+function showError(certId) {
   const html = `
     <div class="result-card">
-      <div class="result-error">
-        <div class="error-icon">❌</div>
-        <h3>${isNetworkError ? 'Connection Error' : 'Certificate Not Found'}</h3>
-        <p>${message}</p>
+      <div class="result-notfound">
+        <div class="nf-icon">🔍</div>
+        <h3>Invalid Certificate ID</h3>
+        <div class="nf-id">${escHtml(certId)}</div>
+        <p>No certificate was found with this ID.<br>
+        Please double-check the ID on your certificate document.<br>
+        Need help? <a href="mailto:info@selviinfotech.com">info@selviinfotech.com</a></p>
       </div>
     </div>
   `;
@@ -130,6 +131,36 @@ function showError(certId, isNetworkError = false) {
   el.innerHTML = html;
   el.style.display = 'block';
   el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function showToast(title, msg) {
+  let container = document.getElementById('toastContainer');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'toastContainer';
+    container.className = 'toast-container';
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `
+    <span class="toast-icon">⚠️</span>
+    <div class="toast-body">
+      <div class="toast-title">${escHtml(title)}</div>
+      <div class="toast-msg">${escHtml(msg)}</div>
+    </div>
+    <button class="toast-close" onclick="dismissToast(this.parentElement)">✕</button>
+  `;
+  container.appendChild(toast);
+
+  setTimeout(() => dismissToast(toast), 5000);
+}
+
+function dismissToast(toast) {
+  if (!toast || toast.classList.contains('hiding')) return;
+  toast.classList.add('hiding');
+  setTimeout(() => toast.remove(), 300);
 }
 
 function showLoading() { document.getElementById('verifyLoading').style.display = 'block'; }
