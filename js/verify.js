@@ -7,36 +7,6 @@ const APPWRITE_CONFIG = {
 
 const IS_CONFIGURED = !Object.values(APPWRITE_CONFIG).some(v => v.startsWith('YOUR_'));
 
-const DEMO_CERTS = {
-  'SIPL-2024-001': {
-    certificate_id: 'SIPL-2024-001',
-    student_name:   'Priya Ramesh',
-    course_name:    'Full Stack Web Development',
-    issue_date:     '2024-06-15',
-    expiry_date:    '2027-06-15',
-    grade:          'A+',
-    duration:       '6 Months',
-  },
-  'SIPL-2024-002': {
-    certificate_id: 'SIPL-2024-002',
-    student_name:   'Arun Kumar',
-    course_name:    'Mobile App Development (React Native)',
-    issue_date:     '2024-08-20',
-    expiry_date:    '2027-08-20',
-    grade:          'A',
-    duration:       '4 Months',
-  },
-  'SIPL-2024-003': {
-    certificate_id: 'SIPL-2024-003',
-    student_name:   'Divya Suresh',
-    course_name:    'Data Science & Machine Learning',
-    issue_date:     '2024-11-10',
-    expiry_date:    '',
-    grade:          'B+',
-    duration:       '5 Months',
-  },
-};
-
 async function verifyCertificate() {
   const input  = document.getElementById('certInput');
   const certId = input.value.trim().toUpperCase();
@@ -52,15 +22,13 @@ async function verifyCertificate() {
   hideResult();
 
   try {
-    let cert = null;
-
-    if (IS_CONFIGURED) {
-      cert = await fetchFromAppwrite(certId);
-    } else {
+    if (!IS_CONFIGURED) {
+      hideLoading();
       document.getElementById('setupNotice').style.display = 'block';
-      await simulateDelay(900);
-      cert = DEMO_CERTS[certId] || null;
+      return;
     }
+
+    const cert = await fetchFromAppwrite(certId);
 
     if (cert) {
       showCertificate(cert);
@@ -204,10 +172,6 @@ function escHtml(str) {
   const d = document.createElement('div');
   d.appendChild(document.createTextNode(String(str)));
   return d.innerHTML;
-}
-
-function simulateDelay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 document.addEventListener('DOMContentLoaded', () => {

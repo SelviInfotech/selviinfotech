@@ -50,13 +50,13 @@
         
         <div class="verify-form-card">
           <h2>Certificate Lookup</h2>
-          <p>Your certificate ID can be found printed on your certificate document (e.g., <strong>SIPL-2024-001</strong>)</p>
+          <p>Your certificate ID can be found printed on your certificate document (e.g., <strong>SIXXXXXXXXX</strong>)</p>
 
           <div class="verify-input-group">
             <input
               type="text"
               id="certInput"
-              placeholder="Enter Certificate ID (e.g. SIPL-2024-001)"
+              placeholder="Enter Certificate ID"
               autocomplete="off"
               onkeydown="if(event.key==='Enter') verifyCertificate()"
             >
@@ -79,22 +79,6 @@
 
         
         <div class="verify-result" id="verifyResult"></div>
-
-        
-        <div class="setup-notice" id="setupNotice" style="display:none;">
-          <strong>⚙️ Backend Setup Required</strong><br>
-          To enable live certificate verification, connect Appwrite:
-          <ol style="margin:12px 0 0 20px; display:flex; flex-direction:column; gap:6px;">
-            <li>Create a free account at <strong>appwrite.io</strong></li>
-            <li>Create a project and note your <code>Project ID</code></li>
-            <li>Create a Database → Collection named <code>certificates</code></li>
-            <li>Add attributes: <code>certificate_id</code>, <code>student_name</code>, <code>course_name</code>, <code>issue_date</code>, <code>expiry_date</code>, <code>grade</code>, <code>duration</code></li>
-            <li>Set Collection permissions: <strong>Any → Read</strong></li>
-            <li>Open <code>js/verify.js</code> and fill in <code>APPWRITE_CONFIG</code></li>
-          </ol>
-          <br>
-          <strong>Demo mode:</strong> For now, try IDs <code>SIPL-2024-001</code>, <code>SIPL-2024-002</code>, or <code>SIPL-2024-003</code> to see the verification UI in action.
-        </div>
 
       </div>
     </div>
