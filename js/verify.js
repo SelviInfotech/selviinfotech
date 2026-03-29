@@ -50,7 +50,7 @@ async function fetchFromAppwrite(certId) {
   const url = new URL(
     `${endpoint}/databases/${databaseId}/collections/${collectionId}/documents`
   );
-  url.searchParams.set('queries[]', `equal("certificateId","${certId}")`);
+  url.searchParams.set('queries[]', `equal("certificateId",["${certId}"])`);
   url.searchParams.set('limit', '1');
 
   const res = await fetch(url.toString(), {
