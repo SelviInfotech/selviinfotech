@@ -1,7 +1,3 @@
-// Build script for Render (or any static host with env var support).
-// Reads Appwrite config from environment variables and generates js/appwrite-config.js.
-// Run with: node build.js
-
 const fs   = require('fs');
 const path = require('path');
 
