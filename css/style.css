@@ -602,57 +602,115 @@ section { padding: 100px 0; }
   align-items: center;
 }
 
+/* ── About Visual: floating badge layout ── */
 .about-visual {
   position: relative;
   height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.about-img-main {
+/* Spinning decorative rings */
+.av-ring {
   position: absolute;
-  width: 70%;
-  height: 380px;
-  border-radius: var(--radius-lg);
+  border-radius: 50%;
+  border: 1px dashed rgba(201,148,58,.18);
+  pointer-events: none;
+}
+.av-ring-1 {
+  width: 320px; height: 320px;
+  animation: spin-slow 22s linear infinite;
+}
+.av-ring-2 {
+  width: 430px; height: 430px;
+  border-style: solid;
+  border-color: rgba(201,148,58,.08);
+  animation: spin-slow 34s linear infinite reverse;
+}
+
+/* Central logo card — logo only */
+.av-card {
+  position: relative;
+  z-index: 2;
+  width: 220px;
+  height: 220px;
   background: var(--green-800);
-  bottom: 0; left: 0;
+  border: 1px solid rgba(201,148,58,.28);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  box-shadow:
+    var(--shadow-lg),
+    0 0 0 8px rgba(26,74,46,.12),
+    0 0 0 16px rgba(201,148,58,.06);
+  animation: float 6s ease-in-out infinite;
 }
-
-.about-img-logo {
-  width: 120px;
-  filter: brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(5deg);
-  opacity: 0.4;
-}
-
-.about-img-accent {
+.av-card::before {
+  content: '';
   position: absolute;
-  width: 55%;
-  height: 260px;
-  border-radius: var(--radius-lg);
+  inset: -1px;
+  border-radius: inherit;
   background: var(--gold-gradient);
-  top: 0; right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: -1;
+  opacity: 0.15;
 }
 
-.about-img-accent .big-num {
-  font-family: var(--font-display);
-  font-size: 4rem;
-  font-weight: 700;
-  color: white;
+.av-logo {
+  width: 130px;
+  height: auto;
+  filter: brightness(0) invert(1) sepia(0.5) saturate(1.6) hue-rotate(-5deg);
+  opacity: 0.95;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Floating stat badges */
+.av-badge {
+  position: absolute;
+  background: var(--white);
+  border: 1px solid rgba(201,148,58,.2);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  box-shadow: var(--shadow-md);
+  z-index: 3;
+  min-width: 96px;
   text-align: center;
+}
+.av-num {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 700;
   line-height: 1;
+  background: var(--gold-gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
-.about-img-accent .big-num span {
-  display: block;
-  font-size: 1rem;
+.av-lbl {
+  font-size: 0.72rem;
   font-weight: 500;
-  opacity: 0.85;
-  margin-top: 8px;
+  color: var(--text-300);
+  white-space: nowrap;
 }
+.av-badge-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+  background: var(--gold-gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.av-badge-tl { top: 48px;  left: 10px;   animation: float 5s   ease-in-out infinite 0.3s; }
+.av-badge-tr { top: 48px;  right: 10px;  animation: float 6.5s ease-in-out infinite 1.2s; }
+.av-badge-bl { bottom: 68px; left: 10px;  animation: float 5.5s ease-in-out infinite 0.8s; }
+.av-badge-br { bottom: 68px; right: 10px; animation: float 4.8s ease-in-out infinite 2s;  }
 
 .about-content { }
 .about-content .section-tag { }
@@ -1533,4 +1591,262 @@ section { padding: 100px 0; }
   .hero-cta { flex-direction: column; }
   .btn { width: 100%; justify-content: center; }
   .hero-badge { font-size: 0.75rem; }
+}
+
+/* ══════════════════════════════════════════════
+   Clients Section
+══════════════════════════════════════════════ */
+.clients {
+  background: var(--cream);
+  padding: 100px 0 80px;
+  overflow: hidden;
+}
+
+.clients .section-header {
+  margin-bottom: 52px;
+}
+
+/* ── Ticker Wrapper (full bleed beyond container) ── */
+.clients-ticker-outer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0 24px; /* room for card box-shadow */
+}
+
+/* Gradient edge fades — must match section bg */
+.clients-ticker-outer::before,
+.clients-ticker-outer::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 180px;
+  z-index: 2;
+  pointer-events: none;
+}
+.clients-ticker-outer::before {
+  left: 0;
+  background: linear-gradient(to right, var(--cream) 20%, transparent);
+}
+.clients-ticker-outer::after {
+  right: 0;
+  background: linear-gradient(to left, var(--cream) 20%, transparent);
+}
+
+/* ── Scrolling Track ── */
+.clients-ticker {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  animation: clientsScroll 38s linear infinite;
+  will-change: transform;
+}
+
+/* Pause on hover or when any card is focused */
+.clients-ticker:hover,
+.clients-ticker:focus-within {
+  animation-play-state: paused;
+}
+
+@keyframes clientsScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clients-ticker {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    padding: 0 24px;
+  }
+}
+
+/* ── Client Card ── */
+.client-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 22px 18px 18px;
+  background: var(--white);
+  border: 1.5px solid rgba(201,148,58,.18);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+  min-width: 230px;
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color  0.4s cubic-bezier(0.4,0,0.2,1),
+    box-shadow    0.4s cubic-bezier(0.4,0,0.2,1),
+    transform     0.4s cubic-bezier(0.34,1.56,0.64,1); /* spring overshoot */
+  cursor: pointer;
+}
+
+/* Gold top bar — slides in from left on hover */
+.client-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2.5px;
+  background: var(--gold-gradient);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+}
+
+.client-card:hover,
+.client-card:focus-visible {
+  border-color: rgba(201,148,58,.45);
+  box-shadow:
+    0 12px 40px rgba(201,148,58,.16),
+    0 4px 12px rgba(26,74,46,.07);
+  transform: translateY(-5px);
+  outline: none;
+}
+
+.client-card:focus-visible {
+  outline: 2px solid var(--gold-400);
+  outline-offset: 3px;
+}
+
+.client-card:hover::after,
+.client-card:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* ── Initial Circle ── */
+.client-initial {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  letter-spacing: -0.01em;
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.client-card:hover .client-initial {
+  transform: scale(1.12) rotate(-4deg);
+}
+
+.ci-green {
+  background: var(--green-800);
+  color: var(--gold-300);
+}
+
+.ci-gold {
+  background: var(--gold-gradient);
+  color: var(--white);
+}
+
+/* ── Text ── */
+.client-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.client-name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: var(--green-900);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease;
+}
+
+.client-card:hover .client-name {
+  color: var(--gold-600);
+}
+
+.client-tag {
+  display: block;
+  font-size: 0.73rem;
+  font-weight: 500;
+  color: var(--text-300);
+  letter-spacing: 0.03em;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+/* ── Arrow Circle ── */
+.client-arrow {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(201,148,58,.1);
+  border: 1px solid rgba(201,148,58,.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    background  0.35s ease,
+    border-color 0.35s ease,
+    transform   0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.client-arrow svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--gold-500);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.3s ease;
+}
+
+.client-card:hover .client-arrow,
+.client-card:focus-visible .client-arrow {
+  background: var(--gold-gradient);
+  border-color: transparent;
+  transform: rotate(45deg) scale(1.1); /* diagonal = external link */
+}
+
+.client-card:hover .client-arrow svg,
+.client-card:focus-visible .client-arrow svg {
+  stroke: var(--white);
+}
+
+/* ── Footer Line ── */
+.clients-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 44px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-300);
+  letter-spacing: 0.04em;
+}
+
+.clients-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold-gradient);
+  opacity: 0.6;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .clients { padding: 72px 0 60px; }
+  .clients-ticker-outer::before,
+  .clients-ticker-outer::after { width: 80px; }
+  .client-card { min-width: 200px; padding: 14px 16px 14px 14px; }
+  .client-initial { width: 40px; height: 40px; font-size: 0.88rem; }
+  .client-name { font-size: 0.9rem; }
 }

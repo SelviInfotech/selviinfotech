@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /js/appwrite-config.js
+
+Sitemap: https://selviinfotech.com/sitemap.xml

@@ -2,6 +2,22 @@ function getConfig() {
   return window.APPWRITE_CONFIG || {};
 }
 
+function normalizeCertId(raw) {
+  return String(raw ?? '')
+    .trim()
+    .replace(/[\s-]+/g, '')
+    .toUpperCase();
+}
+
+function validateCertId(certId) {
+  // Expected format based on UI hint: "SIXXXXXXXXX" (SI + 9 alphanumeric chars)
+  if (!certId) return { ok: false, message: 'Please enter a Certificate ID.' };
+  if (!/^SI[A-Z0-9]{9}$/.test(certId)) {
+    return { ok: false, message: 'Certificate ID format should look like SIXXXXXXXXX.' };
+  }
+  return { ok: true, message: '' };
+}
+
 function isConfigured() {
   const cfg = getConfig();
   return cfg.endpoint && cfg.projectId && cfg.databaseId && cfg.collectionId &&
@@ -10,11 +26,14 @@ function isConfigured() {
 
 async function verifyCertificate() {
   const input  = document.getElementById('certInput');
-  const certId = input.value.trim().toUpperCase();
+  const certId = normalizeCertId(input.value);
+  input.value = certId;
 
-  if (!certId) {
+  const validation = validateCertId(certId);
+  if (!validation.ok) {
     input.focus();
     input.style.borderColor = 'var(--gold-400)';
+    showToast('Invalid Certificate ID', validation.message);
     return;
   }
   input.style.borderColor = '';
