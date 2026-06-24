@@ -343,73 +343,189 @@ ul { list-style: none; }
   height: 480px;
 }
 
-.hero-card-wrap {
+/* ── 3D Stats Scene ── */
+.hero-3d-scene {
   position: relative;
+  width: 420px;
+  height: 420px;
   z-index: 2;
 }
 
-.hero-card {
-  background: var(--cream-card);
-  border: 1px solid rgba(201,148,58,.2);
-  border-radius: var(--radius-xl);
-  padding: 56px 48px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.8);
-  animation: float 6s ease-in-out infinite;
-  position: relative;
+/* Orbiting rings */
+.h3d-orbit {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(201,148,58,.18);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.h3d-orbit-1 {
+  width: 360px; height: 360px;
+  animation: spin-slow 22s linear infinite;
+}
+.h3d-orbit-2 {
+  width: 460px; height: 460px;
+  animation: spin-slow 34s linear infinite reverse;
 }
 
-.hero-card::before {
+/* Orbiting dots */
+.h3d-dot {
+  position: absolute;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--gold-gradient);
+  top: 50%; left: 50%;
+}
+.h3d-dot-1 { animation: orbitDot1 22s linear infinite; }
+.h3d-dot-2 { animation: orbitDot2 22s linear infinite; }
+.h3d-dot-3 { animation: orbitDot3 34s linear infinite reverse; }
+
+@keyframes orbitDot1 {
+  from { transform: rotate(0deg)   translateX(180px) translate(-50%,-50%); }
+  to   { transform: rotate(360deg) translateX(180px) translate(-50%,-50%); }
+}
+@keyframes orbitDot2 {
+  from { transform: rotate(180deg) translateX(180px) translate(-50%,-50%); }
+  to   { transform: rotate(540deg) translateX(180px) translate(-50%,-50%); }
+}
+@keyframes orbitDot3 {
+  from { transform: rotate(60deg)  translateX(230px) translate(-50%,-50%); }
+  to   { transform: rotate(420deg) translateX(230px) translate(-50%,-50%); }
+}
+
+/* Central ambient glow */
+.h3d-center-orb {
+  position: absolute;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(201,148,58,.22) 0%, transparent 70%);
+  pointer-events: none;
+  animation: orbPulse 4s ease-in-out infinite;
+}
+@keyframes orbPulse {
+  0%,100% { transform: translate(-50%,-50%) scale(1);   opacity: .7; }
+  50%     { transform: translate(-50%,-50%) scale(1.35); opacity: 1;  }
+}
+
+/* ── Stat Tiles ── */
+.h3d-tile {
+  position: absolute;
+  background: var(--cream-card);
+  border: 1.5px solid rgba(201,148,58,.25);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px 16px;
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.10), inset 0 1px 0 rgba(255,255,255,.85);
+  overflow: hidden;
+}
+
+/* Shimmer on each tile */
+.h3d-tile::before {
   content: '';
   position: absolute;
-  inset: -1px;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 35%, rgba(255,255,255,.5) 50%, transparent 65%);
+  background-size: 250% 250%;
   border-radius: inherit;
+  animation: tileShimmer 5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes tileShimmer {
+  0%   { background-position: -100% -100%; }
+  50%  { background-position: 200% 200%; }
+  100% { background-position: -100% -100%; }
+}
+
+/* Tile positions — isometric-feel stagger */
+.h3d-tile-1 {
+  top: 30px; left: 18px;
+  transform: perspective(600px) rotateX(10deg) rotateY(8deg) rotateZ(-2deg);
+  animation: tileFloat1 7s ease-in-out infinite;
+}
+.h3d-tile-2 {
+  top: 120px; left: 50%;
+  transform: perspective(600px) rotateX(6deg) rotateY(-6deg) translateX(-50%);
+  animation: tileFloat2 8s ease-in-out infinite;
+  z-index: 3;
+}
+.h3d-tile-3 {
+  bottom: 28px; right: 18px;
+  transform: perspective(600px) rotateX(10deg) rotateY(-10deg) rotateZ(2deg);
+  animation: tileFloat3 6s ease-in-out infinite;
+}
+
+@keyframes tileFloat1 {
+  0%,100% { transform: perspective(600px) rotateX(10deg) rotateY(8deg)  rotateZ(-2deg) translateY(0); }
+  50%     { transform: perspective(600px) rotateX(14deg) rotateY(4deg)  rotateZ(-1deg) translateY(-14px); }
+}
+@keyframes tileFloat2 {
+  0%,100% { transform: perspective(600px) rotateX(6deg) rotateY(-6deg) translateX(-50%) translateY(0); }
+  50%     { transform: perspective(600px) rotateX(10deg) rotateY(-3deg) translateX(-50%) translateY(-18px); }
+}
+@keyframes tileFloat3 {
+  0%,100% { transform: perspective(600px) rotateX(10deg) rotateY(-10deg) rotateZ(2deg) translateY(0); }
+  50%     { transform: perspective(600px) rotateX(6deg)  rotateY(-14deg) rotateZ(1deg) translateY(-12px); }
+}
+
+.h3d-tile-icon {
+  width: 34px; height: 34px;
+  border-radius: 8px;
   background: var(--gold-gradient);
-  z-index: -1;
-  opacity: 0.25;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+}
+.h3d-tile-icon svg { width: 18px; height: 18px; }
+
+.h3d-tile-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--green-800);
+  line-height: 1;
+}
+.h3d-tile-num span {
+  font-size: 1.2rem;
+  color: var(--gold-600);
+}
+
+.h3d-tile-lbl {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-500);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Progress bar accent */
+.h3d-tile-bar {
+  margin-top: 8px;
+  height: 3px;
+  background: rgba(201,148,58,.15);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.h3d-tile-bar-fill {
+  height: 100%;
+  background: var(--gold-gradient);
+  border-radius: 99px;
+  animation: barGrow 1.8s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes barGrow {
+  from { width: 0 !important; }
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(-12px); }
 }
-
-.hero-logo {
-  width: 160px;
-  height: 160px;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 24px rgba(201,148,58,.25));
-}
-
-.hero-card-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-500);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.hero-card-title {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  color: var(--green-800);
-  font-weight: 600;
-  text-align: center;
-}
-
-.hero-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(201,148,58,.15);
-  animation: spin-slow 20s linear infinite;
-}
-.hero-ring-1 { width: 380px; height: 380px; }
-.hero-ring-2 { width: 480px; height: 480px; animation-direction: reverse; animation-duration: 30s; }
-
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
@@ -1648,7 +1764,7 @@ section { padding: 100px 0; }
 
 @keyframes clientsScroll {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to   { transform: translateX(var(--ticker-set-width, -50%)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2429,10 +2545,13 @@ section { padding: 100px 0; }
    prefers-reduced-motion — all animated elements
 ══════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
-  .clients-ticker { animation: none; flex-wrap: wrap; width: 100%; justify-content: center; padding: 0 24px; }
+  .clients-ticker { animation: none !important; flex-wrap: wrap; width: 100%; justify-content: center; padding: 0 24px; }
   .hero-badge::before,
-  .hero-card,
-  .hero-ring,
+  .h3d-orbit,
+  .h3d-dot,
+  .h3d-tile,
+  .h3d-tile::before,
+  .h3d-center-orb,
   .hero-badge-float,
   .av-ring,
   .av-card,

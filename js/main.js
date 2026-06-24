@@ -195,6 +195,48 @@ async function handleFormSubmit(e) {
   }
 }
 
+// ── Clients ticker — dynamic clone for seamless infinite marquee ──
+(function initClientsTicker() {
+  const ticker = document.getElementById('clientsTicker');
+  if (!ticker) return;
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return;
+
+  // Clone the original set enough times to always fill the screen
+  const original = Array.from(ticker.children);
+  if (!original.length) return;
+
+  // Build a single "set" clone with aria-hidden
+  function makeClone() {
+    const frag = document.createDocumentFragment();
+    original.forEach(card => {
+      const c = card.cloneNode(true);
+      c.setAttribute('aria-hidden', 'true');
+      c.setAttribute('tabindex', '-1');
+      frag.appendChild(c);
+    });
+    return frag;
+  }
+
+  // Add 3 extra copies so the track is always wider than any viewport
+  for (let i = 0; i < 3; i++) ticker.appendChild(makeClone());
+
+  // Recalculate: total width of ONE set = sum of first N children
+  function setAnimationWidth() {
+    let oneSetWidth = 0;
+    const gap = 18; // matches CSS gap
+    original.forEach(card => {
+      oneSetWidth += card.offsetWidth + gap;
+    });
+    // Override keyframe end point via CSS custom property
+    ticker.style.setProperty('--ticker-set-width', `-${oneSetWidth}px`);
+  }
+
+  setAnimationWidth();
+  window.addEventListener('resize', setAnimationWidth);
+})();
+
 // ── Smooth scroll for anchor links ──
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
