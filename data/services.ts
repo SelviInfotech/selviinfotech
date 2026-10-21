@@ -18,9 +18,9 @@ export const services: ServicePage[] = [
   {
     slug: "software-development",
     name: "Software Development",
-    title: "Software Development Company in Chennai & Tiruvallur | Selvi Infotech",
+    title: "Software Development Company in Chennai & Tamil Nadu | Selvi Infotech",
     description:
-      "Custom software development in Tiruvallur, Chennai, and Tamil Nadu. Selvi Infotech builds business applications with React, Next.js, Node.js, .NET, Python, Java Spring Boot, and SQL Server.",
+      "Custom software development in Chennai and Tamil Nadu. Selvi Infotech builds business applications with React, Next.js, Node.js, .NET, Python, Java Spring Boot, and SQL Server.",
     h1: "Software Development Company in Chennai & Tamil Nadu",
     eyebrow: "Custom software",
     intro:
@@ -92,9 +92,9 @@ export const services: ServicePage[] = [
   {
     slug: "mobile-app-development",
     name: "Mobile App Development",
-    title: "Mobile App Development Company in Chennai & Tiruvallur | Selvi Infotech",
+    title: "Mobile App Development Company in Chennai & Tamil Nadu | Selvi Infotech",
     description:
-      "Flutter, React Native, and native Android/iOS app development in Tiruvallur, Chennai, and Tamil Nadu. Selvi Infotech scopes, builds, and helps release mobile apps.",
+      "Flutter, React Native, and native Android/iOS app development in Chennai and Tamil Nadu. Selvi Infotech scopes, builds, and helps release mobile apps.",
     h1: "Mobile App Development in Chennai & Tamil Nadu",
     eyebrow: "Flutter, React Native, native iOS & Android",
     intro:
@@ -157,9 +157,9 @@ export const services: ServicePage[] = [
   {
     slug: "web-development",
     name: "Web Development",
-    title: "Web Development Company in Chennai & Tiruvallur | Selvi Infotech",
+    title: "Web Development Company in Chennai & Tamil Nadu | Selvi Infotech",
     description:
-      "Web development in Tiruvallur and Chennai. Selvi Infotech builds business websites and web applications with React and Next.js, then hands them over ready to maintain.",
+      "Web development in Chennai and Tamil Nadu. Selvi Infotech builds business websites and web applications with React and Next.js, then hands them over ready to maintain.",
     h1: "Web Development Company in Chennai & Tamil Nadu",
     eyebrow: "Websites and web applications",
     intro:
@@ -220,9 +220,9 @@ export const services: ServicePage[] = [
   {
     slug: "web-maintenance",
     name: "Web Maintenance",
-    title: "Web Maintenance Services in Chennai & Tiruvallur | Selvi Infotech",
+    title: "Web Maintenance Services in Chennai & Tamil Nadu | Selvi Infotech",
     description:
-      "Web maintenance services in Chennai, Tiruvallur, and Tamil Nadu. Selvi Infotech updates, fixes, and looks after business websites and web apps built with React, Next.js, .NET, Python, and Java.",
+      "Web maintenance services in Chennai and Tamil Nadu. Selvi Infotech updates, fixes, and looks after business websites and web apps built with React, Next.js, .NET, Python, and Java.",
     h1: "Web Maintenance Services in Chennai & Tamil Nadu",
     eyebrow: "Updates, fixes, and care",
     intro:
@@ -283,9 +283,9 @@ export const services: ServicePage[] = [
   {
     slug: "it-consulting",
     name: "IT Consulting",
-    title: "IT Consulting in Chennai & Tiruvallur | Selvi Infotech",
+    title: "IT Consulting in Chennai & Tamil Nadu | Selvi Infotech",
     description:
-      "IT consulting in Tiruvallur and Tamil Nadu. Selvi Infotech advises on software architecture, stack choice, Azure, and whether to build, maintain, or train.",
+      "IT consulting in Chennai and Tamil Nadu. Selvi Infotech advises on software architecture, stack choice, Azure, and whether to build, maintain, or train.",
     h1: "IT Consulting in Chennai & Tamil Nadu",
     eyebrow: "A working second opinion",
     intro:

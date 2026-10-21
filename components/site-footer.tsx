@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { sameAs, site } from "@/lib/site";
+import { SocialLinks } from "@/components/social-links";
+import { site } from "@/lib/site";
 
 const year = new Date().getFullYear();
 
@@ -13,7 +14,7 @@ export function SiteFooter() {
             Software, mobile apps, websites, maintenance, consulting, and IT training for teams in Chennai, across Tamil Nadu, and remote clients in India.
           </p>
           <p className="footer-address mt-4 text-sm text-cream/90">
-            {site.locality}, {site.region}, {site.countryName}
+            {site.place}, {site.countryName}
           </p>
           <p className="mt-1 text-xs tracking-wide text-cream/55">Udyam {site.udyam}</p>
         </div>
@@ -44,7 +45,7 @@ export function SiteFooter() {
             <li><Link className="hover:text-white" href="/verify/">Verify a certificate</Link></li>
             <li><Link className="hover:text-white" href="/training/">Courses</Link></li>
             <li><Link className="hover:text-white" href="/training/#corporate">Corporate training</Link></li>
-            <li><a className="hover:text-white" href={`mailto:${site.email}`}>{site.email}</a></li>
+            <li><a className="hover:text-white break-words [overflow-wrap:anywhere]" href={`mailto:${site.email}`}>{site.email}</a></li>
             <li><a className="hover:text-white" href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a></li>
           </ul>
         </div>
@@ -52,11 +53,7 @@ export function SiteFooter() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-6 text-sm text-cream/60 sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} {site.name}. All rights reserved.</p>
-          <div className="flex gap-4">
-            <a href={sameAs[0]} target="_blank" rel="noopener noreferrer" className="hover:text-white">LinkedIn</a>
-            <a href={sameAs[1]} target="_blank" rel="noopener noreferrer" className="hover:text-white">X</a>
-            <a href={sameAs[2]} target="_blank" rel="noopener noreferrer" className="hover:text-white">Instagram</a>
-          </div>
+          <SocialLinks className="flex flex-wrap gap-x-4 gap-y-2" linkClassName="hover:text-white" />
         </div>
       </div>
     </footer>

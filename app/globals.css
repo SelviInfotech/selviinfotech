@@ -68,7 +68,7 @@
   }
   html {
     @apply font-sans scroll-smooth;
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: 7rem;
   }
   body {
     @apply bg-background text-foreground;
@@ -317,7 +317,83 @@
   animation-play-state: paused;
 }
 
+/* Homepage stacking cards: sticky shells, scale/dim via --cover. */
+.stack-card-shade {
+  display: none;
+}
+
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .stack-deck {
+    background:
+      radial-gradient(900px 280px at 12% 0%, rgba(201, 148, 58, 0.18), transparent 55%),
+      #0d2818;
+    padding: 1.25rem 0.75rem 2.75rem;
+  }
+
+  .stack-card {
+    position: sticky;
+    z-index: var(--stack-z);
+    margin-bottom: 1rem;
+  }
+
+  .stack-card-face {
+    position: relative;
+    overflow: clip;
+    border-radius: 1.75rem;
+    background: #f5efe6;
+    box-shadow:
+      0 0 0 1px rgba(201, 148, 58, 0.45),
+      0 22px 48px rgba(13, 40, 24, 0.28);
+    transform: scale(calc(1 - var(--cover, 0) * 0.06));
+    transform-origin: center top;
+  }
+
+  .stack-card-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 1.75rem;
+    left: 1.75rem;
+    z-index: 2;
+    height: 2px;
+    background: #c9943a;
+  }
+
+  .stack-card-shade {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    display: block;
+    border-radius: inherit;
+    background: #0d2818;
+    opacity: calc(var(--cover, 0) * 0.4);
+    pointer-events: none;
+  }
+
+  .stack-card-face > section {
+    background-color: transparent;
+    border-color: transparent;
+  }
+}
+
+.stack-deck [id] {
+  scroll-margin-top: 8rem;
+}
+
+/* Drop sticky while an in-page anchor is aligned, so a tall card
+   does not stick above the heading we just scrolled to. */
+.stack-deck.is-anchor-scroll .stack-card {
+  position: relative !important;
+  top: auto !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .stack-card {
+    position: static;
+  }
+  .stack-card-face {
+    transform: none;
+  }
   .mesh i,
   .float-a,
   .float-b,

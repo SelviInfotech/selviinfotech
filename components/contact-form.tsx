@@ -50,26 +50,26 @@ export function ContactForm() {
           <label htmlFor="fname" className="text-sm font-medium text-green-900">
             First name <span className="text-gold">*</span>
           </label>
-          <input className={field} type="text" id="fname" name="firstName" placeholder="Kumaran" autoComplete="given-name" />
+          <input className={field} type="text" id="fname" name="firstName" placeholder="First name" autoComplete="given-name" />
         </div>
         <div>
           <label htmlFor="lname" className="text-sm font-medium text-green-900">
             Last name
           </label>
-          <input className={field} type="text" id="lname" name="lastName" placeholder="Palani" autoComplete="family-name" />
+          <input className={field} type="text" id="lname" name="lastName" placeholder="Last name" autoComplete="family-name" />
         </div>
       </div>
       <div className="mt-4">
         <label htmlFor="email" className="text-sm font-medium text-green-900">
           Email address <span className="text-gold">*</span>
         </label>
-        <input className={field} type="email" id="email" name="email" placeholder="kumaran@gmail.com" autoComplete="email" />
+        <input className={field} type="email" id="email" name="email" placeholder="you@company.com" autoComplete="email" />
       </div>
       <div className="mt-4">
         <label htmlFor="phone" className="text-sm font-medium text-green-900">
           Phone number
         </label>
-        <input className={field} type="tel" id="phone" name="phone" placeholder="+91 98765 43210" autoComplete="tel" />
+        <input className={field} type="tel" id="phone" name="phone" placeholder="Your phone number" autoComplete="tel" />
       </div>
       <div className="mt-4">
         <label htmlFor="service" className="text-sm font-medium text-green-900">

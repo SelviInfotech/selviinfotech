@@ -7,9 +7,9 @@ import { pageMetadata } from "@/lib/seo";
 import { site, stack } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "About Selvi Infotech | Software Company in Chennai & Tiruvallur",
+  title: "About Selvi Infotech | Software Company in Chennai & Tamil Nadu",
   description:
-    "Selvi Infotech Private Limited is a software company in Tiruvallur, Tamil Nadu, led by founder Kumaran. Software, mobile apps, web, maintenance, consulting, and IT training.",
+    "Selvi Infotech Private Limited is a software company in Chennai and Tamil Nadu, led by founder Kumaran. Software, mobile apps, web, maintenance, consulting, and IT training.",
   path: "/about/",
 });
 
@@ -52,7 +52,7 @@ export default function AboutPage() {
           {facts.map(([label, value]) => (
             <div key={label} className="rounded-2xl border border-border bg-card p-5">
               <dt className="text-xs font-semibold tracking-[0.16em] text-gold uppercase">{label}</dt>
-              <dd className="mt-2 text-green-900">
+              <dd className="mt-2 break-words text-green-900 [overflow-wrap:anywhere]">
                 {label === "Email" ? <a className="underline underline-offset-4" href={`mailto:${site.email}`}>{value}</a> : null}
                 {label === "Phone and WhatsApp" ? <a className="underline underline-offset-4" href={`tel:${site.phoneTel}`}>{value}</a> : null}
                 {label !== "Email" && label !== "Phone and WhatsApp" ? value : null}

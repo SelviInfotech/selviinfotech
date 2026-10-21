@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Notes on Apps, Websites, and Maintenance | Selvi Infotech",
   description:
-    "Practical notes from Selvi Infotech in Tiruvallur on mobile app cost, website maintenance, and how software projects are scoped.",
+    "Practical notes from Selvi Infotech in Chennai and Tamil Nadu on mobile app cost, website maintenance, and how software projects are scoped.",
   path: "/blog/",
 });
 

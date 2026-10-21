@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/contact-form";
+import { SocialLinks } from "@/components/social-links";
 import { site } from "@/lib/site";
 
 const channels = [
@@ -23,40 +24,49 @@ const channels = [
   },
   {
     label: "Location",
-    value: `${site.locality}, ${site.region}`,
+    value: site.place,
     note: site.countryName,
   },
 ];
 
+const valueClass =
+  "mt-2 max-w-full font-display text-[clamp(1.05rem,2.2vw,1.5rem)] leading-tight break-words text-green-900 [overflow-wrap:anywhere]";
+
 export function ContactCards() {
   return (
+    <div className="min-w-0">
     <ul className="grid gap-3 sm:grid-cols-2">
       {channels.map((channel) => {
         const inner = (
           <>
             <p className="text-xs font-semibold tracking-[0.16em] text-gold uppercase">{channel.label}</p>
-            <p className="mt-2 font-display text-2xl text-green-900">{channel.value}</p>
-            <p className="mt-1 text-sm text-muted-foreground">{channel.note}</p>
+            <p className={valueClass}>{channel.value}</p>
+            <p className="mt-1 text-sm break-words text-muted-foreground [overflow-wrap:anywhere]">{channel.note}</p>
           </>
         );
         return (
-          <li key={channel.label}>
+          <li key={channel.label} className="min-w-0">
             {channel.href ? (
               <a
                 href={channel.href}
                 target={channel.external ? "_blank" : undefined}
                 rel={channel.external ? "noopener noreferrer" : undefined}
-                className="lift block h-full rounded-2xl border border-border bg-card p-5"
+                className="lift block h-full min-w-0 rounded-2xl border border-border bg-card p-5"
               >
                 {inner}
               </a>
             ) : (
-              <div className="h-full rounded-2xl border border-border bg-card p-5">{inner}</div>
+              <div className="h-full min-w-0 rounded-2xl border border-border bg-card p-5">{inner}</div>
             )}
           </li>
         );
       })}
     </ul>
+    <div className="mt-4 min-w-0 rounded-2xl border border-border bg-card p-5">
+      <p className="text-xs font-semibold tracking-[0.16em] text-gold uppercase">Social</p>
+      <SocialLinks className="mt-3 flex flex-wrap gap-x-4 gap-y-2" linkClassName="text-sm font-semibold text-green-900 underline decoration-gold-bright underline-offset-4" />
+    </div>
+    </div>
   );
 }
 
