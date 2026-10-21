@@ -1,0 +1,54 @@
+# Render static site for selviinfotech.com
+# Dashboard alternative: New > Static Site, build `npm ci && npm run build`, publish `out`.
+services:
+  - type: web
+    name: selvi-infotech
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./out
+    routes:
+      # Extensionless paths without a trailing slash. Pages are folders with index.html.
+      - type: redirect
+        source: /training
+        destination: /training/
+      - type: redirect
+        source: /verify
+        destination: /verify/
+      - type: redirect
+        source: /about
+        destination: /about/
+      - type: redirect
+        source: /contact
+        destination: /contact/
+      - type: redirect
+        source: /blog
+        destination: /blog/
+      - type: redirect
+        source: /portfolio
+        destination: /portfolio/
+      - type: redirect
+        source: /services/:slug
+        destination: /services/:slug/
+      - type: redirect
+        source: /blog/:slug
+        destination: /blog/:slug/
+      # Previous site URLs. Render ignores a redirect when a file already exists
+      # at the source, and this build also publishes training.html and verify.html
+      # so those URLs keep working before any rule is applied. Canonical tags
+      # point at /training/ and /verify/.
+      - type: redirect
+        source: /training.html
+        destination: /training/
+      - type: redirect
+        source: /verify.html
+        destination: /verify/
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
