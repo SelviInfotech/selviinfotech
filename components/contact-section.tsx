@@ -34,8 +34,8 @@ const valueClass =
 
 export function ContactCards() {
   return (
-    <div className="min-w-0">
-    <ul className="grid gap-3 sm:grid-cols-2">
+    <div className="contact-card-list min-w-0">
+    <ul className="contact-channels grid gap-3 sm:grid-cols-2">
       {channels.map((channel) => {
         const inner = (
           <>
@@ -72,20 +72,22 @@ export function ContactCards() {
 
 export function ContactSection() {
   return (
-    <section id="contact" className="mx-auto grid max-w-6xl gap-10 px-5 py-20 md:grid-cols-2 md:py-28">
-      <div>
-        <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Get in touch</p>
-        <h2 className="mt-3 font-display text-4xl text-green-900 md:text-5xl">
-          Let&apos;s build your next idea
-        </h2>
-        <p className="mt-4 leading-relaxed text-muted-foreground">
-          Have a project in mind or need expert guidance? Our team is ready to help you explore the possibilities and craft the right solution for your needs. We work with clients in Chennai, across Tamil Nadu, and with remote clients elsewhere in India.
-        </p>
-        <div className="mt-8">
-          <ContactCards />
+    <section id="contact" className="stack-fill px-5 py-20">
+      <div className="contact-split mx-auto grid w-full max-w-6xl gap-10 md:grid-cols-2">
+        <div className="contact-aside min-w-0">
+          <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Get in touch</p>
+          <h2 className="mt-3 font-display text-4xl text-green-900 lg:text-5xl">
+            Let&apos;s build your next idea
+          </h2>
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            Have a project in mind or need expert guidance? Our team is ready to help you explore the possibilities and craft the right solution for your needs. We work with clients in Chennai, across Tamil Nadu, and with remote clients elsewhere in India.
+          </p>
+          <div className="mt-5 flex min-h-0 flex-1 flex-col">
+            <ContactCards />
+          </div>
         </div>
+        <ContactForm />
       </div>
-      <ContactForm />
     </section>
   );
 }

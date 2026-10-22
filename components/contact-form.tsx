@@ -44,7 +44,7 @@ export function ContactForm() {
   }
 
   return (
-    <form className="rounded-[1.75rem] border border-border bg-card p-6 shadow-sm md:p-8" onSubmit={onSubmit} noValidate>
+    <form className="contact-form rounded-[1.75rem] border border-border bg-card p-6 shadow-sm md:p-8" onSubmit={onSubmit} noValidate>
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="fname" className="text-sm font-medium text-green-900">

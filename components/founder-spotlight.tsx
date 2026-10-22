@@ -1,25 +1,50 @@
-import { site } from "@/lib/site";
+import { engagementSteps, site } from "@/lib/site";
 
-export function FounderSpotlight({ id = "founder" }: { id?: string }) {
+export function FounderSpotlight({ id = "founder", variant = "page" }: { id?: string; variant?: "page" | "stack" }) {
+  const stack = variant === "stack";
   return (
-    <section id={id} className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 md:grid-cols-12 md:py-28">
-      <div className="reveal md:col-span-5">
-        <div className="relative">
-          <img
-            src="/images/kumaran.webp"
-            alt="Kumaran, Founder and Managing Director of Selvi Infotech Private Limited"
-            width={800}
-            height={1068}
-            loading="lazy"
-            decoding="async"
-            className="aspect-[4/5] w-full rounded-[2rem] object-cover object-top"
-          />
-          <p className="absolute bottom-4 left-4 rounded-full bg-cream/95 px-4 py-2 text-xs font-semibold tracking-[0.14em] text-green-900 uppercase">
-            Founder &amp; MD
-          </p>
+    <section id={id} className={stack ? "stack-fill px-5 py-20" : "mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 md:grid-cols-12 md:py-28"}>
+      {stack ? (
+        <div className="founder-layout grid gap-8">
+          <FounderPortrait />
+          <FounderCopy stacked />
         </div>
-      </div>
-      <div className="reveal md:col-span-7" style={{ ["--reveal-delay" as string]: "120ms" }}>
+      ) : (
+        <>
+          <div className="reveal md:col-span-5">
+            <FounderPortrait />
+          </div>
+          <div className="reveal md:col-span-7" style={{ ["--reveal-delay" as string]: "120ms" }}>
+            <FounderCopy />
+          </div>
+        </>
+      )}
+    </section>
+  );
+}
+
+function FounderPortrait() {
+  return (
+    <div className="founder-portrait relative h-full min-h-0">
+      <img
+        src="/images/kumaran.webp"
+        alt="Kumaran, Founder and Managing Director of Selvi Infotech Private Limited"
+        width={800}
+        height={1068}
+        loading="lazy"
+        decoding="async"
+        className="aspect-[4/5] w-full rounded-[2rem] object-cover object-top"
+      />
+      <p className="absolute bottom-4 left-4 rounded-full bg-cream/95 px-4 py-2 text-xs font-semibold tracking-[0.14em] text-green-900 uppercase">
+        Founder &amp; MD
+      </p>
+    </div>
+  );
+}
+
+function FounderCopy({ stacked = false }: { stacked?: boolean }) {
+  return (
+    <div className={stacked ? "founder-copy" : undefined}>
         <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Leadership</p>
         <h2 className="mt-3 font-display text-4xl text-green-900 md:text-5xl">Kumaran</h2>
         <p className="mt-2 text-gold">{site.founder.role}</p>
@@ -37,7 +62,16 @@ export function FounderSpotlight({ id = "founder" }: { id?: string }) {
             Company LinkedIn
           </a>
         </div>
-      </div>
-    </section>
+        {stacked ? (
+          <ul className="mt-6 grid gap-3 sm:grid-cols-3">
+            {engagementSteps.map(([title], index) => (
+              <li key={title} className="rounded-2xl border border-border bg-card px-3 py-3">
+                <p className="text-xs font-semibold tracking-[0.16em] text-gold uppercase">0{index + 1}</p>
+                <p className="mt-1 font-display text-lg leading-tight text-green-900">{title}</p>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+    </div>
   );
 }
