@@ -4,6 +4,7 @@ import { FaqList } from "@/components/faq-list";
 import { PageHero } from "@/components/page-hero";
 import { StatValue } from "@/components/stat-value";
 import { courses, trainingFaqs } from "@/data/courses";
+import { workImages } from "@/data/visuals";
 import { JsonLd } from "@/lib/json-ld";
 import { faqSchema } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
@@ -52,13 +53,27 @@ export default function TrainingPage() {
         </dl>
       </PageHero>
 
-      <section className="mx-auto max-w-6xl px-5 py-20 md:py-28">
-        <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Our courses</p>
-        <h2 className="mt-3 font-display text-4xl text-green-900">Choose a learning path</h2>
-        <p className="mt-4 max-w-2xl text-muted-foreground">
-          From beginner to advanced. Completion certificates are issued by {site.name} and can be checked on the{" "}
-          <Link href="/verify/" className="font-semibold text-green-800 underline underline-offset-4">verification page</Link>.
-        </p>
+      <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
+        <div className="grid items-start gap-6 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Our courses</p>
+            <h2 className="mt-3 font-display text-4xl text-green-900">Choose a learning path</h2>
+            <p className="mt-4 max-w-2xl text-muted-foreground">
+              From beginner to advanced. Completion certificates are issued by {site.name} and can be checked on the{" "}
+              <Link href="/verify/" className="font-semibold text-green-800 underline underline-offset-4">verification page</Link>.
+            </p>
+          </div>
+          <img
+            src={workImages.training.src}
+            alt={workImages.training.alt}
+            width={960}
+            height={640}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            loading="lazy"
+            decoding="async"
+            className="aspect-[16/10] w-full rounded-2xl object-cover lg:col-span-5"
+          />
+        </div>
         <div className="mt-12 flex flex-col gap-8">
           {courses.map((course) => (
             <article key={course.id} id={course.id} className="reveal overflow-hidden rounded-[1.75rem] border border-border bg-card">

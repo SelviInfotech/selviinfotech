@@ -10,6 +10,8 @@ export function FounderSpotlight({ id = "founder" }: { id?: string }) {
             alt="Kumaran, Founder and Managing Director of Selvi Infotech Private Limited"
             width={800}
             height={1068}
+            loading="lazy"
+            decoding="async"
             className="aspect-[4/5] w-full rounded-[2rem] object-cover object-top"
           />
           <p className="absolute bottom-4 left-4 rounded-full bg-cream/95 px-4 py-2 text-xs font-semibold tracking-[0.14em] text-green-900 uppercase">

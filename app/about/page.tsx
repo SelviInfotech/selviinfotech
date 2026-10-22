@@ -3,6 +3,7 @@ import { ClientMarquee } from "@/components/client-marquee";
 import { CtaBand } from "@/components/cta-band";
 import { FounderSpotlight } from "@/components/founder-spotlight";
 import { PageHero } from "@/components/page-hero";
+import { workImages } from "@/data/visuals";
 import { pageMetadata } from "@/lib/seo";
 import { site, stack } from "@/lib/site";
 
@@ -48,6 +49,17 @@ export default function AboutPage() {
             From startups to enterprises, we partner with organizations to design robust, scalable systems and empower their teams through our industry-leading training programs.
           </p>
         </div>
+        <div>
+          <img
+            src={workImages["software-development"].src}
+            alt={workImages["software-development"].alt}
+            width={960}
+            height={640}
+            sizes="(min-width: 768px) 50vw, 100vw"
+            loading="lazy"
+            decoding="async"
+            className="mb-4 aspect-[16/10] w-full rounded-2xl object-cover"
+          />
         <dl className="grid gap-3 sm:grid-cols-2">
           {facts.map(([label, value]) => (
             <div key={label} className="rounded-2xl border border-border bg-card p-5">
@@ -60,6 +72,7 @@ export default function AboutPage() {
             </div>
           ))}
         </dl>
+        </div>
       </section>
 
       <section className="border-y border-border bg-card py-10">

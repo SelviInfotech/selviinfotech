@@ -1,45 +1,33 @@
 "use client";
 
+import { animate, useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 export function StatValue({ value, suffix = "+" }: { value: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
+  const reduce = useReducedMotion();
+  const inView = useInView(ref, { once: true, amount: 0.6 });
   const [shown, setShown] = useState(value);
+  const finalText = `${value.toLocaleString("en-IN")}${suffix}`;
 
   useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const node = ref.current;
-    if (!node || reduce) return;
+    if (!inView || reduce !== false) return;
+    const controls = animate(0, value, {
+      duration: 1.1,
+      ease: [0.22, 1, 0.36, 1],
+      onUpdate: (latest) => setShown(Math.round(latest)),
+    });
+    return () => controls.stop();
+  }, [inView, reduce, value]);
 
-    let frame = 0;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry?.isIntersecting) return;
-        observer.disconnect();
-        const start = performance.now();
-        const duration = 1100;
-        const tick = (now: number) => {
-          const progress = Math.min(1, (now - start) / duration);
-          const eased = 1 - (1 - progress) ** 3;
-          setShown(Math.round(value * eased));
-          if (progress < 1) frame = requestAnimationFrame(tick);
-        };
-        setShown(0);
-        frame = requestAnimationFrame(tick);
-      },
-      { threshold: 0.5 },
-    );
-    observer.observe(node);
-    return () => {
-      observer.disconnect();
-      cancelAnimationFrame(frame);
-    };
-  }, [value]);
+  const text = !inView || reduce !== false ? finalText : `${shown.toLocaleString("en-IN")}${suffix}`;
 
   return (
-    <span ref={ref}>
-      {shown.toLocaleString("en-IN")}
-      {suffix}
+    <span ref={ref} className="inline-grid">
+      <span className="invisible col-start-1 row-start-1" aria-hidden="true">
+        {finalText}
+      </span>
+      <span className="col-start-1 row-start-1">{text}</span>
     </span>
   );
 }

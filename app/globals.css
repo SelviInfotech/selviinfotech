@@ -277,8 +277,39 @@
   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 .lift:hover {
-  transform: translateY(-6px);
+  transform: translateY(-6px) rotate(-0.3deg);
   box-shadow: 0 18px 40px rgba(13, 40, 24, 0.08);
+}
+
+.rise-bar {
+  transform-origin: bottom center;
+  animation: rise-bar 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.rise-x {
+  transform-origin: left center;
+  animation: rise-x 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes rise-bar {
+  from { transform: scaleY(0.15); }
+  to { transform: scaleY(1); }
+}
+@keyframes rise-x {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.wa-fab::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  animation: wa-pulse 2.6s ease-out infinite;
+}
+@keyframes wa-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); }
+  70% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
 .float-a { animation: float-y 7s ease-in-out infinite; }
@@ -400,7 +431,10 @@
   .caret,
   .marquee-track,
   .marquee-track-slow,
-  .lift {
+  .lift,
+  .rise-bar,
+  .rise-x,
+  .wa-fab::after {
     animation: none !important;
   }
   .lift:hover {
