@@ -10,9 +10,9 @@ import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "IT Training in Chennai & Tiruvallur | Selvi Infotech",
+  title: "IT Training in Chennai & Tamil Nadu | Selvi Infotech",
   description:
-    "IT training in Tiruvallur, Tamil Nadu: full stack web, Flutter and React Native, data science, Python, Java, cloud, and UI/UX. Certificates can be verified online.",
+    "IT training in Chennai and Tamil Nadu: full stack web, Flutter and React Native, data science, Python, Java, cloud, and UI/UX. Certificates can be verified online.",
   path: "/training/",
 });
 

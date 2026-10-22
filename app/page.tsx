@@ -6,6 +6,7 @@ import { FaqList } from "@/components/faq-list";
 import { FounderSpotlight } from "@/components/founder-spotlight";
 import { ProcessTimeline } from "@/components/process-timeline";
 import { StatValue } from "@/components/stat-value";
+import { StackCard, StackingDeck } from "@/components/stacking-deck";
 import { TechMarquee } from "@/components/tech-marquee";
 import { isTestimonialsPublic, testimonials } from "@/data/testimonials";
 import { JsonLd } from "@/lib/json-ld";
@@ -174,6 +175,8 @@ export default function HomePage() {
         </dl>
       </section>
 
+      <StackingDeck>
+      <StackCard>
       <section id="services" className="mx-auto max-w-6xl px-5 py-20 md:py-28">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">What we offer</p>
@@ -204,14 +207,18 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      </StackCard>
 
+      <StackCard>
       <section className="border-y border-border bg-card py-8">
         <p className="px-5 text-center text-xs font-semibold tracking-[0.2em] text-gold uppercase">Stack we ship</p>
         <div className="mt-4">
           <TechMarquee />
         </div>
       </section>
+      </StackCard>
 
+      <StackCard>
       <section id="why-us" className="mx-auto max-w-6xl px-5 py-20 md:py-28">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
@@ -232,7 +239,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </StackCard>
 
+      <StackCard>
       <section id="process" className="bg-cream-dark/50 py-20 md:py-28">
         <div className="mx-auto max-w-6xl px-5">
           <div className="mb-12 max-w-2xl">
@@ -243,9 +252,13 @@ export default function HomePage() {
           <ProcessTimeline />
         </div>
       </section>
+      </StackCard>
 
+      <StackCard>
       <FounderSpotlight />
+      </StackCard>
 
+      <StackCard>
       <section id="clients" className="border-y border-border py-16" aria-labelledby="clients-heading">
         <div className="mx-auto max-w-6xl px-5">
           <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Trusted by</p>
@@ -256,8 +269,10 @@ export default function HomePage() {
           <ClientMarquee />
         </div>
       </section>
+      </StackCard>
 
       {isTestimonialsPublic() ? (
+        <StackCard>
         <section className="mx-auto max-w-6xl px-5 py-16" aria-label="Client notes">
           <ul className="grid gap-4 md:grid-cols-3">
             {testimonials.map((item) => (
@@ -269,8 +284,10 @@ export default function HomePage() {
             ))}
           </ul>
         </section>
+        </StackCard>
       ) : null}
 
+      <StackCard>
       <section id="faq" className="px-5 py-20 md:py-28">
         <div className="mx-auto max-w-6xl">
           <p className="text-center text-xs font-semibold tracking-[0.2em] text-gold uppercase">FAQ</p>
@@ -280,9 +297,15 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </StackCard>
 
+      <StackCard>
       <CtaBand />
+      </StackCard>
+      <StackCard>
       <ContactSection />
+      </StackCard>
+      </StackingDeck>
     </>
   );
 }

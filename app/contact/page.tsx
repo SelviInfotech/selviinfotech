@@ -4,9 +4,9 @@ import { PageHero } from "@/components/page-hero";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Contact Selvi Infotech | Chennai & Tiruvallur",
+  title: "Contact Selvi Infotech | Chennai & Tamil Nadu",
   description:
-    "Contact Selvi Infotech Private Limited in Tiruvallur. Email info@selviinfotech.com, call or WhatsApp +91 9500316716. The form opens an email draft.",
+    "Contact Selvi Infotech Private Limited in Chennai and Tamil Nadu. Email info@selviinfotech.com, call or WhatsApp +91 9500316716. The form opens an email draft.",
   path: "/contact/",
 });
 

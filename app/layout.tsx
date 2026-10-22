@@ -27,7 +27,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   ...pageMetadata({
-    title: "Software Development Company in Chennai & Tiruvallur | Selvi Infotech",
+    title: "Software Development Company in Chennai & Tamil Nadu | Selvi Infotech",
     description: site.description,
     path: "/",
   }),

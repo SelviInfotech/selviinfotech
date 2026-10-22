@@ -1,6 +1,6 @@
 # Selvi Infotech
 
-Marketing site for **Selvi Infotech Private Limited**, Tiruvallur, Tamil Nadu. Visible page copy says Chennai and Tamil Nadu (and remote clients across India). Tiruvallur stays in the title, meta description, Open Graph tags, the JSON-LD postal address, and the small footer and contact address line. It is a static Next.js export aimed at local and service searches.
+Marketing site for **Selvi Infotech Private Limited**. The public location line is **Chennai & Tamil Nadu**, including titles, meta descriptions, Open Graph text, the JSON-LD postal address (Chennai, Tamil Nadu), and the footer and contact cards. It is a static Next.js export aimed at local and service searches.
 
 The previous site was static HTML. This rebuild keeps the cream, green, and gold look, Playfair Display and Inter, the logo, the founder section, the client list, the training programs, and certificate verification.
 
@@ -65,12 +65,12 @@ Posts are Markdown or MDX with frontmatter in `content/blog/`. Add a file, run t
 
 Do these outside the codebase. The site cannot do them for you.
 
-1. **Google Business Profile.** Claim or create the profile for Selvi Infotech Private Limited in Tiruvallur. Use the same name, phone (+91 9500316716), website, and a real street address if you have one. The site only lists the town because a street address was not provided.
+1. **Google Business Profile.** Claim or create the profile for Selvi Infotech Private Limited. Use the same name, phone (+91 9500316716), website, and a real street address if you have one. The site lists the location as Chennai & Tamil Nadu because a street address was not provided.
 2. **Google Search Console.** Add the property `https://selviinfotech.com/`, verify it (DNS is the durable method), then submit `https://selviinfotech.com/sitemap.xml`.
 3. **Request indexing** for the homepage and the five service URLs after the new site is live.
 4. **Reviews.** Ask clients who will put their name to a review on the Business Profile. Do not add testimonials to this site unless they are real and you can name who said them.
 5. **Directories.** List the company, with the same name, phone, and URL, on places you actually belong (Udyam is already `UDYAM-TN-24-0163072`). Inconsistent names confuse local results.
-6. **Social profiles.** Keep the links in the footer current. LinkedIn should stay the single company page: `https://www.linkedin.com/company/selvi-infotech-private-limited`.
-7. **After a few weeks,** look in Search Console for queries you want (software development Tiruvallur, mobile app development Chennai, web maintenance Tamil Nadu, Flutter developers Tamil Nadu, IT training Tiruvallur) and adjust the page that is closest to each query. Do not add pages that repeat the same text.
+6. **Social profiles.** Keep the links in the header, footer, and contact cards current: Instagram `https://www.instagram.com/selvi_infotech`, LinkedIn `https://www.linkedin.com/company/selvi-infotech`, Facebook `https://www.facebook.com/selvi.infotech`, and Medium `https://medium.com/selvi-infotech`.
+7. **After a few weeks,** look in Search Console for queries you want (software development Chennai, mobile app development Tamil Nadu, web maintenance Tamil Nadu, Flutter developers Tamil Nadu, IT training Chennai) and adjust the page that is closest to each query. Do not add pages that repeat the same text.
 
 Homepage figures such as “50+ projects” and “10,000+ students” are carried over from the previous site. Do not add new statistics unless you can stand behind them.
