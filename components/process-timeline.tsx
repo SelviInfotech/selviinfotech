@@ -33,7 +33,7 @@ const steps = [
 
 export function ProcessTimeline() {
   return (
-    <ol className="relative mx-auto max-w-3xl border-l border-gold-bright/50 pl-8">
+    <ol className="process-steps relative mx-auto max-w-3xl border-l border-gold-bright/50 pl-8">
       {steps.map((step, index) => (
         <li key={step.num} className="reveal relative pb-8 last:pb-0" style={{ ["--reveal-delay" as string]: `${index * 90}ms` }}>
           <span className="absolute top-0 -left-[2.7rem] grid size-10 place-items-center rounded-2xl bg-green-800 text-cream shadow-md">

@@ -18,6 +18,12 @@ export function StackCard({ index = 0, children }: StackCardProps) {
   );
 }
 
+/** Gentler than a linear scrub: slow at the start and the settle. */
+function smootherstep(value: number) {
+  const t = Math.min(1, Math.max(0, value));
+  return t * t * t * (t * (t * 6 - 15) + 10);
+}
+
 function useStackMotion(rootRef: React.RefObject<HTMLDivElement | null>) {
   useEffect(() => {
     const root = rootRef.current;
@@ -26,50 +32,76 @@ function useStackMotion(rootRef: React.RefObject<HTMLDivElement | null>) {
     const mobileQuery = window.matchMedia("(max-width: 767px)");
     const reduceQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let frame = 0;
+    let stickyTop = 80;
 
     const cards = () => Array.from(root.querySelectorAll<HTMLElement>("[data-stack-card]"));
 
+    const readStickyTop = () => {
+      const fromDeck = parseFloat(getComputedStyle(root).getPropertyValue("--stack-top"));
+      if (!Number.isNaN(fromDeck)) stickyTop = fromDeck;
+    };
+
     const clearMotion = () => {
       cards().forEach((card) => {
-        card.style.top = "";
         card.style.removeProperty("--cover");
+        card.style.removeProperty("--arrive");
+        delete card.dataset.cover;
+        delete card.dataset.arrive;
       });
     };
 
-    const layout = () => {
-      if (mobileQuery.matches || reduceQuery.matches) {
-        clearMotion();
-        return;
-      }
-      const viewHeight = window.innerHeight;
-      cards().forEach((card, index) => {
-        const peek = 76 + index * 14;
-        const height = card.getBoundingClientRect().height;
-        const top = height + peek <= viewHeight - 8 ? peek : Math.min(peek, viewHeight - height - 12);
-        card.style.top = `${top}px`;
-      });
+    const write = (card: HTMLElement, key: "cover" | "arrive", value: number) => {
+      const next = value.toFixed(4);
+      if (card.dataset[key] === next) return;
+      card.dataset[key] = next;
+      card.style.setProperty(key === "cover" ? "--cover" : "--arrive", next);
     };
 
     const paint = () => {
       frame = 0;
-      if (mobileQuery.matches || reduceQuery.matches) return;
+      if (mobileQuery.matches || reduceQuery.matches) {
+        clearMotion();
+        return;
+      }
+
       const deck = root.getBoundingClientRect();
-      if (deck.bottom < -200 || deck.top > window.innerHeight + 200) return;
+      const viewHeight = window.innerHeight;
+      if (deck.bottom < -400 || deck.top > viewHeight + 400) return;
 
       const list = cards();
+      if (!list.length) return;
       const rects = list.map((card) => card.getBoundingClientRect());
+      let moving = false;
+
       list.forEach((card, index) => {
-        const next = rects[index + 1];
-        if (!next) {
-          card.style.setProperty("--cover", "0");
-          return;
-        }
         const current = rects[index];
-        const distance = next.top - current.top;
-        const range = Math.max(220, Math.min(window.innerHeight * 0.62, current.height));
-        const progress = 1 - Math.min(1, Math.max(0, distance / range));
-        card.style.setProperty("--cover", progress.toFixed(3));
+        if (!current || current.height < 1) return;
+        const next = rects[index + 1];
+        let coverTarget = 0;
+        if (next) {
+          const distance = next.top - current.top;
+          const linear = 1 - Math.min(1, Math.max(0, distance / current.height));
+          coverTarget = smootherstep(linear);
+        }
+
+        const distanceToStick = current.top - stickyTop;
+        const arriveLinear = 1 - Math.min(1, Math.max(0, distanceToStick / current.height));
+        const arriveTarget = smootherstep(arriveLinear);
+
+        const coverPrev = card.dataset.cover === undefined ? coverTarget : Number(card.dataset.cover);
+        const arrivePrev = card.dataset.arrive === undefined ? arriveTarget : Number(card.dataset.arrive);
+        let cover = coverPrev + (coverTarget - coverPrev) * 0.28;
+        let arrive = arrivePrev + (arriveTarget - arrivePrev) * 0.28;
+        if (Math.abs(cover - coverTarget) < 0.004) cover = coverTarget;
+        else moving = true;
+        if (Math.abs(arrive - arriveTarget) < 0.004) arrive = arriveTarget;
+        else moving = true;
+
+        write(card, "cover", cover);
+        write(card, "arrive", arrive);
       });
+
+      if (moving) frame = window.requestAnimationFrame(paint);
     };
 
     const requestPaint = () => {
@@ -78,11 +110,15 @@ function useStackMotion(rootRef: React.RefObject<HTMLDivElement | null>) {
     };
 
     const onChange = () => {
-      layout();
+      readStickyTop();
+      if (mobileQuery.matches || reduceQuery.matches) {
+        clearMotion();
+        return;
+      }
       requestPaint();
     };
 
-    layout();
+    readStickyTop();
     requestPaint();
 
     const observer = new ResizeObserver(onChange);

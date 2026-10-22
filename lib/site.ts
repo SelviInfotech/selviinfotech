@@ -36,6 +36,13 @@ export const socialLinks = [
 
 export const sameAs = socialLinks.map((item) => item.href);
 
+/** How a project runs. Same three lines as the homepage strip. */
+export const engagementSteps = [
+  ["Written scope", "The work is agreed in writing before the build starts."],
+  ["Built in cycles", "You see the software while it can still change."],
+  ["Handover & support", "Source, notes, and a person to call when it goes live."],
+] as const;
+
 export const stack = [
   "React / Next.js",
   "Flutter",

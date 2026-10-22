@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ClientMarquee } from "@/components/client-marquee";
 import { ContactSection } from "@/components/contact-section";
 import { CtaBand } from "@/components/cta-band";
 import { FaqList } from "@/components/faq-list";
@@ -7,11 +6,12 @@ import { FounderSpotlight } from "@/components/founder-spotlight";
 import { HeroMockup } from "@/components/hero-mockup";
 import { ProcessTimeline } from "@/components/process-timeline";
 import { StackCard, StackingDeck } from "@/components/stacking-deck";
-import { TechMarquee } from "@/components/tech-marquee";
+import { clients } from "@/data/clients";
 import { workImages } from "@/data/visuals";
 import { isTestimonialsPublic, testimonials } from "@/data/testimonials";
 import { JsonLd } from "@/lib/json-ld";
 import { faqSchema } from "@/lib/schema";
+import { engagementSteps, site, stack } from "@/lib/site";
 
 const homeFaqs = [
   {
@@ -28,6 +28,16 @@ const homeFaqs = [
     question: "How do I contact Selvi Infotech?",
     answer:
       "Email info@selviinfotech.com, call or WhatsApp +91 9500316716, or use the contact form. The form opens an email draft. It does not send the message by itself.",
+  },
+  {
+    question: "Which technologies do you use?",
+    answer:
+      "React and Next.js, Node.js, C# and ASP.NET Core, Python, Java Spring Boot, SQL Server, and Azure. We pick from that list based on the system and on what your team can maintain.",
+  },
+  {
+    question: "Can you maintain the software after launch?",
+    answer:
+      "Yes. Ongoing fixes, updates, and small changes are covered as [web maintenance](/services/web-maintenance/), scoped separately from the original build.",
   },
 ];
 
@@ -138,11 +148,7 @@ export default function HomePage() {
 
       <section className="border-b border-border bg-cream-dark/60" aria-label="How a project runs">
         <ul className="mx-auto grid max-w-6xl gap-6 px-5 py-8 sm:grid-cols-3">
-          {[
-            ["Written scope", "The work is agreed in writing before the build starts."],
-            ["Built in cycles", "You see the software while it can still change."],
-            ["Handover & support", "Source, notes, and a person to call when it goes live."],
-          ].map(([title, body]) => (
+          {engagementSteps.map(([title, body]) => (
             <li key={title}>
               <p className="font-display text-2xl text-green-900">{title}</p>
               <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{body}</p>
@@ -153,70 +159,109 @@ export default function HomePage() {
 
       <StackingDeck>
       <StackCard>
-      <section id="services" className="mx-auto max-w-6xl px-5 py-20 md:py-28">
-        <div className="max-w-2xl">
-          <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">What we offer</p>
-          <h2 className="mt-3 font-display text-4xl text-green-900 md:text-5xl">Services, built as products</h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            End-to-end digital solutions for companies in Chennai and Tamil Nadu, and for remote clients across India.
-          </p>
-        </div>
-        <div className="mt-10 grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {offerings.map((item, index) => (
-            <article
-              key={item.title}
-              className={`reveal lift flex h-full flex-col overflow-hidden rounded-2xl border ${item.featured ? "border-white/10 bg-green-900 text-cream" : "border-border bg-card"}`}
-              style={{ ["--reveal-delay" as string]: `${index * 70}ms` }}
-            >
-              <img
-                src={item.image.src}
-                alt={item.image.alt}
-                width={960}
-                height={640}
-                sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
-                loading="lazy"
-                decoding="async"
-                className="aspect-[16/10] w-full object-cover"
-              />
-              <div className="flex flex-1 flex-col p-5">
-                <h3 className={`font-display text-2xl leading-tight ${item.featured ? "text-cream" : "text-green-900"}`}>{item.title}</h3>
-                <p className={`mt-2 text-sm leading-relaxed ${item.featured ? "text-cream/80" : "text-muted-foreground"}`}>{item.body}</p>
-                <Link
-                  href={item.href}
-                  className={`mt-4 inline-flex text-sm font-semibold underline-offset-4 hover:underline ${item.featured ? "text-gold-bright" : "text-green-800"}`}
-                >
-                  {item.cta} →
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-      </StackCard>
-
-      <StackCard>
-      <section className="border-y border-border bg-card py-8">
-        <p className="px-5 text-center text-xs font-semibold tracking-[0.2em] text-gold uppercase">Stack we ship</p>
-        <div className="mt-4">
-          <TechMarquee />
+      <section id="services" className="stack-fill px-5 py-20">
+        <div className="stack-body mx-auto flex w-full max-w-6xl flex-col">
+          <div className="max-w-2xl shrink-0">
+            <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">What we offer</p>
+            <h2 className="mt-3 font-display text-4xl text-green-900 md:text-5xl">Services, built as products</h2>
+            <p className="mt-3 text-lg text-muted-foreground">
+              End-to-end digital solutions for companies in Chennai and Tamil Nadu, and for remote clients across India.
+            </p>
+          </div>
+          <div className="offer-grid stack-grow mt-8 grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {offerings.map((item, index) => (
+              <article
+                key={item.title}
+                className={`offer-card reveal lift flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border ${item.featured ? "border-white/10 bg-green-900 text-cream" : "border-border bg-card"}`}
+                style={{ ["--reveal-delay" as string]: `${index * 70}ms` }}
+              >
+                <img
+                  src={item.image.src}
+                  alt={item.image.alt}
+                  width={960}
+                  height={640}
+                  sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[16/10] w-full shrink-0 object-cover"
+                />
+                <div className="flex flex-1 flex-col p-4">
+                  <h3 className={`font-display text-2xl leading-tight ${item.featured ? "text-cream" : "text-green-900"}`}>{item.title}</h3>
+                  <p className={`mt-2 text-sm leading-relaxed ${item.featured ? "text-cream/80" : "text-muted-foreground"}`}>{item.body}</p>
+                  <Link
+                    href={item.href}
+                    className={`mt-auto pt-3 inline-flex text-sm font-semibold underline-offset-4 hover:underline ${item.featured ? "text-gold-bright" : "text-green-800"}`}
+                  >
+                    {item.cta} →
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
       </StackCard>
 
       <StackCard>
-      <section id="why-us" className="mx-auto max-w-6xl px-5 py-20 md:py-28">
-        <div className="grid gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-4">
+      <section className="stack-fill px-5 py-20" aria-labelledby="stack-heading">
+        <div className="stack-body mx-auto flex w-full max-w-6xl flex-col">
+          <div className="flex shrink-0 flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-xl">
+              <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Technologies we use</p>
+              <h2 id="stack-heading" className="mt-3 font-display text-4xl text-green-900 md:text-5xl">The stack we ship</h2>
+            </div>
+            <p className="max-w-md text-sm leading-relaxed text-muted-foreground lg:text-right">
+              We pick from this stack based on the system and on what your team can maintain.
+            </p>
+          </div>
+          <ul className="tech-grid stack-grow mt-6 grid grid-cols-2 gap-2 sm:grid-cols-3">
+            {stack.map((item) => (
+              <li key={item} className="flex h-full min-h-16 items-center justify-center rounded-2xl border border-border bg-card px-3 py-4 text-center text-sm font-semibold text-green-900">
+                {item}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-5 shrink-0 border-t border-border pt-4">
+            <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">How we work</p>
+            <ul className="mt-3 grid gap-3 md:grid-cols-3">
+              {engagementSteps.map(([title, body]) => (
+                <li key={title}>
+                  <p className="font-display text-xl text-green-900">{title}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{body}</p>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-sm text-green-900">
+              <a className="font-semibold underline decoration-gold-bright underline-offset-4" href={`mailto:${site.email}`}>
+                {site.email}
+              </a>
+              <span aria-hidden="true"> · </span>
+              <a className="font-semibold underline decoration-gold-bright underline-offset-4" href={`tel:${site.phoneTel}`}>
+                {site.phoneDisplay}
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+      </StackCard>
+
+      <StackCard>
+      <section id="why-us" className="stack-fill px-5 py-20">
+        <div className="why-layout mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-12">
+          <div className="flex flex-col lg:col-span-4">
             <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Why choose us</p>
             <h2 className="mt-3 font-display text-4xl text-green-900">The studio advantage</h2>
             <p className="mt-4 text-muted-foreground">We combine technical depth with a client-first mindset to deliver exceptional results.</p>
-            <Link href="/about/" className="mt-6 inline-flex h-12 items-center rounded-full bg-green-800 px-6 text-sm font-semibold text-white hover:bg-green-900">
+            <p className="mt-4 text-muted-foreground">
+              Selvi Infotech Private Limited builds software, mobile apps, and websites, maintains systems that are already live, and trains people in the same tools. We work with clients in Chennai, across Tamil Nadu, and with remote clients elsewhere in India.
+            </p>
+            <Link href="/about/" className="mt-6 inline-flex h-12 items-center self-start rounded-full bg-green-800 px-6 text-sm font-semibold text-white hover:bg-green-900 lg:mt-auto">
               About the company
             </Link>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:col-span-8">
+          <div className="why-points grid gap-4 sm:grid-cols-2 lg:col-span-8">
             {advantages.map(([title, body], index) => (
-              <article key={title} className="reveal lift h-full rounded-2xl border border-border bg-card p-5" style={{ ["--reveal-delay" as string]: `${index * 80}ms` }}>
+              <article key={title} className="reveal lift flex h-full flex-col justify-center rounded-2xl border border-border bg-card p-5" style={{ ["--reveal-delay" as string]: `${index * 80}ms` }}>
                 <h3 className="font-display text-2xl text-green-900">{title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
               </article>
@@ -227,12 +272,12 @@ export default function HomePage() {
       </StackCard>
 
       <StackCard>
-      <section id="process" className="bg-cream-dark/50 py-20 md:py-28">
-        <div className="mx-auto max-w-6xl px-5">
-          <div className="mb-12 max-w-2xl">
+      <section id="process" className="stack-fill px-5 py-20">
+        <div className="stack-body mx-auto flex w-full max-w-6xl flex-col">
+          <div className="mb-6 max-w-2xl shrink-0">
             <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">How we work</p>
             <h2 className="mt-3 font-display text-4xl text-green-900 md:text-5xl">A process you can see</h2>
-            <p className="mt-4 text-muted-foreground">A transparent, structured approach that ensures quality outcomes every time.</p>
+            <p className="mt-3 text-muted-foreground">A transparent, structured approach that ensures quality outcomes every time.</p>
           </div>
           <ProcessTimeline />
         </div>
@@ -240,18 +285,49 @@ export default function HomePage() {
       </StackCard>
 
       <StackCard>
-      <FounderSpotlight />
+      <FounderSpotlight variant="stack" />
       </StackCard>
 
       <StackCard>
-      <section id="clients" className="border-y border-border py-16" aria-labelledby="clients-heading">
-        <div className="mx-auto max-w-6xl px-5">
-          <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Trusted by</p>
-          <h2 id="clients-heading" className="mt-3 font-display text-4xl text-green-900">Clients</h2>
-          <p className="mt-3 max-w-xl text-muted-foreground">Names are shown as wordmarks. We do not use their logos here.</p>
-        </div>
-        <div className="mt-8">
-          <ClientMarquee />
+      <section id="clients" className="stack-fill px-5 py-16" aria-labelledby="clients-heading">
+        <div className="stack-body mx-auto flex w-full max-w-6xl flex-col">
+          <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Trusted by</p>
+              <h2 id="clients-heading" className="mt-3 font-display text-4xl text-green-900">Clients</h2>
+            </div>
+            <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Names are shown as wordmarks. We do not use their logos here.</p>
+          </div>
+          <ul className="client-grid stack-grow mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
+            {clients.map((client) => (
+              <li key={client.name} className="min-h-0">
+                <a
+                  href={client.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={client.label}
+                  className="flex h-full min-h-24 flex-col justify-center rounded-2xl border border-border bg-card px-4 py-4 transition hover:border-gold-bright"
+                >
+                  <span className="font-display text-2xl text-green-900">{client.name}</span>
+                  <span className="mt-1 text-xs tracking-wide text-muted-foreground uppercase">{client.tag}</span>
+                </a>
+              </li>
+            ))}
+            <li className="min-h-0">
+              <div className="flex h-full min-h-24 flex-col justify-center rounded-2xl bg-green-900 px-4 py-4 text-cream">
+                <p className="text-xs font-semibold tracking-[0.16em] text-gold-bright uppercase">Start a project</p>
+                <a className="mt-2 text-sm font-semibold break-words text-cream underline decoration-gold-bright underline-offset-4 [overflow-wrap:anywhere]" href={`mailto:${site.email}`}>
+                  {site.email}
+                </a>
+                <a className="mt-1 text-sm font-semibold text-cream underline decoration-gold-bright underline-offset-4" href={`tel:${site.phoneTel}`}>
+                  {site.phoneDisplay}
+                </a>
+              </div>
+            </li>
+          </ul>
+          <p className="mt-4 shrink-0 text-sm leading-relaxed text-muted-foreground">
+            We work with clients in Chennai and across Tamil Nadu, and with remote clients elsewhere in India.
+          </p>
         </div>
       </section>
       </StackCard>
@@ -273,19 +349,38 @@ export default function HomePage() {
       ) : null}
 
       <StackCard>
-      <section id="faq" className="px-5 py-20 md:py-28">
-        <div className="mx-auto max-w-6xl">
-          <p className="text-center text-xs font-semibold tracking-[0.2em] text-gold uppercase">FAQ</p>
-          <h2 className="mt-3 text-center font-display text-4xl text-green-900">Common questions</h2>
-          <div className="mt-10">
-            <FaqList items={homeFaqs} />
+      <section id="faq" className="stack-fill px-5 py-20">
+        <div className="faq-layout mx-auto grid w-full max-w-6xl gap-8">
+          <div className="faq-copy">
+            <div>
+              <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">FAQ</p>
+              <h2 className="mt-3 font-display text-4xl text-green-900">Common questions</h2>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                We work with clients in Chennai and across Tamil Nadu, and with remote clients elsewhere in India. Call, WhatsApp, or email and we will tell you whether a meeting or a remote scope is the better start.
+              </p>
+            </div>
+            <div className="mt-6 rounded-2xl border border-border bg-card p-5 md:mt-auto">
+              <p className="text-xs font-semibold tracking-[0.16em] text-gold uppercase">Talk to the studio</p>
+              <p className="mt-3">
+                <a className="font-semibold text-green-800 underline decoration-gold-bright underline-offset-4" href={`mailto:${site.email}`}>
+                  {site.email}
+                </a>
+              </p>
+              <p className="mt-1">
+                <a className="font-semibold text-green-800 underline decoration-gold-bright underline-offset-4" href={`tel:${site.phoneTel}`}>
+                  {site.phoneDisplay}
+                </a>
+              </p>
+              <p className="mt-3 text-sm text-muted-foreground">{site.place}</p>
+            </div>
           </div>
+          <FaqList items={homeFaqs} className="faq-list max-w-none" />
         </div>
       </section>
       </StackCard>
 
       <StackCard>
-      <CtaBand />
+      <CtaBand layout="panel" />
       </StackCard>
       <StackCard>
       <ContactSection />

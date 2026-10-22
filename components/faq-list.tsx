@@ -1,9 +1,9 @@
 import { RichText } from "@/components/rich-text";
 import type { Faq } from "@/data/services";
 
-export function FaqList({ items }: { items: Faq[] }) {
+export function FaqList({ items, className = "" }: { items: Faq[]; className?: string }) {
   return (
-    <div className="mx-auto flex max-w-3xl flex-col gap-3">
+    <div className={`mx-auto flex max-w-3xl flex-col gap-3 ${className}`}>
       {items.map((item, index) => (
         <details
           key={item.question}

@@ -7,7 +7,16 @@ export function SiteEffects() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const headerOffset = () => (window.matchMedia("(min-width: 768px)").matches ? 132 : 96);
+    const headerOffset = () => {
+      if (!window.matchMedia("(min-width: 768px)").matches) return 96;
+      const deck = document.querySelector<HTMLElement>(".stack-deck");
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (deck && !reduce) {
+        const top = parseFloat(getComputedStyle(deck).getPropertyValue("--stack-top"));
+        if (!Number.isNaN(top)) return top + 12;
+      }
+      return 132;
+    };
 
     const align = (id: string) => {
       const target = document.getElementById(id);
