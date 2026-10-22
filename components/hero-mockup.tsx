@@ -11,9 +11,9 @@ const stages = [
 ] as const;
 
 const chips = [
-  { value: "50+", label: "Projects delivered", className: "top-2 left-0" },
-  { value: "10,000+", label: "Students trained", className: "top-16 -right-1 sm:right-0" },
-  { value: "10+", label: "Years of experience", className: "bottom-3 left-6" },
+  { label: "Written scope", className: "top-2 left-0" },
+  { label: "Built in cycles", className: "top-16 -right-1 sm:right-0" },
+  { label: "Handover & support", className: "bottom-3 left-6" },
 ];
 
 export function HeroMockup() {
@@ -101,8 +101,7 @@ export function HeroMockup() {
           className={`absolute ${chip.className} rounded-2xl border border-cream/40 bg-green-900/95 px-3 py-2 text-cream shadow-xl backdrop-blur`}
           style={reduce === true ? undefined : { x: chipX, y: chipY }}
         >
-          <p className="font-display text-lg leading-none text-gold-bright">{chip.value}</p>
-          <p className="mt-1 text-[0.68rem] tracking-wide text-cream/80 uppercase">{chip.label}</p>
+          <p className="text-sm font-semibold tracking-wide text-cream">{chip.label}</p>
         </motion.div>
       ))}
     </div>

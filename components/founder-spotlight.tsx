@@ -24,10 +24,10 @@ export function FounderSpotlight({ id = "founder" }: { id?: string }) {
         <h2 className="mt-3 font-display text-4xl text-green-900 md:text-5xl">Kumaran</h2>
         <p className="mt-2 text-gold">{site.founder.role}</p>
         <p className="mt-6 leading-relaxed text-muted-foreground">
-          With over a decade of experience in software engineering and technology education, our founder established Selvi Infotech with a singular mission: to bridge the gap between industry demand and skilled talent in Tamil Nadu and beyond.
+          Kumaran founded Selvi Infotech to close the gap between the software companies need and the people who can build and look after it. He leads the studio’s project work and its training programs.
         </p>
         <p className="mt-4 leading-relaxed text-muted-foreground">
-          Having trained more than 10,000 students and delivered 50+ enterprise projects, the founder brings deep expertise in software architecture, agile delivery, and curriculum design — making Selvi Infotech a trusted name for both businesses and aspiring technologists across India.
+          A project starts with a written scope, moves in cycles you can see, and ends with a handover. Training uses the same tools. Clients in Chennai, across Tamil Nadu, and remote teams elsewhere in India follow that same path.
         </p>
         <div className="mt-6 flex flex-wrap gap-4 text-sm font-semibold">
           <a className="text-green-800 underline decoration-gold-bright underline-offset-4" href={`mailto:${site.email}`}>

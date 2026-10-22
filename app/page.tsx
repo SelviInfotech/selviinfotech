@@ -6,7 +6,6 @@ import { FaqList } from "@/components/faq-list";
 import { FounderSpotlight } from "@/components/founder-spotlight";
 import { HeroMockup } from "@/components/hero-mockup";
 import { ProcessTimeline } from "@/components/process-timeline";
-import { StatValue } from "@/components/stat-value";
 import { StackCard, StackingDeck } from "@/components/stacking-deck";
 import { TechMarquee } from "@/components/tech-marquee";
 import { workImages } from "@/data/visuals";
@@ -137,21 +136,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-b border-border bg-cream-dark/60" aria-label="Studio record">
-        <dl className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-5 py-10 sm:grid-cols-3">
+      <section className="border-b border-border bg-cream-dark/60" aria-label="How a project runs">
+        <ul className="mx-auto grid max-w-6xl gap-6 px-5 py-8 sm:grid-cols-3">
           {[
-            [50, "Projects delivered"],
-            [10000, "Students trained"],
-            [10, "Years of experience"],
-          ].map(([value, label]) => (
-            <div key={String(label)}>
-              <dt className="font-display text-4xl text-green-900 tabular-nums md:text-5xl">
-                <StatValue value={Number(value)} />
-              </dt>
-              <dd className="mt-1 text-sm tracking-wide text-muted-foreground uppercase">{label}</dd>
-            </div>
+            ["Written scope", "The work is agreed in writing before the build starts."],
+            ["Built in cycles", "You see the software while it can still change."],
+            ["Handover & support", "Source, notes, and a person to call when it goes live."],
+          ].map(([title, body]) => (
+            <li key={title}>
+              <p className="font-display text-2xl text-green-900">{title}</p>
+              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{body}</p>
+            </li>
           ))}
-        </dl>
+        </ul>
       </section>
 
       <StackingDeck>

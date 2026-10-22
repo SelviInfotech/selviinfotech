@@ -2,7 +2,6 @@ import Link from "next/link";
 import { CtaBand } from "@/components/cta-band";
 import { FaqList } from "@/components/faq-list";
 import { PageHero } from "@/components/page-hero";
-import { StatValue } from "@/components/stat-value";
 import { courses, trainingFaqs } from "@/data/courses";
 import { workImages } from "@/data/visuals";
 import { JsonLd } from "@/lib/json-ld";
@@ -36,22 +35,7 @@ export default function TrainingPage() {
         }
         lede="Hands-on, project-based courses designed to launch your tech career or upskill your team. Taught by industry practitioners, in Chennai and across Tamil Nadu, and online for remote learners."
         crumbs={[{ name: "Home", path: "/" }, { name: "Training" }]}
-      >
-        <dl className="mt-10 grid max-w-xl grid-cols-3 gap-4">
-          <div>
-            <dt className="font-display text-3xl text-cream tabular-nums"><StatValue value={10000} /></dt>
-            <dd className="text-xs tracking-wide text-cream/70 uppercase">Students trained</dd>
-          </div>
-          <div>
-            <dt className="font-display text-3xl text-cream tabular-nums"><StatValue value={7} /></dt>
-            <dd className="text-xs tracking-wide text-cream/70 uppercase">Programs</dd>
-          </div>
-          <div>
-            <dt className="font-display text-3xl text-cream">100%</dt>
-            <dd className="text-xs tracking-wide text-cream/70 uppercase">Placement support</dd>
-          </div>
-        </dl>
-      </PageHero>
+      />
 
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
         <div className="grid items-start gap-6 lg:grid-cols-12">
