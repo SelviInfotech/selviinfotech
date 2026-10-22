@@ -18,9 +18,16 @@ const links = [
 export function SiteHeader() {
   const pathname = usePathname() || "/";
   const isHome = pathname === "/";
-  const [solid, setSolid] = useState(!isHome);
+  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [menuPath, setMenuPath] = useState(pathname);
+  if (menuPath !== pathname) {
+    setMenuPath(pathname);
+    setOpen(false);
+    setServicesOpen(false);
+  }
+  const solid = !isHome || scrolled;
   const showPortfolio = isPortfolioPublic();
   const servicesMenuId = useId();
   const servicesRootRef = useRef<HTMLDivElement>(null);
@@ -29,20 +36,12 @@ export function SiteHeader() {
   const focusServicesOnOpen = useRef(false);
 
   useEffect(() => {
-    if (!isHome) {
-      setSolid(true);
-      return;
-    }
-    const onScroll = () => setSolid(window.scrollY > 24);
+    if (!isHome) return;
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [isHome]);
-
-  useEffect(() => {
-    setOpen(false);
-    setServicesOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -89,18 +88,22 @@ export function SiteHeader() {
     linksInMenu[next]?.focus();
   }
 
-  const bar = solid || open;
-  const muted = bar ? "text-green-800/80 hover:text-green-900" : "text-cream/85 hover:text-white";
+  const onDark = isHome && !solid && !open;
+  const linkTone = onDark ? "text-cream hover:text-white" : "text-green-900 hover:text-green-800";
+  const activeTone = onDark ? "text-gold-bright" : "text-gold";
   const servicesActive = pathname.startsWith("/services/");
+  const barClass = onDark
+    ? "border-b border-white/15 bg-green-900/95 text-cream shadow-[0_8px_24px_rgba(0,0,0,0.18)]"
+    : "border-b border-border bg-cream/95 text-green-900 shadow-sm";
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 overflow-visible transition-colors duration-300 ${bar ? "border-b border-border bg-cream/95 shadow-sm backdrop-blur" : "bg-transparent"}`}>
+    <header className={`fixed inset-x-0 top-0 z-50 overflow-visible pt-[env(safe-area-inset-top)] backdrop-blur-md transition-colors duration-300 ${barClass}`}>
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-5 md:h-[4.5rem]">
         <Link href="/" className="shrink-0 rounded-xl bg-cream p-1" aria-label="Selvi Infotech home">
           <img src="/logo.png" alt="" width={48} height={41} className="h-10 w-auto" />
         </Link>
 
-        <nav className="ml-auto hidden items-center gap-5 lg:flex" aria-label="Primary">
+        <nav className="ml-auto hidden h-10 items-center gap-1 lg:flex" aria-label="Primary">
           <div
             ref={servicesRootRef}
             className="relative"
@@ -113,7 +116,7 @@ export function SiteHeader() {
             <button
               ref={servicesButtonRef}
               type="button"
-              className={`inline-flex items-center gap-1 rounded-md px-1 py-3 text-sm font-medium ${servicesActive ? "text-gold" : muted}`}
+              className={`inline-flex h-10 items-center gap-1 rounded-full px-3 text-sm font-semibold ${servicesActive ? activeTone : linkTone}`}
               aria-expanded={servicesOpen}
               aria-haspopup="menu"
               aria-controls={servicesMenuId}
@@ -180,43 +183,43 @@ export function SiteHeader() {
             </div>
           </div>
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className={`text-sm font-medium ${pathname.startsWith(link.href) ? "text-gold" : muted}`} aria-current={pathname.startsWith(link.href) ? "page" : undefined}>
+            <Link key={link.href} href={link.href} className={`inline-flex h-10 items-center rounded-full px-3 text-sm font-semibold ${pathname.startsWith(link.href) ? activeTone : linkTone}`} aria-current={pathname.startsWith(link.href) ? "page" : undefined}>
               {link.label}
             </Link>
           ))}
           {showPortfolio ? (
-            <Link href="/portfolio/" className={`text-sm font-medium ${muted}`}>
+            <Link href="/portfolio/" className={`inline-flex h-10 items-center rounded-full px-3 text-sm font-semibold ${linkTone}`}>
               Portfolio
             </Link>
           ) : null}
           <SocialLinks
             variant="icons"
             className="flex items-center gap-1 border-l border-current/15 pl-3"
-            linkClassName={`inline-flex size-8 items-center justify-center rounded-full ${muted}`}
+            linkClassName={`inline-flex size-8 items-center justify-center rounded-full ${linkTone}`}
           />
-          <Link href="/verify/" className={`text-sm font-semibold ${bar ? "text-gold" : "text-gold-bright"}`}>
+          <Link href="/verify/" className={`inline-flex h-10 items-center rounded-full px-3 text-sm font-semibold ${activeTone}`}>
             Verify
           </Link>
-          <Button nativeButton={false} render={<Link href="/contact/" />} className={`h-10 rounded-full px-4 ${bar ? "" : "bg-gold-bright text-green-900 hover:bg-[#e0b85a]"}`}>
+          <Button nativeButton={false} render={<Link href="/contact/" />} className={`h-10 rounded-full px-4 ${onDark ? "bg-gold-bright text-green-900 hover:bg-[#e0b85a]" : ""}`}>
             Get started
           </Button>
         </nav>
 
         <button
           type="button"
-          className={`ml-auto inline-flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full border lg:hidden ${bar ? "border-border" : "border-cream/30"}`}
+          className={`ml-auto inline-flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full border lg:hidden ${onDark ? "border-white/30" : "border-border"}`}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
         >
-          <span className={`block h-0.5 w-5 ${bar ? "bg-green-800" : "bg-cream"}`} />
-          <span className={`block h-0.5 w-5 ${bar ? "bg-green-800" : "bg-cream"}`} />
-          <span className={`block h-0.5 w-5 ${bar ? "bg-green-800" : "bg-cream"}`} />
+          <span className={`block h-0.5 w-5 ${onDark ? "bg-cream" : "bg-green-900"}`} />
+          <span className={`block h-0.5 w-5 ${onDark ? "bg-cream" : "bg-green-900"}`} />
+          <span className={`block h-0.5 w-5 ${onDark ? "bg-cream" : "bg-green-900"}`} />
         </button>
       </div>
 
       {open ? (
-        <div className="absolute inset-x-0 top-full z-[70] max-h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain border-t border-border bg-cream shadow-xl lg:hidden">
+        <div className="absolute inset-x-0 top-full z-[70] max-h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain border-t border-border bg-cream text-green-900 shadow-xl lg:hidden">
           <nav className="mx-auto flex min-h-[calc(100dvh-4.5rem)] max-w-6xl flex-col gap-1 px-5 py-4" aria-label="Mobile">
             <p className="px-3 pt-2 text-xs font-semibold tracking-[0.16em] text-gold uppercase">Services</p>
             {services.map((service) => (

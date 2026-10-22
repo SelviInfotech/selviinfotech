@@ -73,4 +73,4 @@ Do these outside the codebase. The site cannot do them for you.
 6. **Social profiles.** Keep the links in the header, footer, and contact cards current: Instagram `https://www.instagram.com/selvi_infotech`, LinkedIn `https://www.linkedin.com/company/selvi-infotech`, Facebook `https://www.facebook.com/selvi.infotech`, and Medium `https://medium.com/selvi-infotech`.
 7. **After a few weeks,** look in Search Console for queries you want (software development Chennai, mobile app development Tamil Nadu, web maintenance Tamil Nadu, Flutter developers Tamil Nadu, IT training Chennai) and adjust the page that is closest to each query. Do not add pages that repeat the same text.
 
-Homepage figures such as “50+ projects” and “10,000+ students” are carried over from the previous site. Do not add new statistics unless you can stand behind them.
+Do not publish project counts, student counts, years in business, or placement rates. Leave those off the site unless the figure is one you can stand behind.

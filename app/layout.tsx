@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import { ScrollProgress } from "@/components/scroll-progress";
 import { SiteEffects } from "@/components/site-effects";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -43,12 +44,14 @@ export const viewport: Viewport = {
   themeColor: "#d4af37",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body>
+        <ScrollProgress />
         <a href="#main" className="skip-link">
           Skip to content
         </a>

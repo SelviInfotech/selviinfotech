@@ -4,10 +4,11 @@ import { ContactSection } from "@/components/contact-section";
 import { CtaBand } from "@/components/cta-band";
 import { FaqList } from "@/components/faq-list";
 import { FounderSpotlight } from "@/components/founder-spotlight";
+import { HeroMockup } from "@/components/hero-mockup";
 import { ProcessTimeline } from "@/components/process-timeline";
-import { StatValue } from "@/components/stat-value";
 import { StackCard, StackingDeck } from "@/components/stacking-deck";
 import { TechMarquee } from "@/components/tech-marquee";
+import { workImages } from "@/data/visuals";
 import { isTestimonialsPublic, testimonials } from "@/data/testimonials";
 import { JsonLd } from "@/lib/json-ld";
 import { faqSchema } from "@/lib/schema";
@@ -34,50 +35,50 @@ const offerings = [
   {
     href: "/services/software-development/",
     title: "Software Development",
-    body: "Custom enterprise software solutions architected for scale, security, and performance. From ERP systems to SaaS platforms — we build it all.",
-    detail: "React, Next.js, Node.js, .NET, Python, Java, SQL Server.",
+    body: "Custom systems scoped in writing, built in cycles, and handed over with the source.",
     cta: "Start a project",
     featured: true,
+    image: workImages["software-development"],
   },
   {
     href: "/services/mobile-app-development/",
     title: "Mobile App Development",
-    body: "Native and cross-platform mobile applications for iOS and Android. Beautiful UI, smooth performance, and seamless user experience.",
-    detail: "Flutter, React Native, and native Android or iOS.",
+    body: "Phone apps for Android and iOS, scoped before the first screen is built.",
     cta: "See mobile work",
     featured: false,
+    image: workImages["mobile-app-development"],
   },
   {
     href: "/services/web-development/",
     title: "Web Development",
-    body: "Business websites and web applications with React and Next.js, handed over with source and notes on how to deploy.",
-    detail: "Public sites and logged-in products, scoped separately.",
+    body: "Public sites and logged-in products, handed over with the source and deploy notes.",
     cta: "Plan a site",
     featured: false,
+    image: workImages["web-development"],
   },
   {
     href: "/services/web-maintenance/",
     title: "Web App Maintenance",
-    body: "Keep your existing web applications running at peak performance. Bug fixes, updates, security patches, and feature enhancements on demand.",
-    detail: "Sites we built, and stacks we know after a review.",
+    body: "Fixes, updates, and small changes so a live site stays true and runnable.",
     cta: "Talk maintenance",
     featured: false,
+    image: workImages["web-maintenance"],
   },
   {
     href: "/training/",
     title: "Training Programs",
-    body: "Industry-aligned technology training with certified curriculum. Hands-on learning in software development, cloud, data science, and more.",
-    detail: "Seven programs. Certificates can be verified online.",
+    body: "Hands-on programs for new developers and teams. Certificates can be verified online.",
     cta: "View programs",
     featured: false,
+    image: workImages.training,
   },
   {
     href: "/services/it-consulting/",
     title: "IT Consultations",
-    body: "Strategic technology consulting to align your IT roadmap with business goals. Architecture reviews, tech stack guidance, and digital transformation advisory.",
-    detail: "A written note you can act on, or take elsewhere.",
+    body: "A written note on architecture or next steps, one you can act on or take elsewhere.",
     cta: "Book a call",
     featured: false,
+    image: workImages["it-consulting"],
   },
 ];
 
@@ -99,7 +100,7 @@ export default function HomePage() {
           <i />
         </div>
         <div className="mesh-grid" aria-hidden="true" />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 pt-32 pb-20 md:pt-40 lg:grid-cols-12 lg:pb-28">
+        <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-5 pt-28 pb-14 md:pt-32 lg:grid-cols-12 lg:gap-10 lg:pb-16">
           <div className="lg:col-span-7">
             <p className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-white/5 px-3 py-1 text-xs font-semibold tracking-[0.18em] text-gold-bright uppercase">
               Premium IT Solutions
@@ -129,50 +130,25 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <div className="relative lg:col-span-5" aria-hidden="true">
-            <div className="float-a rounded-3xl border border-cream/15 bg-green-900/50 p-5 shadow-2xl backdrop-blur-md">
-              <div className="mb-4 flex items-center gap-2">
-                <span className="size-2.5 rounded-full bg-[#c46a5a]" />
-                <span className="size-2.5 rounded-full bg-gold-bright" />
-                <span className="size-2.5 rounded-full bg-[#7dcea0]" />
-                <span className="ml-2 font-mono text-xs text-cream/50">studio.ts</span>
-              </div>
-              <pre className="overflow-x-auto font-mono text-[13px] leading-7 text-cream/85">
-                <span className="text-gold-bright">const</span> selvi = {"{"}
-                {"\n"}  build: ["React", "Flutter", ".NET"],
-                {"\n"}  host: "Azure",
-                {"\n"}  care: "maintenance",
-                {"\n"}  train: ["web", "mobile", "data"]
-                {"\n"}
-                {"}"}
-                <span className="caret" />
-              </pre>
-            </div>
-            <div className="float-b absolute -bottom-6 -left-2 w-40 rounded-[1.6rem] border border-cream/20 bg-cream p-3 text-green-900 shadow-xl sm:-left-8">
-              <div className="rounded-2xl bg-green-100 px-3 py-4">
-                <p className="font-display text-2xl">App</p>
-                <p className="mt-1 text-[11px] tracking-wide text-green-800 uppercase">Flutter · iOS · Android</p>
-              </div>
-            </div>
+          <div className="relative lg:col-span-5">
+            <HeroMockup />
           </div>
         </div>
       </section>
 
-      <section className="border-b border-border bg-cream-dark/60" aria-label="Studio record">
-        <dl className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-5 py-10 sm:grid-cols-3">
+      <section className="border-b border-border bg-cream-dark/60" aria-label="How a project runs">
+        <ul className="mx-auto grid max-w-6xl gap-6 px-5 py-8 sm:grid-cols-3">
           {[
-            [50, "Projects delivered"],
-            [10000, "Students trained"],
-            [10, "Years of experience"],
-          ].map(([value, label]) => (
-            <div key={String(label)}>
-              <dt className="font-display text-4xl text-green-900 tabular-nums md:text-5xl">
-                <StatValue value={Number(value)} />
-              </dt>
-              <dd className="mt-1 text-sm tracking-wide text-muted-foreground uppercase">{label}</dd>
-            </div>
+            ["Written scope", "The work is agreed in writing before the build starts."],
+            ["Built in cycles", "You see the software while it can still change."],
+            ["Handover & support", "Source, notes, and a person to call when it goes live."],
+          ].map(([title, body]) => (
+            <li key={title}>
+              <p className="font-display text-2xl text-green-900">{title}</p>
+              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{body}</p>
+            </li>
           ))}
-        </dl>
+        </ul>
       </section>
 
       <StackingDeck>
@@ -185,24 +161,33 @@ export default function HomePage() {
             End-to-end digital solutions for companies in Chennai and Tamil Nadu, and for remote clients across India.
           </p>
         </div>
-        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {offerings.map((item, index) => (
             <article
               key={item.title}
-              className={`reveal group lift flex flex-col rounded-[1.6rem] border p-6 ${item.featured ? "border-white/10 bg-green-900 text-cream md:col-span-2 lg:row-span-2 lg:p-8" : "border-border bg-card"}`}
+              className={`reveal lift flex h-full flex-col overflow-hidden rounded-2xl border ${item.featured ? "border-white/10 bg-green-900 text-cream" : "border-border bg-card"}`}
               style={{ ["--reveal-delay" as string]: `${index * 70}ms` }}
             >
-              <h3 className={`font-display text-2xl ${item.featured ? "text-cream md:text-4xl" : "text-green-900"}`}>{item.title}</h3>
-              <p className={`mt-3 leading-relaxed ${item.featured ? "text-cream/80" : "text-muted-foreground"}`}>{item.body}</p>
-              <p className={`mt-4 text-sm ${item.featured ? "text-gold-bright" : "text-green-800 md:opacity-0 md:transition md:group-hover:opacity-100 md:group-focus-within:opacity-100"}`}>
-                {item.detail}
-              </p>
-              <Link
-                href={item.href}
-                className={`mt-auto pt-6 text-sm font-semibold underline-offset-4 hover:underline ${item.featured ? "text-gold-bright" : "text-green-800"}`}
-              >
-                {item.cta} →
-              </Link>
+              <img
+                src={item.image.src}
+                alt={item.image.alt}
+                width={960}
+                height={640}
+                sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+                loading="lazy"
+                decoding="async"
+                className="aspect-[16/10] w-full object-cover"
+              />
+              <div className="flex flex-1 flex-col p-5">
+                <h3 className={`font-display text-2xl leading-tight ${item.featured ? "text-cream" : "text-green-900"}`}>{item.title}</h3>
+                <p className={`mt-2 text-sm leading-relaxed ${item.featured ? "text-cream/80" : "text-muted-foreground"}`}>{item.body}</p>
+                <Link
+                  href={item.href}
+                  className={`mt-4 inline-flex text-sm font-semibold underline-offset-4 hover:underline ${item.featured ? "text-gold-bright" : "text-green-800"}`}
+                >
+                  {item.cta} →
+                </Link>
+              </div>
             </article>
           ))}
         </div>
@@ -231,7 +216,7 @@ export default function HomePage() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:col-span-8">
             {advantages.map(([title, body], index) => (
-              <article key={title} className="reveal rounded-2xl border border-border bg-card p-5" style={{ ["--reveal-delay" as string]: `${index * 80}ms` }}>
+              <article key={title} className="reveal lift h-full rounded-2xl border border-border bg-card p-5" style={{ ["--reveal-delay" as string]: `${index * 80}ms` }}>
                 <h3 className="font-display text-2xl text-green-900">{title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
               </article>
