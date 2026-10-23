@@ -26,7 +26,7 @@ export function HomeHero() {
         <i />
       </div>
       <div className="mesh-grid" aria-hidden="true" />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-5 pt-32 pb-16 md:pt-40 lg:grid-cols-12 lg:gap-12 lg:pb-20">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-5 pt-28 pb-8 md:gap-10 md:pt-40 md:pb-16 lg:grid-cols-12 lg:gap-12 lg:pb-20">
         <div className="lg:col-span-6">
           <motion.p
             {...enter(reduce, 0)}
@@ -34,7 +34,7 @@ export function HomeHero() {
           >
             Premium IT Solutions
           </motion.p>
-          <motion.h1 {...enter(reduce, 0.08)} className="mt-6 font-display text-5xl leading-[0.95] text-cream md:text-6xl xl:text-7xl">
+          <motion.h1 {...enter(reduce, 0.08)} className="mt-5 font-display text-4xl leading-[0.98] text-cream sm:text-5xl md:mt-6 md:text-6xl md:leading-[0.95] xl:text-7xl">
             Crafting Digital
             <span className="mt-2 block text-gold-bright">Excellence</span>
           </motion.h1>

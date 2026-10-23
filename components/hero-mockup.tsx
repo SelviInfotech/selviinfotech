@@ -8,20 +8,20 @@ const layers = [
   {
     key: "software",
     image: workImages["software-development"],
-    frame: "absolute inset-y-8 right-0 left-10 overflow-hidden rounded-[1.6rem] shadow-[0_24px_60px_rgba(0,0,0,0.35)]",
-    depth: 10,
-  },
-  {
-    key: "mobile",
-    image: workImages["mobile-app-development"],
-    frame: "absolute top-0 left-0 w-[48%] overflow-hidden rounded-2xl border-4 border-cream shadow-xl",
-    depth: 18,
+    frame: "absolute inset-0",
+    depth: 8,
   },
   {
     key: "web",
     image: workImages["web-development"],
-    frame: "absolute right-2 bottom-0 w-[46%] overflow-hidden rounded-2xl border-4 border-cream shadow-xl",
-    depth: 22,
+    frame: "absolute top-4 right-4 aspect-[16/10] w-[46%] sm:w-[42%]",
+    depth: 16,
+  },
+  {
+    key: "mobile",
+    image: workImages["mobile-app-development"],
+    frame: "absolute bottom-4 left-4 aspect-[4/3] w-[48%] sm:w-[44%]",
+    depth: 20,
   },
 ] as const;
 
@@ -33,7 +33,7 @@ export function HeroMockup() {
   const sx = useSpring(px, { stiffness: 120, damping: 18, mass: 0.45 });
   const sy = useSpring(py, { stiffness: 120, damping: 18, mass: 0.45 });
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const drift = useTransform(scrollYProgress, [0, 1], [16, -16]);
+  const drift = useTransform(scrollYProgress, [0, 1], [12, -12]);
 
   function onMove(event: MouseEvent<HTMLDivElement>) {
     if (reduce) return;
@@ -46,15 +46,13 @@ export function HeroMockup() {
   return (
     <div
       ref={ref}
-      className="relative mx-auto aspect-[5/4] w-full max-w-[34rem]"
+      className="relative mx-auto h-60 w-full max-w-[36rem] sm:h-80 lg:h-[28rem]"
       onMouseMove={onMove}
       onMouseLeave={() => {
         px.set(0);
         py.set(0);
       }}
     >
-      <div className="absolute top-8 right-6 size-40 rounded-full bg-[#c9943a]/25 blur-3xl" aria-hidden="true" />
-      <div className="absolute bottom-6 left-4 size-32 rounded-full bg-[#2d7348]/40 blur-3xl" aria-hidden="true" />
       {layers.map((layer, index) => (
         <PhotoLayer key={layer.key} layer={layer} index={index} reduce={reduce === true} sx={sx} sy={sy} drift={drift} />
       ))}
@@ -78,24 +76,26 @@ function PhotoLayer({
   drift: ReturnType<typeof useTransform<number, number>>;
 }) {
   const x = useTransform(sx, [-0.5, 0.5], [layer.depth, -layer.depth]);
-  const pointerY = useTransform(sy, [-0.5, 0.5], [layer.depth * 0.6, -layer.depth * 0.6]);
-  const scrollY = useTransform(drift, (value) => value * (index === 0 ? 0.35 : 1));
+  const pointerY = useTransform(sy, [-0.5, 0.5], [layer.depth * 0.55, -layer.depth * 0.55]);
+  const scrollY = useTransform(drift, (value) => value * (index === 0 ? 0.4 : 1));
   const y = useTransform([pointerY, scrollY], ([pointer, scroll]: number[]) => pointer + scroll);
+  const framed = index > 0;
 
   return (
     <motion.figure
-      className={layer.frame}
-      style={reduce ? undefined : { x, y }}
+      className={`${layer.frame} overflow-hidden rounded-[1.35rem] ${framed ? "border-4 border-cream shadow-[0_18px_40px_rgba(0,0,0,0.35)]" : "shadow-[0_24px_60px_rgba(0,0,0,0.35)]"}`}
       initial={reduce ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: reduce ? 0 : 0.8, delay: reduce ? 0 : 0.12 + index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: reduce ? 0 : 0.7, delay: reduce ? 0 : 0.08 + index * 0.1, ease: [0.22, 1, 0.36, 1] }}
     >
-      <img
+      <motion.img
         src={layer.image.src}
-        alt={layer.image.alt}
+        alt={index === 0 ? layer.image.alt : ""}
         width={960}
         height={640}
-        className="aspect-[4/3] h-full w-full object-cover"
+        className="h-full w-full scale-110 object-cover"
+        style={reduce ? undefined : { x, y }}
+        aria-hidden={index === 0 ? undefined : true}
       />
     </motion.figure>
   );
