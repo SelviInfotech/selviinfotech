@@ -159,7 +159,7 @@ export default function HomePage() {
 
       <StackingDeck>
       <StackCard>
-      <section id="services" className="stack-fill px-5 py-20">
+      <section id="services" className="stack-fill px-5 py-14 md:py-16">
         <div className="stack-body mx-auto flex w-full max-w-6xl flex-col">
           <div className="max-w-2xl shrink-0">
             <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">What we offer</p>
@@ -168,7 +168,7 @@ export default function HomePage() {
               End-to-end digital solutions for companies in Chennai and Tamil Nadu, and for remote clients across India.
             </p>
           </div>
-          <div className="offer-grid stack-grow mt-8 grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="offer-grid mt-8 grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {offerings.map((item, index) => (
               <article
                 key={item.title}
@@ -203,7 +203,7 @@ export default function HomePage() {
       </StackCard>
 
       <StackCard>
-      <section className="stack-fill px-5 py-20" aria-labelledby="stack-heading">
+      <section className="stack-fill px-5 py-14 md:py-16" aria-labelledby="stack-heading">
         <div className="stack-body mx-auto flex w-full max-w-6xl flex-col">
           <div className="flex shrink-0 flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-xl">
@@ -214,40 +214,20 @@ export default function HomePage() {
               We pick from this stack based on the system and on what your team can maintain.
             </p>
           </div>
-          <ul className="tech-grid stack-grow mt-6 grid grid-cols-2 gap-2 sm:grid-cols-3">
+          <ul className="tech-grid mt-6 flex flex-wrap gap-2">
             {stack.map((item) => (
-              <li key={item} className="flex h-full min-h-16 items-center justify-center rounded-2xl border border-border bg-card px-3 py-4 text-center text-sm font-semibold text-green-900">
+              <li key={item} className="rounded-full border border-green-800/15 bg-green-100 px-3 py-1.5 text-sm font-medium text-green-900">
                 {item}
               </li>
             ))}
           </ul>
-          <div className="mt-5 shrink-0 border-t border-border pt-4">
-            <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">How we work</p>
-            <ul className="mt-3 grid gap-3 md:grid-cols-3">
-              {engagementSteps.map(([title, body]) => (
-                <li key={title}>
-                  <p className="font-display text-xl text-green-900">{title}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{body}</p>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 text-sm text-green-900">
-              <a className="font-semibold underline decoration-gold-bright underline-offset-4" href={`mailto:${site.email}`}>
-                {site.email}
-              </a>
-              <span aria-hidden="true"> · </span>
-              <a className="font-semibold underline decoration-gold-bright underline-offset-4" href={`tel:${site.phoneTel}`}>
-                {site.phoneDisplay}
-              </a>
-            </p>
-          </div>
         </div>
       </section>
       </StackCard>
 
       <StackCard>
-      <section id="why-us" className="stack-fill px-5 py-20">
-        <div className="why-layout mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-12">
+      <section id="why-us" className="stack-fill px-5 py-14 md:py-16">
+        <div className="why-layout mx-auto grid w-full max-w-6xl items-start gap-10 lg:grid-cols-12">
           <div className="flex flex-col lg:col-span-4">
             <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Why choose us</p>
             <h2 className="mt-3 font-display text-4xl text-green-900">The studio advantage</h2>
@@ -255,7 +235,7 @@ export default function HomePage() {
             <p className="mt-4 text-muted-foreground">
               Selvi Infotech Private Limited builds software, mobile apps, and websites, maintains systems that are already live, and trains people in the same tools. We work with clients in Chennai, across Tamil Nadu, and with remote clients elsewhere in India.
             </p>
-            <Link href="/about/" className="mt-6 inline-flex h-12 items-center self-start rounded-full bg-green-800 px-6 text-sm font-semibold text-white hover:bg-green-900 lg:mt-auto">
+            <Link href="/about/" className="mt-6 inline-flex h-12 items-center self-start rounded-full bg-green-800 px-6 text-sm font-semibold text-white hover:bg-green-900">
               About the company
             </Link>
           </div>
@@ -272,7 +252,7 @@ export default function HomePage() {
       </StackCard>
 
       <StackCard>
-      <section id="process" className="stack-fill px-5 py-20">
+      <section id="process" className="stack-fill px-5 py-14 md:py-16">
         <div className="stack-body mx-auto flex w-full max-w-6xl flex-col">
           <div className="mb-6 max-w-2xl shrink-0">
             <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">How we work</p>
@@ -289,7 +269,7 @@ export default function HomePage() {
       </StackCard>
 
       <StackCard>
-      <section id="clients" className="stack-fill px-5 py-16" aria-labelledby="clients-heading">
+      <section id="clients" className="stack-fill px-5 py-14 md:py-16" aria-labelledby="clients-heading">
         <div className="stack-body mx-auto flex w-full max-w-6xl flex-col">
           <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -298,7 +278,7 @@ export default function HomePage() {
             </div>
             <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Names are shown as wordmarks. We do not use their logos here.</p>
           </div>
-          <ul className="client-grid stack-grow mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <ul className="client-grid mt-6 grid grid-cols-2 gap-3 lg:grid-cols-3">
             {clients.map((client) => (
               <li key={client.name} className="min-h-0">
                 <a
@@ -306,7 +286,7 @@ export default function HomePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   title={client.label}
-                  className="flex h-full min-h-24 flex-col justify-center rounded-2xl border border-border bg-card px-4 py-4 transition hover:border-gold-bright"
+                  className="flex h-full flex-col justify-center rounded-2xl border border-border bg-card px-4 py-4 transition hover:border-gold-bright"
                 >
                   <span className="font-display text-2xl text-green-900">{client.name}</span>
                   <span className="mt-1 text-xs tracking-wide text-muted-foreground uppercase">{client.tag}</span>
@@ -314,7 +294,7 @@ export default function HomePage() {
               </li>
             ))}
             <li className="min-h-0">
-              <div className="flex h-full min-h-24 flex-col justify-center rounded-2xl bg-green-900 px-4 py-4 text-cream">
+              <div className="flex h-full flex-col justify-center rounded-2xl bg-green-900 px-4 py-4 text-cream">
                 <p className="text-xs font-semibold tracking-[0.16em] text-gold-bright uppercase">Start a project</p>
                 <a className="mt-2 text-sm font-semibold break-words text-cream underline decoration-gold-bright underline-offset-4 [overflow-wrap:anywhere]" href={`mailto:${site.email}`}>
                   {site.email}
@@ -349,9 +329,9 @@ export default function HomePage() {
       ) : null}
 
       <StackCard>
-      <section id="faq" className="stack-fill px-5 py-20">
-        <div className="faq-layout mx-auto grid w-full max-w-6xl gap-8">
-          <div className="faq-copy">
+      <section id="faq" className="stack-fill px-5 py-14 md:py-16">
+        <div className="faq-layout mx-auto grid w-full max-w-6xl items-start gap-8 lg:grid-cols-12">
+          <div className="faq-copy lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
             <div>
               <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">FAQ</p>
               <h2 className="mt-3 font-display text-4xl text-green-900">Common questions</h2>
@@ -359,7 +339,7 @@ export default function HomePage() {
                 We work with clients in Chennai and across Tamil Nadu, and with remote clients elsewhere in India. Call, WhatsApp, or email and we will tell you whether a meeting or a remote scope is the better start.
               </p>
             </div>
-            <div className="mt-6 rounded-2xl border border-border bg-card p-5 md:mt-auto">
+            <div className="mt-6 rounded-2xl border border-border bg-card p-5">
               <p className="text-xs font-semibold tracking-[0.16em] text-gold uppercase">Talk to the studio</p>
               <p className="mt-3">
                 <a className="font-semibold text-green-800 underline decoration-gold-bright underline-offset-4" href={`mailto:${site.email}`}>
@@ -374,7 +354,7 @@ export default function HomePage() {
               <p className="mt-3 text-sm text-muted-foreground">{site.place}</p>
             </div>
           </div>
-          <FaqList items={homeFaqs} className="faq-list max-w-none" />
+          <FaqList items={homeFaqs} className="faq-list max-w-none lg:col-span-8" />
         </div>
       </section>
       </StackCard>

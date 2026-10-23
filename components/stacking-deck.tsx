@@ -45,6 +45,7 @@ function useStackMotion(rootRef: React.RefObject<HTMLDivElement | null>) {
       cards().forEach((card) => {
         card.style.removeProperty("--cover");
         card.style.removeProperty("--arrive");
+        card.style.removeProperty("top");
         delete card.dataset.cover;
         delete card.dataset.arrive;
       });
@@ -77,6 +78,10 @@ function useStackMotion(rootRef: React.RefObject<HTMLDivElement | null>) {
         const current = rects[index];
         if (!current || current.height < 1) return;
         const next = rects[index + 1];
+        const viewLimit = viewHeight - 16;
+        const pin = current.height + stickyTop > viewLimit ? Math.min(stickyTop, viewHeight - current.height - 16) : stickyTop;
+        card.style.top = `${pin}px`;
+
         let coverTarget = 0;
         if (next) {
           const distance = next.top - current.top;
@@ -84,7 +89,7 @@ function useStackMotion(rootRef: React.RefObject<HTMLDivElement | null>) {
           coverTarget = smootherstep(linear);
         }
 
-        const distanceToStick = current.top - stickyTop;
+        const distanceToStick = current.top - pin;
         const arriveLinear = 1 - Math.min(1, Math.max(0, distanceToStick / current.height));
         const arriveTarget = smootherstep(arriveLinear);
 

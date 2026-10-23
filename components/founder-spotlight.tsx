@@ -1,13 +1,17 @@
-import { engagementSteps, site } from "@/lib/site";
+import { site } from "@/lib/site";
 
 export function FounderSpotlight({ id = "founder", variant = "page" }: { id?: string; variant?: "page" | "stack" }) {
   const stack = variant === "stack";
   return (
-    <section id={id} className={stack ? "stack-fill px-5 py-20" : "mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 md:grid-cols-12 md:py-28"}>
+    <section id={id} className={stack ? "stack-fill px-5 py-14 md:py-16" : "mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-12 md:py-20"}>
       {stack ? (
-        <div className="founder-layout grid gap-8">
-          <FounderPortrait />
-          <FounderCopy stacked />
+        <div className="founder-layout mx-auto grid w-full max-w-6xl items-center gap-8 md:grid-cols-12">
+          <div className="md:col-span-5">
+            <FounderPortrait />
+          </div>
+          <div className="md:col-span-7">
+            <FounderCopy stacked />
+          </div>
         </div>
       ) : (
         <>
@@ -25,7 +29,7 @@ export function FounderSpotlight({ id = "founder", variant = "page" }: { id?: st
 
 function FounderPortrait() {
   return (
-    <div className="founder-portrait relative h-full min-h-0">
+    <div className="founder-portrait relative">
       <img
         src="/images/kumaran.webp"
         alt="Kumaran, Founder and Managing Director of Selvi Infotech Private Limited"
@@ -62,16 +66,6 @@ function FounderCopy({ stacked = false }: { stacked?: boolean }) {
             Company LinkedIn
           </a>
         </div>
-        {stacked ? (
-          <ul className="mt-6 grid gap-3 sm:grid-cols-3">
-            {engagementSteps.map(([title], index) => (
-              <li key={title} className="rounded-2xl border border-border bg-card px-3 py-3">
-                <p className="text-xs font-semibold tracking-[0.16em] text-gold uppercase">0{index + 1}</p>
-                <p className="mt-1 font-display text-lg leading-tight text-green-900">{title}</p>
-              </li>
-            ))}
-          </ul>
-        ) : null}
     </div>
   );
 }

@@ -72,8 +72,8 @@ export function ContactCards() {
 
 export function ContactSection() {
   return (
-    <section id="contact" className="stack-fill px-5 py-20">
-      <div className="contact-split mx-auto grid w-full max-w-6xl gap-10 md:grid-cols-2">
+    <section id="contact" className="stack-fill px-5 py-14 md:py-16">
+      <div className="contact-split mx-auto grid w-full max-w-6xl items-start gap-8 md:grid-cols-2">
         <div className="contact-aside min-w-0">
           <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Get in touch</p>
           <h2 className="mt-3 font-display text-4xl text-green-900 lg:text-5xl">
@@ -82,7 +82,7 @@ export function ContactSection() {
           <p className="mt-3 leading-relaxed text-muted-foreground">
             Have a project in mind or need expert guidance? Our team is ready to help you explore the possibilities and craft the right solution for your needs. We work with clients in Chennai, across Tamil Nadu, and with remote clients elsewhere in India.
           </p>
-          <div className="mt-5 flex min-h-0 flex-1 flex-col">
+          <div className="mt-5">
             <ContactCards />
           </div>
         </div>
