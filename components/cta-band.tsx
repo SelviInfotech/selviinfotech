@@ -12,7 +12,7 @@ export function CtaBand({
 }) {
   if (layout === "panel") {
     return (
-      <section className="stack-fill px-4 py-16 sm:px-5">
+      <section className="stack-fill px-4 py-14 sm:px-5 md:py-16">
         <div className="cta-panel relative mx-auto w-full max-w-6xl overflow-hidden rounded-[1.7rem] bg-green-900 px-6 py-8 text-cream md:px-12 md:py-10">
           <div className="mesh" aria-hidden="true">
             <i />

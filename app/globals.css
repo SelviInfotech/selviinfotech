@@ -170,22 +170,13 @@
   font-weight: 600;
 }
 
-.faq-item:not([open]) > :not(summary) {
+details.faq-item:not([open]) > :not(summary) {
   display: none;
 }
-.faq-item summary {
+details.faq-item summary {
   list-style: none;
 }
-.faq-item summary::-webkit-details-marker {
-  display: none;
-}
-.faq-item .when-open {
-  display: none;
-}
-.faq-item[open] .when-open {
-  display: inline;
-}
-.faq-item[open] .when-closed {
+details.faq-item summary::-webkit-details-marker {
   display: none;
 }
 
@@ -280,8 +271,8 @@
   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 .lift:hover {
-  transform: translateY(-6px) rotate(-0.3deg);
-  box-shadow: 0 18px 40px rgba(13, 40, 24, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(13, 40, 24, 0.08);
 }
 
 .rise-bar {
@@ -351,7 +342,49 @@
   animation-play-state: paused;
 }
 
-/* Homepage stacking cards: one viewport height, scale/dim via --cover. */
+.wordmark-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.wordmark-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.wordmark-track ul {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 3.25rem;
+  margin: 0;
+  padding: 0.4rem 3.25rem 0.4rem 0;
+  list-style: none;
+}
+
+.wordmark-marquee:hover .wordmark-track,
+.wordmark-marquee:focus-within .wordmark-track {
+  animation-play-state: paused;
+}
+
+.wordmark {
+  color: #8a837c;
+  font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.wordmark:hover,
+.wordmark:focus-visible {
+  color: #1a1916;
+}
+
+/* Homepage stacking cards. Each card is as tall as its content.
+   On a desktop with motion, the card sticks and eases under the next one. */
 .stack-card-shade {
   display: none;
 }
@@ -359,28 +392,24 @@
 @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
   .stack-deck {
     --stack-top: 5rem;
-    --stack-card-height: calc(100vh - var(--stack-top) - 0.85rem);
-    --stack-card-height: calc(100svh - var(--stack-top) - 0.85rem);
     background:
       radial-gradient(900px 280px at 12% 0%, rgba(201, 148, 58, 0.18), transparent 55%),
       #0d2818;
-    padding: 0.35rem 0.75rem 2.75rem;
+    padding: 0.5rem 0.75rem 2rem;
   }
 
   .stack-card {
     position: sticky;
     top: var(--stack-top);
     z-index: var(--stack-z);
-    height: var(--stack-card-height);
+    height: auto;
     margin-bottom: 0.85rem;
   }
 
   .stack-card-face {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: clip;
+    height: auto;
+    overflow: visible;
     border-radius: 1.75rem;
     background: #f5efe6;
     box-shadow:
@@ -416,277 +445,17 @@
   }
 
   .stack-card-face > section {
-    flex: 1 1 auto;
-    min-height: 0;
-    height: 100%;
     background-color: transparent;
     border-color: transparent;
   }
-
-  .stack-fill {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-    padding: 1.35rem 1.25rem 1.45rem;
-    overflow: hidden;
-  }
-
-  .stack-fill:has(details[open]) {
-    overflow-y: auto;
-  }
-
-  .stack-fill > .stack-body {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    width: 100%;
-    min-height: 0;
-    max-width: 72rem;
-    margin-inline: auto;
-  }
-
-  .stack-grow {
-    flex: 1 1 auto;
-    min-height: 0;
-  }
-
-  .stack-card .offer-grid {
-    display: grid;
-    flex: 1 1 auto;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
-    min-height: 0;
-  }
-
-  .stack-card .offer-card {
-    height: 100%;
-    min-height: 0;
-  }
-
-  .stack-card .offer-card img {
-    flex: 1 1 0;
-    width: 100%;
-    height: auto;
-    min-height: 4.25rem;
-    aspect-ratio: auto;
-    object-fit: cover;
-  }
-
-  .stack-card .tech-grid {
-    display: grid;
-    flex: 1 1 auto;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-    gap: 0.6rem;
-    min-height: 0;
-  }
-
-  .stack-card .why-layout {
-    display: grid;
-    flex: 1 1 auto;
-    grid-template-columns: minmax(14rem, 0.78fr) minmax(0, 1.35fr);
-    gap: 1.25rem;
-    align-items: stretch;
-    min-height: 0;
-    height: 100%;
-  }
-
-  .stack-card .why-layout > * {
-    grid-column: auto;
-    height: 100%;
-    min-height: 0;
-  }
-
-  .stack-card .why-layout > div:first-child {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .stack-card .why-layout > div:first-child > a {
-    margin-top: auto;
-  }
-
-  .stack-card .why-points {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 0.75rem;
-    min-height: 0;
-    height: 100%;
-  }
-
-  .stack-card #process .stack-body > .mb-6 {
-    margin-bottom: 0.85rem;
-  }
-
-  .stack-card .process-steps {
-    display: grid;
-    flex: 1 1 auto;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.65rem;
-    margin-bottom: 8px;
-    max-width: none;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    min-height: 0;
-  }
-
-  .stack-card .process-steps > li {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 0.9rem 0.95rem 1rem;
-    border: 1px solid var(--border);
-    border-radius: 1.15rem;
-    background: var(--card);
-  }
-
-  .stack-card .process-steps > li > span {
-    position: static;
-    margin-bottom: 0.7rem;
-  }
-
-  .stack-card .founder-layout {
-    display: grid;
-    flex: 1 1 auto;
-    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-    gap: 1.5rem;
-    align-items: stretch;
-    width: 100%;
-    max-width: 72rem;
-    height: 100%;
-    min-height: 0;
-    margin-inline: auto;
-  }
-
-  .stack-card .founder-portrait {
-    height: 100%;
-    min-height: 0;
-  }
-
-  .stack-card .founder-portrait img {
-    width: 100%;
-    height: 100%;
-    max-height: 100%;
-    aspect-ratio: auto;
-    object-fit: cover;
-  }
-
-  .stack-card .founder-copy {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 0;
-  }
-
-  .stack-card .client-grid {
-    display: grid;
-    flex: 1 1 auto;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
-    min-height: 0;
-  }
-
-  .stack-card .faq-layout {
-    display: grid;
-    flex: 1 1 auto;
-    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.35fr);
-    gap: 1.5rem;
-    align-items: stretch;
-    width: 100%;
-    max-width: 72rem;
-    height: 100%;
-    min-height: 0;
-    margin-inline: auto;
-  }
-
-  .stack-card .faq-copy {
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-  }
-
-  .stack-card .faq-list {
-    height: 100%;
-    max-width: none;
-    margin: 0;
-    justify-content: space-between;
-  }
-
-  .stack-card .cta-panel {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 0;
-  }
-
-  .stack-card .contact-split {
-    display: grid;
-    flex: 1 1 auto;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 1.15rem;
-    align-items: stretch;
-    width: 100%;
-    max-width: 72rem;
-    height: 100%;
-    min-height: 0;
-    margin-inline: auto;
-  }
-
-  .stack-card .contact-aside {
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-    height: 100%;
-  }
-
-  .stack-card .contact-card-list {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    min-height: 0;
-  }
-
-  .stack-card .contact-channels {
-    flex: 1 1 auto;
-    min-height: 0;
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-  }
-
-  .stack-card .contact-form {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    min-height: 0;
-    padding: 1.1rem 1.2rem;
-  }
-
-  .stack-card .contact-form input,
-  .stack-card .contact-form select {
-    height: 2.45rem;
-  }
-
-  .stack-card .contact-form textarea {
-    flex: 1 1 auto;
-    height: auto;
-    min-height: 4.25rem;
-  }
-
-  .stack-card .contact-form .mt-4,
-  .stack-card .contact-form .mt-5 {
-    margin-top: 0.6rem;
-  }
 }
 
-@media (min-width: 1100px) and (prefers-reduced-motion: no-preference) {
-  .stack-card .process-steps {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
+.process-row {
+  border-radius: 1rem;
+  transition: background-color 0.25s ease;
+}
+.process-row:hover {
+  background: rgba(255, 252, 247, 0.72);
 }
 
 .stack-deck [id] {
@@ -713,6 +482,7 @@
   .caret,
   .marquee-track,
   .marquee-track-slow,
+  .wordmark-track,
   .lift,
   .rise-bar,
   .rise-x,
@@ -723,6 +493,23 @@
     transform: none;
   }
   .marquee-clone {
+    display: none;
+  }
+  .wordmark-marquee {
+    mask-image: none;
+  }
+  .wordmark-track {
+    width: 100%;
+    justify-content: center;
+  }
+  .wordmark-track ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem 2rem;
+    padding-right: 0;
+  }
+  .wordmark-track ul[aria-hidden="true"] {
     display: none;
   }
 }

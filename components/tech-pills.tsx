@@ -23,14 +23,14 @@ function TechGlyph({ name }: { name: string }) {
   );
 }
 
-export function TechPills({ items }: { items: readonly string[] }) {
+export function TechPills({ items, showLabel = true, centered = false }: { items: readonly string[]; showLabel?: boolean; centered?: boolean }) {
   return (
     <div>
-      <p className="text-xs font-semibold tracking-[0.16em] text-gold uppercase">Technologies we use</p>
-      <ul className="mt-3 flex flex-wrap gap-2">
+      {showLabel ? <p className="text-xs font-semibold tracking-[0.16em] text-gold uppercase">Technologies we use</p> : null}
+      <ul className={`${showLabel ? "mt-3" : ""} flex flex-wrap gap-2 ${centered ? "justify-center" : ""}`}>
         {items.map((item) => (
           <li key={item}>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-green-800/15 bg-green-100 px-3 py-1.5 text-sm font-medium text-green-900">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-green-800/15 bg-green-100 px-3 py-1.5 text-sm font-medium text-green-900 transition hover:-translate-y-0.5 hover:border-gold-bright motion-reduce:hover:translate-y-0">
               <TechGlyph name={item} />
               {item}
             </span>

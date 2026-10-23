@@ -72,7 +72,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           { name: post.meta.title },
         ]}
       />
-      <article className="mx-auto max-w-3xl px-5 py-16 md:py-24">
+      <article className="mx-auto max-w-3xl px-5 py-12 md:py-16">
         <div className="prose-selvi">{content}</div>
         <p className="mt-12">
           <Link href="/blog/" className="text-sm font-semibold text-green-800 underline underline-offset-4">

@@ -19,7 +19,7 @@ export default function ContactPage() {
         lede="Have a project in mind or need expert guidance? Our team is ready to help you explore the possibilities and craft the right solution for your needs. We work with clients in Chennai, across Tamil Nadu, and with remote clients elsewhere in India."
         crumbs={[{ name: "Home", path: "/" }, { name: "Contact" }]}
       />
-      <section className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-2 md:py-24">
+      <section className="mx-auto grid max-w-6xl items-start gap-8 px-5 py-12 md:grid-cols-2 md:py-16">
         <ContactCards />
         <ContactForm />
       </section>

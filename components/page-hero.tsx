@@ -22,7 +22,7 @@ export function PageHero({
         <i />
       </div>
       <div className="mesh-grid" aria-hidden="true" />
-      <div className="relative mx-auto max-w-6xl px-5 pt-32 pb-16 md:pt-40 md:pb-24">
+      <div className="relative mx-auto max-w-6xl px-5 pt-36 pb-14 md:pt-44 md:pb-16">
         <Breadcrumbs onDark items={crumbs} />
         {eyebrow ? (
           <p className="mt-8 text-xs font-semibold tracking-[0.2em] text-gold-bright uppercase">{eyebrow}</p>

@@ -3,6 +3,7 @@ import { ClientMarquee } from "@/components/client-marquee";
 import { CtaBand } from "@/components/cta-band";
 import { FounderSpotlight } from "@/components/founder-spotlight";
 import { PageHero } from "@/components/page-hero";
+import { TechPills } from "@/components/tech-pills";
 import { workImages } from "@/data/visuals";
 import { pageMetadata } from "@/lib/seo";
 import { site, stack } from "@/lib/site";
@@ -84,14 +85,9 @@ export default function AboutPage() {
             </li>
           ))}
         </ul>
-        <ul className="mx-auto mt-6 flex max-w-6xl flex-wrap justify-center gap-2 px-5">
-          {stack.map((item) => (
-            <li key={item} className="text-sm text-muted-foreground">
-              {item}
-              <span className="mx-2 text-gold-bright" aria-hidden="true">·</span>
-            </li>
-          ))}
-        </ul>
+        <div className="mx-auto mt-6 max-w-6xl px-5">
+          <TechPills items={stack} showLabel={false} centered />
+        </div>
       </section>
 
       <FounderSpotlight />

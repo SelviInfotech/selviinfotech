@@ -33,17 +33,24 @@ const steps = [
 
 export function ProcessTimeline() {
   return (
-    <ol className="process-steps relative mx-auto max-w-3xl border-l border-gold-bright/50 pl-8">
+    <ol className="process-steps relative">
+      <span className="process-line absolute top-6 bottom-6 left-6 w-px bg-gold-bright/50" aria-hidden="true" />
       {steps.map((step, index) => (
-        <li key={step.num} className="reveal relative pb-8 last:pb-0" style={{ ["--reveal-delay" as string]: `${index * 90}ms` }}>
-          <span className="absolute top-0 -left-[2.7rem] grid size-10 place-items-center rounded-2xl bg-green-800 text-cream shadow-md">
+        <li
+          key={step.num}
+          className="process-row reveal relative grid grid-cols-[3rem_1fr] gap-x-4 gap-y-1 border-b border-border/80 py-5 last:border-b-0 md:grid-cols-[3rem_minmax(14rem,18rem)_1fr] md:items-start md:gap-x-8 md:py-6"
+          style={{ ["--reveal-delay" as string]: `${index * 70}ms` }}
+        >
+          <span className="relative z-10 grid size-12 place-items-center rounded-2xl bg-green-800 text-cream shadow-md ring-4 ring-cream">
             <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d={step.icon} />
             </svg>
           </span>
-          <p className="text-xs font-semibold tracking-[0.16em] text-gold uppercase">{step.num}</p>
-          <h3 className="mt-1 font-display text-2xl text-green-900">{step.title}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+          <div className="pt-1">
+            <p className="text-xs font-semibold tracking-[0.16em] text-gold uppercase">{step.num}</p>
+            <h3 className="mt-1 font-display text-2xl leading-tight text-green-900">{step.title}</h3>
+          </div>
+          <p className="col-start-2 text-sm leading-relaxed text-muted-foreground md:col-start-3 md:pt-1">{step.body}</p>
         </li>
       ))}
     </ol>
