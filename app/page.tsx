@@ -3,7 +3,7 @@ import { ContactSection } from "@/components/contact-section";
 import { CtaBand } from "@/components/cta-band";
 import { FaqList } from "@/components/faq-list";
 import { FounderSpotlight } from "@/components/founder-spotlight";
-import { HeroMockup } from "@/components/hero-mockup";
+import { HomeHero } from "@/components/home-hero";
 import { ProcessTimeline } from "@/components/process-timeline";
 import { StackCard, StackingDeck } from "@/components/stacking-deck";
 import { clients } from "@/data/clients";
@@ -103,48 +103,7 @@ export default function HomePage() {
   return (
     <>
       <JsonLd data={faqSchema(homeFaqs)} />
-      <section className="relative overflow-hidden bg-green-900 text-cream" id="home">
-        <div className="mesh" aria-hidden="true">
-          <i />
-          <i />
-          <i />
-        </div>
-        <div className="mesh-grid" aria-hidden="true" />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-5 pt-28 pb-14 md:pt-32 lg:grid-cols-12 lg:gap-10 lg:pb-16">
-          <div className="lg:col-span-7">
-            <p className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-white/5 px-3 py-1 text-xs font-semibold tracking-[0.18em] text-gold-bright uppercase">
-              Premium IT Solutions
-            </p>
-            <h1 className="mt-6 font-display text-5xl leading-[0.95] text-cream md:text-7xl">
-              Crafting Digital
-              <span className="mt-2 block text-gold-bright">Excellence</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/80">
-              We design, build, and maintain world-class software solutions — from custom enterprise platforms to mobile apps and developer training programs that grow your team&apos;s capabilities.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link
-                href="/contact/"
-                className="inline-flex h-12 items-center rounded-full bg-gold-bright px-6 text-sm font-semibold text-green-900 transition hover:-translate-y-0.5 hover:bg-[#e0b85a] motion-reduce:hover:translate-y-0"
-              >
-                Start a project
-              </Link>
-              <a
-                href="#services"
-                className="inline-flex h-12 items-center rounded-full border border-cream/40 px-6 text-sm font-semibold text-cream transition hover:bg-white/10"
-              >
-                Explore services
-              </a>
-              <Link href="/verify/" className="px-2 text-sm font-semibold text-gold-bright underline-offset-4 hover:underline">
-                Verify a certificate
-              </Link>
-            </div>
-          </div>
-          <div className="relative lg:col-span-5">
-            <HeroMockup />
-          </div>
-        </div>
-      </section>
+      <HomeHero />
 
       <section className="border-b border-border bg-cream-dark/60" aria-label="How a project runs">
         <ul className="mx-auto grid max-w-6xl gap-6 px-5 py-8 sm:grid-cols-3">

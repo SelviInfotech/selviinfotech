@@ -93,8 +93,8 @@ export function SiteHeader() {
   const activeTone = onDark ? "text-gold-bright" : "text-gold";
   const servicesActive = pathname.startsWith("/services/");
   const barClass = onDark
-    ? "border-b border-white/15 bg-green-900/95 text-cream shadow-[0_8px_24px_rgba(0,0,0,0.18)]"
-    : "border-b border-border bg-cream/95 text-green-900 shadow-sm";
+    ? "border-b border-gold-bright/45 bg-green-900 text-cream shadow-[0_10px_28px_rgba(0,0,0,0.28)]"
+    : "border-b border-border bg-cream text-green-900 shadow-[0_1px_0_rgba(13,40,24,0.04)]";
 
   return (
     <header className={`fixed inset-x-0 top-0 z-50 overflow-visible pt-[env(safe-area-inset-top)] backdrop-blur-md transition-colors duration-300 ${barClass}`}>

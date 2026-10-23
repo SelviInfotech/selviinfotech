@@ -1,35 +1,42 @@
 "use client";
 
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useRef, type MouseEvent } from "react";
+import { workImages } from "@/data/visuals";
 
-const bars = [46, 70, 54, 86, 64, 92, 74];
-const stages = [
-  ["Scope written", "100%"],
-  ["Build in cycles", "72%"],
-  ["Handover", "40%"],
+const layers = [
+  {
+    key: "software",
+    image: workImages["software-development"],
+    frame: "absolute inset-y-8 right-0 left-10 overflow-hidden rounded-[1.6rem] shadow-[0_24px_60px_rgba(0,0,0,0.35)]",
+    depth: 10,
+  },
+  {
+    key: "mobile",
+    image: workImages["mobile-app-development"],
+    frame: "absolute top-0 left-0 w-[48%] overflow-hidden rounded-2xl border-4 border-cream shadow-xl",
+    depth: 18,
+  },
+  {
+    key: "web",
+    image: workImages["web-development"],
+    frame: "absolute right-2 bottom-0 w-[46%] overflow-hidden rounded-2xl border-4 border-cream shadow-xl",
+    depth: 22,
+  },
 ] as const;
-
-const chips = [
-  { label: "Written scope", className: "top-2 left-0" },
-  { label: "Built in cycles", className: "top-16 -right-1 sm:right-0" },
-  { label: "Handover & support", className: "bottom-3 left-6" },
-];
 
 export function HeroMockup() {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const px = useMotionValue(0);
   const py = useMotionValue(0);
-  const sx = useSpring(px, { stiffness: 140, damping: 20, mass: 0.4 });
-  const sy = useSpring(py, { stiffness: 140, damping: 20, mass: 0.4 });
-  const boardX = useTransform(sx, [-0.5, 0.5], [12, -12]);
-  const boardY = useTransform(sy, [-0.5, 0.5], [8, -8]);
-  const chipX = useTransform(sx, [-0.5, 0.5], [-16, 16]);
-  const chipY = useTransform(sy, [-0.5, 0.5], [-12, 12]);
+  const sx = useSpring(px, { stiffness: 120, damping: 18, mass: 0.45 });
+  const sy = useSpring(py, { stiffness: 120, damping: 18, mass: 0.45 });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const drift = useTransform(scrollYProgress, [0, 1], [16, -16]);
 
   function onMove(event: MouseEvent<HTMLDivElement>) {
-    if (reduce === true) return;
+    if (reduce) return;
     const box = ref.current?.getBoundingClientRect();
     if (!box) return;
     px.set((event.clientX - box.left) / box.width - 0.5);
@@ -39,71 +46,56 @@ export function HeroMockup() {
   return (
     <div
       ref={ref}
-      className="relative mx-auto h-[24rem] w-full max-w-[28rem] sm:h-[27rem]"
+      className="relative mx-auto aspect-[5/4] w-full max-w-[34rem]"
       onMouseMove={onMove}
       onMouseLeave={() => {
         px.set(0);
         py.set(0);
       }}
-      aria-hidden="true"
     >
-      <div className="absolute top-10 right-6 left-10 h-64 rounded-full bg-[#c9943a]/30 blur-3xl" />
-      <div className="absolute right-0 bottom-8 size-40 rounded-full bg-[#2d7348]/40 blur-3xl" />
-
-      <motion.div className="absolute inset-x-3 top-8 bottom-16" style={reduce === true ? undefined : { x: boardX, y: boardY }}>
-        <div className="absolute -top-5 right-3 left-10 h-[92%] rounded-[1.6rem] border border-white/10 bg-[#163d26] shadow-2xl" />
-        <div className="absolute top-6 -right-3 left-16 h-[78%] rounded-[1.4rem] border border-cream/10 bg-[#0f3320]/90" />
-        <div className="relative flex h-full flex-col rounded-[1.6rem] border border-cream/30 bg-cream p-4 text-green-900 shadow-[0_24px_60px_rgba(0,0,0,0.28)]">
-          <div className="flex items-center justify-between">
-            <p className="text-[0.68rem] font-semibold tracking-[0.16em] text-gold uppercase">Delivery board</p>
-            <span className="flex gap-1" aria-hidden="true">
-              <i className="inline-block size-2 rounded-full bg-[#e7c3c3]" />
-              <i className="inline-block size-2 rounded-full bg-gold-bright" />
-              <i className="inline-block size-2 rounded-full bg-green-800" />
-            </span>
-          </div>
-          <div className="mt-4 flex h-24 items-end gap-1.5 rounded-xl bg-green-100/80 px-3 pt-3">
-            {bars.map((height, index) => (
-              <motion.span
-                key={height + index}
-                className="block w-full origin-bottom rounded-t-md bg-green-800"
-                style={{ height: `${height}%` }}
-                initial={{ scaleY: 0.15 }}
-                animate={{ scaleY: 1 }}
-                transition={{ duration: reduce === true ? 0 : 0.9, delay: reduce === true ? 0 : index * 0.07, ease: [0.22, 1, 0.36, 1] }}
-              />
-            ))}
-          </div>
-          <ul className="mt-4 space-y-2.5">
-            {stages.map(([label, width], index) => (
-              <li key={label}>
-                <div className="flex items-center justify-between text-xs font-semibold">
-                  <span>{label}</span>
-                </div>
-                <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-green-100">
-                  <motion.span
-                    className="block h-full origin-left rounded-full bg-gold-bright"
-                    style={{ width }}
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: reduce === true ? 0 : 1, delay: reduce === true ? 0 : 0.15 + index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                  />
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </motion.div>
-
-      {chips.map((chip) => (
-        <motion.div
-          key={chip.label}
-          className={`absolute ${chip.className} rounded-2xl border border-cream/40 bg-green-900/95 px-3 py-2 text-cream shadow-xl backdrop-blur`}
-          style={reduce === true ? undefined : { x: chipX, y: chipY }}
-        >
-          <p className="text-sm font-semibold tracking-wide text-cream">{chip.label}</p>
-        </motion.div>
+      <div className="absolute top-8 right-6 size-40 rounded-full bg-[#c9943a]/25 blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-6 left-4 size-32 rounded-full bg-[#2d7348]/40 blur-3xl" aria-hidden="true" />
+      {layers.map((layer, index) => (
+        <PhotoLayer key={layer.key} layer={layer} index={index} reduce={reduce === true} sx={sx} sy={sy} drift={drift} />
       ))}
     </div>
+  );
+}
+
+function PhotoLayer({
+  layer,
+  index,
+  reduce,
+  sx,
+  sy,
+  drift,
+}: {
+  layer: (typeof layers)[number];
+  index: number;
+  reduce: boolean;
+  sx: ReturnType<typeof useSpring>;
+  sy: ReturnType<typeof useSpring>;
+  drift: ReturnType<typeof useTransform<number, number>>;
+}) {
+  const x = useTransform(sx, [-0.5, 0.5], [layer.depth, -layer.depth]);
+  const y = useTransform(sy, [-0.5, 0.5], [layer.depth * 0.6, -layer.depth * 0.6]);
+  const scrollY = useTransform(drift, (value) => value * (index === 0 ? 0.35 : 1));
+
+  return (
+    <motion.figure
+      className={layer.frame}
+      style={reduce ? undefined : { x, y, translateY: scrollY }}
+      initial={reduce ? false : { opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: reduce ? 0 : 0.8, delay: reduce ? 0 : 0.12 + index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <img
+        src={layer.image.src}
+        alt={layer.image.alt}
+        width={960}
+        height={640}
+        className="aspect-[4/3] h-full w-full object-cover"
+      />
+    </motion.figure>
   );
 }
