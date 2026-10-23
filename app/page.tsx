@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ClientMarquee } from "@/components/client-marquee";
 import { ContactSection } from "@/components/contact-section";
 import { CtaBand } from "@/components/cta-band";
 import { FaqList } from "@/components/faq-list";
@@ -6,7 +7,6 @@ import { FounderSpotlight } from "@/components/founder-spotlight";
 import { HomeHero } from "@/components/home-hero";
 import { ProcessTimeline } from "@/components/process-timeline";
 import { StackCard, StackingDeck } from "@/components/stacking-deck";
-import { clients } from "@/data/clients";
 import { workImages } from "@/data/visuals";
 import { isTestimonialsPublic, testimonials } from "@/data/testimonials";
 import { JsonLd } from "@/lib/json-ld";
@@ -228,43 +228,32 @@ export default function HomePage() {
       </StackCard>
 
       <StackCard>
-      <section id="clients" className="stack-fill px-5 py-14 md:py-16" aria-labelledby="clients-heading">
-        <div className="stack-body mx-auto flex w-full max-w-6xl flex-col">
-          <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <section id="clients" className="stack-fill py-14 md:py-16" aria-labelledby="clients-heading">
+        <div className="mx-auto w-full max-w-6xl px-5">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Trusted by</p>
               <h2 id="clients-heading" className="mt-3 font-display text-4xl text-green-900">Clients</h2>
             </div>
             <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Names are shown as wordmarks. We do not use their logos here.</p>
           </div>
-          <ul className="client-grid mt-6 grid grid-cols-2 gap-3 lg:grid-cols-3">
-            {clients.map((client) => (
-              <li key={client.name} className="min-h-0">
-                <a
-                  href={client.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={client.label}
-                  className="flex h-full flex-col justify-center rounded-2xl border border-border bg-card px-4 py-4 transition hover:border-gold-bright"
-                >
-                  <span className="font-display text-2xl text-green-900">{client.name}</span>
-                  <span className="mt-1 text-xs tracking-wide text-muted-foreground uppercase">{client.tag}</span>
-                </a>
-              </li>
-            ))}
-            <li className="min-h-0">
-              <div className="flex h-full flex-col justify-center rounded-2xl bg-green-900 px-4 py-4 text-cream">
-                <p className="text-xs font-semibold tracking-[0.16em] text-gold-bright uppercase">Start a project</p>
-                <a className="mt-2 text-sm font-semibold break-words text-cream underline decoration-gold-bright underline-offset-4 [overflow-wrap:anywhere]" href={`mailto:${site.email}`}>
-                  {site.email}
-                </a>
-                <a className="mt-1 text-sm font-semibold text-cream underline decoration-gold-bright underline-offset-4" href={`tel:${site.phoneTel}`}>
-                  {site.phoneDisplay}
-                </a>
-              </div>
-            </li>
-          </ul>
-          <p className="mt-4 shrink-0 text-sm leading-relaxed text-muted-foreground">
+        </div>
+        <div className="mt-8">
+          <ClientMarquee />
+        </div>
+        <div className="mx-auto mt-6 w-full max-w-6xl px-5">
+          <div className="flex flex-col gap-2 rounded-2xl bg-green-900 px-5 py-3.5 text-cream sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-xs font-semibold tracking-[0.16em] text-gold-bright uppercase">Start a project</p>
+            <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-semibold">
+              <a className="underline decoration-gold-bright underline-offset-4 break-words [overflow-wrap:anywhere]" href={`mailto:${site.email}`}>
+                {site.email}
+              </a>
+              <a className="underline decoration-gold-bright underline-offset-4" href={`tel:${site.phoneTel}`}>
+                {site.phoneDisplay}
+              </a>
+            </p>
+          </div>
+          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
             We work with clients in Chennai and across Tamil Nadu, and with remote clients elsewhere in India.
           </p>
         </div>

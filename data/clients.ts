@@ -49,11 +49,4 @@ export const clients: Client[] = [
     label: "Ains, IT Solutions",
     initial: "A",
   },
-  {
-    name: "Talencia Global",
-    tag: "HR & Talent",
-    href: "https://www.talenciaglobal.com/",
-    label: "Talencia Global, HR & Talent",
-    initial: "T",
-  },
 ];
