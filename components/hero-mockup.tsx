@@ -78,15 +78,16 @@ function PhotoLayer({
   drift: ReturnType<typeof useTransform<number, number>>;
 }) {
   const x = useTransform(sx, [-0.5, 0.5], [layer.depth, -layer.depth]);
-  const y = useTransform(sy, [-0.5, 0.5], [layer.depth * 0.6, -layer.depth * 0.6]);
+  const pointerY = useTransform(sy, [-0.5, 0.5], [layer.depth * 0.6, -layer.depth * 0.6]);
   const scrollY = useTransform(drift, (value) => value * (index === 0 ? 0.35 : 1));
+  const y = useTransform([pointerY, scrollY], ([pointer, scroll]: number[]) => pointer + scroll);
 
   return (
     <motion.figure
       className={layer.frame}
-      style={reduce ? undefined : { x, y, translateY: scrollY }}
-      initial={reduce ? false : { opacity: 0, y: 18 }}
-      animate={{ opacity: 1, y: 0 }}
+      style={reduce ? undefined : { x, y }}
+      initial={reduce ? false : { opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: reduce ? 0 : 0.8, delay: reduce ? 0 : 0.12 + index * 0.1, ease: [0.22, 1, 0.36, 1] }}
     >
       <img
