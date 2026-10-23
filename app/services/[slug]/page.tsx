@@ -78,14 +78,14 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         />
       </figure>
 
-      <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
+      <section className="mx-auto max-w-6xl px-5 py-14 md:py-16">
         <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">What this covers</p>
         <h2 className="mt-3 font-display text-4xl text-green-900">The work, in plain terms</h2>
-        <div className="mt-10 grid gap-4 lg:grid-cols-3">
+        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {service.sections.map((section, index) => (
             <article
               key={section.heading}
-              className={`reveal lift rounded-[1.6rem] border border-border bg-card p-6 ${index === 0 ? "lg:col-span-2" : ""}`}
+              className="reveal lift rounded-[1.6rem] border border-border bg-card p-6"
               style={{ ["--reveal-delay" as string]: `${index * 80}ms` }}
             >
               <p className="font-display text-sm text-gold">0{index + 1}</p>
@@ -102,7 +102,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
-      <section className="bg-cream-dark/50 py-20 md:py-28">
+      <section className="bg-cream-dark/50 py-14 md:py-16">
         <div className="mx-auto max-w-6xl px-5">
           <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">How we work</p>
           <h2 className="mt-3 mb-12 font-display text-4xl text-green-900">From first call to handover</h2>

@@ -24,7 +24,7 @@ export default function BlogIndexPage() {
         lede="Short, specific writing about software, apps, and websites for clients in Chennai, Tamil Nadu, and across India. No invented numbers."
         crumbs={[{ name: "Home", path: "/" }, { name: "Blog" }]}
       />
-      <section className="mx-auto grid max-w-6xl gap-5 px-5 py-16 md:grid-cols-2 md:py-24">
+      <section className="mx-auto grid max-w-6xl gap-5 px-5 py-12 md:grid-cols-2 md:py-16">
         {posts.map((post, index) => (
           <article key={post.slug} className="reveal lift flex flex-col rounded-[1.6rem] border border-border bg-card p-6" style={{ ["--reveal-delay" as string]: `${index * 80}ms` }}>
             <p className="text-sm text-gold">

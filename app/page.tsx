@@ -6,6 +6,7 @@ import { FaqList } from "@/components/faq-list";
 import { FounderSpotlight } from "@/components/founder-spotlight";
 import { HomeHero } from "@/components/home-hero";
 import { ProcessTimeline } from "@/components/process-timeline";
+import { TechPills } from "@/components/tech-pills";
 import { StackCard, StackingDeck } from "@/components/stacking-deck";
 import { workImages } from "@/data/visuals";
 import { isTestimonialsPublic, testimonials } from "@/data/testimonials";
@@ -131,19 +132,23 @@ export default function HomePage() {
             {offerings.map((item, index) => (
               <article
                 key={item.title}
-                className={`offer-card reveal lift flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border ${item.featured ? "border-white/10 bg-green-900 text-cream" : "border-border bg-card"}`}
+                className={`offer-card reveal lift flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border transition-colors hover:border-gold-bright ${item.featured ? "border-white/10 bg-green-900 text-cream" : "border-border bg-card"}`}
                 style={{ ["--reveal-delay" as string]: `${index * 70}ms` }}
               >
-                <img
-                  src={item.image.src}
-                  alt={item.image.alt}
-                  width={960}
-                  height={640}
-                  sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
-                  loading="lazy"
-                  decoding="async"
-                  className="aspect-[16/10] w-full shrink-0 object-cover"
-                />
+                <div className="overflow-hidden">
+                  <div data-parallax="8">
+                    <img
+                      src={item.image.src}
+                      alt={item.image.alt}
+                      width={960}
+                      height={640}
+                      sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+                      loading="lazy"
+                      decoding="async"
+                      className="aspect-[16/10] w-full scale-110 object-cover"
+                    />
+                  </div>
+                </div>
                 <div className="flex flex-1 flex-col p-4">
                   <h3 className={`font-display text-2xl leading-tight ${item.featured ? "text-cream" : "text-green-900"}`}>{item.title}</h3>
                   <p className={`mt-2 text-sm leading-relaxed ${item.featured ? "text-cream/80" : "text-muted-foreground"}`}>{item.body}</p>
@@ -173,13 +178,23 @@ export default function HomePage() {
               We pick from this stack based on the system and on what your team can maintain.
             </p>
           </div>
-          <ul className="tech-grid mt-6 flex flex-wrap gap-2">
-            {stack.map((item) => (
-              <li key={item} className="rounded-full border border-green-800/15 bg-green-100 px-3 py-1.5 text-sm font-medium text-green-900">
-                {item}
-              </li>
-            ))}
-          </ul>
+          <div className="mt-6">
+            <TechPills items={stack} showLabel={false} />
+          </div>
+          <div className="mt-8 overflow-hidden rounded-2xl">
+            <div data-parallax="16">
+              <img
+                src={workImages["web-development"].src}
+                alt={workImages["web-development"].alt}
+                width={960}
+                height={640}
+                sizes="(min-width: 1152px) 1088px, 100vw"
+                loading="lazy"
+                decoding="async"
+                className="aspect-[21/8] w-full scale-110 object-cover"
+              />
+            </div>
+          </div>
         </div>
       </section>
       </StackCard>
@@ -188,6 +203,20 @@ export default function HomePage() {
       <section id="why-us" className="stack-fill px-5 py-14 md:py-16">
         <div className="why-layout mx-auto grid w-full max-w-6xl items-start gap-10 lg:grid-cols-12">
           <div className="flex flex-col lg:col-span-4">
+            <div className="mb-5 overflow-hidden rounded-2xl">
+              <div data-parallax="14">
+                <img
+                  src={workImages["it-consulting"].src}
+                  alt={workImages["it-consulting"].alt}
+                  width={960}
+                  height={640}
+                  sizes="(min-width: 1024px) 360px, 100vw"
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[16/10] w-full scale-110 object-cover"
+                />
+              </div>
+            </div>
             <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Why choose us</p>
             <h2 className="mt-3 font-display text-4xl text-green-900">The studio advantage</h2>
             <p className="mt-4 text-muted-foreground">We combine technical depth with a client-first mindset to deliver exceptional results.</p>
@@ -200,7 +229,7 @@ export default function HomePage() {
           </div>
           <div className="why-points grid gap-4 sm:grid-cols-2 lg:col-span-8">
             {advantages.map(([title, body], index) => (
-              <article key={title} className="reveal lift flex h-full flex-col justify-center rounded-2xl border border-border bg-card p-5" style={{ ["--reveal-delay" as string]: `${index * 80}ms` }}>
+              <article key={title} className="reveal lift flex h-full flex-col rounded-2xl border border-border bg-card p-5" style={{ ["--reveal-delay" as string]: `${index * 80}ms` }}>
                 <h3 className="font-display text-2xl text-green-900">{title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
               </article>

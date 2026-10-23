@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import { site } from "@/lib/site";
 
 const field =
-  "mt-1.5 h-12 w-full rounded-xl border border-border bg-card px-3 text-base text-foreground outline-none transition focus-visible:border-green-800 focus-visible:ring-3 focus-visible:ring-green-800/20";
+  "mt-1.5 h-11 w-full rounded-xl border border-border bg-card px-3 text-base text-foreground outline-none transition focus-visible:border-green-800 focus-visible:ring-3 focus-visible:ring-green-800/20";
 
 export function ContactForm() {
   const [error, setError] = useState("");
@@ -92,7 +92,7 @@ export function ContactForm() {
         <label htmlFor="message" className="text-sm font-medium text-green-900">
           Your message <span className="text-gold">*</span>
         </label>
-        <textarea className={`${field} h-32 py-3`} id="message" name="message" placeholder="Tell us about your project or requirements..." />
+        <textarea className={`${field} h-auto min-h-28 py-3`} id="message" name="message" rows={5} placeholder="Tell us about your project or requirements..." />
       </div>
       <button
         className="mt-5 inline-flex h-12 w-full items-center justify-center rounded-full bg-green-800 px-6 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-green-900 motion-reduce:hover:translate-y-0 sm:w-auto"
