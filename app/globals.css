@@ -170,22 +170,13 @@
   font-weight: 600;
 }
 
-.faq-item:not([open]) > :not(summary) {
+details.faq-item:not([open]) > :not(summary) {
   display: none;
 }
-.faq-item summary {
+details.faq-item summary {
   list-style: none;
 }
-.faq-item summary::-webkit-details-marker {
-  display: none;
-}
-.faq-item .when-open {
-  display: none;
-}
-.faq-item[open] .when-open {
-  display: inline;
-}
-.faq-item[open] .when-closed {
+details.faq-item summary::-webkit-details-marker {
   display: none;
 }
 
