@@ -81,9 +81,9 @@ export function SiteHeader() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[#eadfce] bg-[#faf7f3]/95 pt-[env(safe-area-inset-top)] text-green-900 shadow-[0_1px_0_rgba(15,59,36,0.04)] backdrop-blur-md">
-      <div className="mx-auto flex h-[4.75rem] max-w-7xl items-center gap-3 px-4 sm:px-5">
-        <Link href="/" prefetch={false} aria-label="Selvi Infotech home" className="shrink-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C9962F]">
-          <LogoLockup />
+      <div className="mx-auto flex h-[5.25rem] max-w-7xl items-center gap-3 px-4 sm:px-5">
+        <Link href="/" prefetch={false} className="shrink-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C9962F]">
+          <LogoLockup size="lg" />
         </Link>
 
         <nav className="ml-auto hidden items-center gap-0.5 lg:flex" aria-label="Primary">
@@ -187,7 +187,7 @@ export function SiteHeader() {
       </div>
 
       {open ? (
-        <div className="absolute inset-x-0 top-full z-[70] max-h-[calc(100dvh-4.75rem)] overflow-y-auto overscroll-contain border-t border-border bg-cream shadow-xl lg:hidden">
+        <div className="absolute inset-x-0 top-full z-[70] max-h-[calc(100dvh-5.25rem)] overflow-y-auto overscroll-contain border-t border-border bg-cream shadow-xl lg:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-4" aria-label="Mobile">
             <Link href="/" className="rounded-xl px-3 py-3 text-base font-semibold" onClick={() => setOpen(false)}>Home</Link>
             <p className="px-3 pt-2 text-xs font-semibold tracking-[0.16em] text-gold uppercase">Services</p>

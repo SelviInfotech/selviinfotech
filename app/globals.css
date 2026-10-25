@@ -466,25 +466,8 @@ details.faq-item summary::-webkit-details-marker {
   }
 }
 
-.hero-float { animation: hero-float 7.2s ease-in-out infinite; }
-.hero-float-delay { animation: hero-float 8.6s ease-in-out infinite; animation-delay: -1.4s; }
-@keyframes hero-float {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, -10px, 0); }
+.hero-blend {
+  -webkit-mask-image: radial-gradient(ellipse 80% 76% at 56% 50%, #000 46%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 76% at 56% 50%, #000 46%, transparent 100%);
 }
 
-.leaf-sway { animation: leaf-sway 9s ease-in-out infinite; transform-origin: 50% 100%; }
-.leaf-sway-slow { animation-duration: 12.5s; animation-delay: -2s; }
-@keyframes leaf-sway {
-  0%, 100% { transform: rotate(-1.6deg); }
-  50% { transform: rotate(2.2deg); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-float,
-  .hero-float-delay,
-  .leaf-sway,
-  .leaf-sway-slow {
-    animation: none !important;
-  }
-}

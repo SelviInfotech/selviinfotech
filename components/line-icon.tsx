@@ -13,6 +13,7 @@ const icons = {
   focus: ["M12 21s-7-4.4-7-10a7 7 0 0 1 14 0c0 5.6-7 10-7 10z", "M12 11.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"],
   quality: ["M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z", "M9 12l2 2 4-4"],
   handover: ["M4 7h10v10H4z", "M14 10h6v10H8"],
+  language: ["M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z", "M3 12h18", "M12 3c2.4 2.6 3.6 6 3.6 9s-1.2 6.4-3.6 9c-2.4-2.6-3.6-6-3.6-9s1.2-6.4 3.6-9z"],
 } as const;
 
 export type LineIconName = keyof typeof icons;

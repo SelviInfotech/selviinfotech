@@ -31,7 +31,7 @@ export function SiteFooter() {
       <LeafDecor spot="footer" />
       <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-12 md:py-16">
         <div className="md:col-span-4">
-          <LogoLockup tone="light" />
+          <LogoLockup tone="light" size="lg" />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-cream/80">
             Software, cloud architecture, and practical training for businesses and the people who build with them.
           </p>

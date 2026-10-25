@@ -98,38 +98,28 @@ export const whyTiles: WhyTile[] = [
   },
   {
     title: "Client Focused",
-    body: "A written scope before the build, and a person to call after launch.",
+    body: "A written scope before the build, and someone to call after.",
     icon: "focus",
   },
   {
     title: "Quality & Best Practices",
-    body: "We test the paths a real user takes and write down what we find before release.",
+    body: "We test real user paths and write down what we find.",
     icon: "quality",
   },
   {
     title: "Training with Practical Approach",
-    body: "Classes use the stacks we ship, in person or as live online sessions.",
+    body: "Classes use the stacks we ship, live or in person.",
     icon: "training",
-  },
-  {
-    title: "Clear Handover",
-    body: "You receive the source, setup notes, and the steps to run what we built.",
-    icon: "handover",
-  },
-  {
-    title: "Scoped Support",
-    body: "Ongoing fixes are a separate agreement, not a vague promise.",
-    icon: "support",
   },
 ];
 
-export const trainingPoints = [
-  "Live Interactive Sessions",
-  "Real-World Projects",
-  "Doubt Support",
-  "Certificate Provided",
-  "Tamil / English",
-] as const;
+export const trainingPoints: { label: string; icon: "training" | "software" | "support" | "quality" | "language" }[] = [
+  { label: "Live Interactive Sessions", icon: "training" },
+  { label: "Real-World Projects", icon: "software" },
+  { label: "Doubt Support", icon: "support" },
+  { label: "Certificate Provided", icon: "quality" },
+  { label: "Tamil / English", icon: "language" },
+];
 
 export type PublishedWork = {
   name: string;
@@ -137,9 +127,14 @@ export type PublishedWork = {
   tags: string[];
   href: string;
   mock: "tax" | "plant" | "nodes" | "grid";
+  image: string;
+  imageAlt: string;
 };
 
-/** Published relationships already named on the site. No invented results. */
+/**
+ * Published relationships already named on the site. No invented results.
+ * The photos are stock scenes placed beside each name. They are not screenshots of that client's product.
+ */
 export const publishedWork: PublishedWork[] = [
   {
     name: "IvyTax",
@@ -147,6 +142,8 @@ export const publishedWork: PublishedWork[] = [
     tags: ["Tax technology"],
     href: "https://ivytax.in",
     mock: "tax",
+    image: "/images/project-enterprise.webp",
+    imageAlt: "Monitors showing a business application, placed beside our published work for IvyTax. Not a screenshot of their product.",
   },
   {
     name: "ASHT",
@@ -154,6 +151,8 @@ export const publishedWork: PublishedWork[] = [
     tags: ["Manufacturing"],
     href: "https://asht.co.in",
     mock: "plant",
+    image: "/images/project-cloud.webp",
+    imageAlt: "A cloud infrastructure diagram on a screen, placed beside our published work for ASHT. Not a screenshot of their product.",
   },
   {
     name: "Achutha AI",
@@ -161,6 +160,8 @@ export const publishedWork: PublishedWork[] = [
     tags: ["AI solutions"],
     href: "https://achutha.com",
     mock: "nodes",
+    image: "/images/project-mobile.webp",
+    imageAlt: "Phones showing a mobile application, placed beside our published work for Achutha AI. Not a screenshot of their product.",
   },
   {
     name: "Ains",
@@ -168,6 +169,8 @@ export const publishedWork: PublishedWork[] = [
     tags: ["IT solutions"],
     href: "https://www.ainsit.in/",
     mock: "grid",
+    image: "/images/project-travel.webp",
+    imageAlt: "A laptop and phone showing a travel booking screen, placed beside our published work for Ains. Not a screenshot of their product.",
   },
 ];
 
@@ -177,15 +180,16 @@ export type TechLogo = {
 };
 
 export const techLogos: TechLogo[] = [
+  { name: "React", src: "/icons/tech/react.svg" },
+  { name: "Next.js", src: "/icons/tech/nextdotjs.svg" },
+  { name: "Node.js", src: "/icons/tech/nodedotjs.svg" },
+  { name: "Flutter", src: "/icons/tech/flutter.svg" },
   { name: "Amazon Web Services", src: "/icons/tech/amazonaws.svg" },
   { name: "Microsoft Azure", src: "/icons/tech/microsoftazure.svg" },
   { name: "Google Cloud", src: "/icons/tech/googlecloud.svg" },
   { name: "Appwrite", src: "/icons/tech/appwrite.svg" },
   { name: "MongoDB", src: "/icons/tech/mongodb.svg" },
   { name: "PostgreSQL", src: "/icons/tech/postgresql.svg" },
-  { name: "React", src: "/icons/tech/react.svg" },
-  { name: "Next.js", src: "/icons/tech/nextdotjs.svg" },
-  { name: "Flutter", src: "/icons/tech/flutter.svg" },
 ];
 
 /**
