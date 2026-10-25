@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandMark } from "@/components/brand-mark";
 import { SocialLinks } from "@/components/social-links";
 import { site } from "@/lib/site";
 
@@ -9,7 +10,7 @@ export function SiteFooter() {
     <footer className="bg-green-900 text-cream">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-12">
         <div className="md:col-span-4">
-          <img src="/logo.png" alt="Selvi Infotech" width={56} height={48} className="h-12 w-auto rounded-xl bg-cream p-1" />
+          <BrandMark className="h-12 w-12" />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-cream/75">
             Software, mobile apps, websites, maintenance, consulting, and IT training for teams in Chennai, across Tamil Nadu, and remote clients in India.
           </p>

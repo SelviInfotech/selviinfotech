@@ -44,7 +44,7 @@ export function HomeHero() {
           <motion.div {...enter(reduce, 0.24)} className="mt-8 flex flex-wrap items-center gap-3">
             <Link
               href="/contact/"
-              className="inline-flex h-12 items-center rounded-full bg-gold-bright px-6 text-sm font-semibold text-green-900 transition hover:-translate-y-0.5 hover:bg-[#e0b85a] motion-reduce:hover:translate-y-0"
+              className="inline-flex h-12 items-center rounded-full bg-gold-bright px-6 text-sm font-semibold text-green-900 transition hover:-translate-y-0.5 hover:bg-gold-hot motion-reduce:hover:translate-y-0"
             >
               Start a project
             </Link>

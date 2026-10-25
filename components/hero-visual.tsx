@@ -57,7 +57,7 @@ export function HeroVisual() {
   return (
     <div className="relative mx-auto h-[19.5rem] w-full max-w-[36rem] sm:h-[25rem] lg:h-[28.5rem]">
       <p className="sr-only">
-        Illustration of a laptop and a phone showing sample website and app screens, with React, Flutter, Next.js, and Node.js marks. The screens are examples of the kind of work we build, not results.
+        A gold line lotus, the Selvi Infotech mark, drawn with depth.
       </p>
       <div className="absolute inset-0" aria-hidden="true">
         {mode === "scene" ? (

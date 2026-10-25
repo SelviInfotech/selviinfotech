@@ -56,7 +56,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         crumbs={[{ name: "Home", path: "/" }, { name: service.name }]}
       >
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="/contact/" className="inline-flex h-12 items-center rounded-full bg-gold-bright px-6 text-sm font-semibold text-green-900 hover:bg-[#e0b85a]">
+          <Link href="/contact/" className="inline-flex h-12 items-center rounded-full bg-gold-bright px-6 text-sm font-semibold text-green-900 hover:bg-gold-hot">
             Start a conversation
           </Link>
           <a href={`tel:${site.phoneTel}`} className="inline-flex h-12 items-center rounded-full border border-cream/40 px-6 text-sm font-semibold text-cream hover:bg-white/10">

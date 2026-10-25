@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { BrandMark } from "@/components/brand-mark";
 import { appwriteConfig, appwriteIsConfigured } from "@/lib/appwrite";
 import { site } from "@/lib/site";
 
@@ -159,7 +160,7 @@ export function VerifyLookup() {
           </header>
           <div className="p-6">
             <div className="flex items-center justify-between gap-4">
-              <img src="/logo.png" alt="Selvi Infotech" width={64} height={54} className="h-12 w-auto" />
+              <BrandMark className="h-12 w-12" />
               <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold tracking-wide text-green-800 uppercase">Authentic</span>
             </div>
             <dl className="mt-6 grid gap-4 sm:grid-cols-2">

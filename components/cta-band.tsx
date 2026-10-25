@@ -36,7 +36,7 @@ export function CtaBand({
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/contact/"
-                className="inline-flex h-12 items-center rounded-full bg-gold-bright px-6 text-sm font-semibold text-green-900 transition hover:-translate-y-0.5 hover:bg-[#e0b85a] motion-reduce:hover:translate-y-0"
+                className="inline-flex h-12 items-center rounded-full bg-gold-bright px-6 text-sm font-semibold text-green-900 transition hover:-translate-y-0.5 hover:bg-gold-hot motion-reduce:hover:translate-y-0"
               >
                 Start a conversation
               </Link>
@@ -79,7 +79,7 @@ export function CtaBand({
           <div className="flex flex-wrap gap-3">
             <Link
               href="/contact/"
-              className="inline-flex h-12 items-center rounded-full bg-gold-bright px-6 text-sm font-semibold text-green-900 transition hover:-translate-y-0.5 hover:bg-[#e0b85a] motion-reduce:hover:translate-y-0"
+              className="inline-flex h-12 items-center rounded-full bg-gold-bright px-6 text-sm font-semibold text-green-900 transition hover:-translate-y-0.5 hover:bg-gold-hot motion-reduce:hover:translate-y-0"
             >
               Start a conversation
             </Link>

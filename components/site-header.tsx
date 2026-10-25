@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
+import { BrandMark } from "@/components/brand-mark";
 import { Button } from "@/components/ui/button";
 import { SocialLinks } from "@/components/social-links";
 import { services } from "@/data/services";
@@ -94,13 +95,13 @@ export function SiteHeader() {
   const servicesActive = pathname.startsWith("/services/");
   const barClass = onDark
     ? "border-b border-gold-bright/45 bg-green-900 text-cream shadow-[0_10px_28px_rgba(0,0,0,0.28)]"
-    : "border-b border-border bg-cream text-green-900 shadow-[0_1px_0_rgba(13,40,24,0.04)]";
+    : "border-b border-border bg-cream text-green-900 shadow-[0_1px_0_rgba(15,59,36,0.04)]";
 
   return (
     <header className={`fixed inset-x-0 top-0 z-50 overflow-visible pt-[env(safe-area-inset-top)] backdrop-blur-md transition-colors duration-300 ${barClass}`}>
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-5 md:h-[4.5rem]">
-        <Link href="/" className="shrink-0 rounded-xl bg-cream p-1">
-          <img src="/logo.png" alt="Selvi Infotech home" width={48} height={41} className="h-10 w-auto" />
+        <Link href="/" aria-label="Selvi Infotech home" className="shrink-0">
+          <BrandMark className="h-10 w-10" />
         </Link>
 
         <nav className="ml-auto hidden h-10 items-center gap-1 lg:flex" aria-label="Primary">
@@ -200,7 +201,7 @@ export function SiteHeader() {
           <Link href="/verify/" className={`inline-flex h-10 items-center rounded-full px-3 text-sm font-semibold ${activeTone}`}>
             Verify
           </Link>
-          <Button nativeButton={false} render={<Link href="/contact/" />} className={`h-10 rounded-full px-4 ${onDark ? "bg-gold-bright text-green-900 hover:bg-[#e0b85a]" : ""}`}>
+          <Button nativeButton={false} render={<Link href="/contact/" />} className={`h-10 rounded-full px-4 ${onDark ? "bg-gold-bright text-green-900 hover:bg-gold-hot" : ""}`}>
             Get started
           </Button>
         </nav>
