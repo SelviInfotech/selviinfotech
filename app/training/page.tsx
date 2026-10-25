@@ -30,10 +30,10 @@ export default function TrainingPage() {
         eyebrow="Courses"
         title={
           <>
-            IT training in <span className="text-gold-bright">Chennai &amp; Tamil Nadu</span>
+            Hands-on <span className="text-gold-bright">training programs</span>
           </>
         }
-        lede="Hands-on courses for new developers and for teams. The people who teach also build software. Classes run in Chennai and across Tamil Nadu, and online for remote learners. A completion certificate can be checked on the verification page."
+        lede="Courses for new developers and for teams. The people who teach also build software. Classes run in person and as live online sessions. A completion certificate can be checked on the verification page."
         crumbs={[{ name: "Home", path: "/" }, { name: "Training" }]}
       />
 
@@ -120,7 +120,7 @@ export default function TrainingPage() {
             <p className="text-xs font-semibold tracking-[0.2em] text-gold-bright uppercase">For companies</p>
             <h2 className="mt-3 font-display text-4xl text-cream">Corporate and team training</h2>
             <p className="mt-4 text-cream/80">
-              We design and deliver customised training programs for enterprises looking to upskill their development teams. Scheduling can be on-site in Chennai and across Tamil Nadu, online, or a mix. The curriculum follows the tools your developers already use.
+              We design and deliver customised training programs for enterprises looking to upskill their development teams. Scheduling can be on-site, online, or a mix. The curriculum follows the tools your developers already use.
             </p>
           </div>
           <div>

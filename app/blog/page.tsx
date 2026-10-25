@@ -21,7 +21,7 @@ export default function BlogIndexPage() {
             Notes from the <span className="text-gold-bright">studio</span>
           </>
         }
-        lede="Short, specific writing about software, apps, and websites for clients in Chennai, Tamil Nadu, and across India. No invented numbers."
+        lede="Short, specific writing about software, apps, and websites. No invented numbers."
         crumbs={[{ name: "Home", path: "/" }, { name: "Blog" }]}
       />
       <section className="mx-auto grid max-w-6xl gap-5 px-5 py-12 md:grid-cols-2 md:py-16">

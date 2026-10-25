@@ -2,15 +2,15 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { HeroMockup } from "@/components/hero-mockup";
+import { HeroVisual } from "@/components/hero-visual";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 function enter(reduce: boolean | null, delay: number) {
   if (reduce) return {};
   return {
-    initial: { opacity: 0, y: 16 },
-    animate: { opacity: 1, y: 0 },
+    initial: { y: 16 },
+    animate: { y: 0 },
     transition: { duration: 0.7, delay, ease },
   };
 }
@@ -36,7 +36,7 @@ export function HomeHero() {
           </motion.p>
           <motion.h1 {...enter(reduce, 0.08)} className="mt-5 max-w-xl font-display text-[2.15rem] leading-[1.05] text-cream sm:text-[2.65rem] md:mt-6 md:text-5xl md:leading-[1.02] xl:text-[3.35rem]">
             Software, mobile apps &amp; websites
-            <span className="mt-2 block text-gold-bright">for businesses in Chennai &amp; Tamil Nadu</span>
+            <span className="mt-2 block text-gold-bright">built for growing businesses</span>
           </motion.h1>
           <motion.p {...enter(reduce, 0.16)} className="mt-6 max-w-xl text-lg leading-relaxed text-cream/80">
             We design, build, and maintain custom systems, phone apps, and websites, then hand them over with the source. Training uses the same tools.
@@ -60,7 +60,7 @@ export function HomeHero() {
           </motion.div>
         </div>
         <div className="lg:col-span-6">
-          <HeroMockup />
+          <HeroVisual />
         </div>
       </div>
     </section>

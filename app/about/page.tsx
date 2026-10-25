@@ -32,14 +32,14 @@ export default function AboutPage() {
             About <span className="text-gold-bright">Selvi Infotech</span>
           </>
         }
-        lede="Selvi Infotech Private Limited builds software, mobile apps, and websites, maintains systems that are already live, and trains people in the same tools. We work with clients in Chennai, across Tamil Nadu, and with remote clients elsewhere in India."
+        lede="Selvi Infotech Private Limited builds software, mobile apps, and websites, maintains systems that are already live, and trains people in the same tools."
         crumbs={[{ name: "Home", path: "/" }, { name: "About" }]}
       />
 
       <section className="mx-auto grid max-w-6xl gap-10 px-5 py-20 md:grid-cols-2 md:py-28">
         <div>
-          <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Where we work</p>
-          <h2 className="mt-3 font-display text-4xl text-green-900">Chennai, Tamil Nadu, and remote clients</h2>
+          <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">The studio</p>
+          <h2 className="mt-3 font-display text-4xl text-green-900">In person when it helps, remote when it does not</h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
             Training runs in person and as live online sessions. Cloud classes are primarily online because of the lab setup. A project starts with a written scope, whether the client is nearby or working remotely.
           </p>

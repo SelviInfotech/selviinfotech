@@ -125,7 +125,7 @@ export default function HomePage() {
             <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">What we offer</p>
             <h2 className="mt-3 font-display text-4xl text-green-900 md:text-5xl">Services, built as products</h2>
             <p className="mt-3 text-lg text-muted-foreground">
-              End-to-end digital solutions for companies in Chennai and Tamil Nadu, and for remote clients across India.
+              Custom systems, phone apps, websites, maintenance, and training in the same tools.
             </p>
           </div>
           <div className="offer-grid mt-8 grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -225,7 +225,7 @@ export default function HomePage() {
             <h2 className="mt-3 font-display text-4xl text-green-900">The studio advantage</h2>
             <p className="mt-4 text-muted-foreground">A project starts with a written scope, moves in cycles you can see, and ends with the source and a person to call.</p>
             <p className="mt-4 text-muted-foreground">
-              Selvi Infotech Private Limited builds software, mobile apps, and websites, maintains systems that are already live, and trains people in the same tools. We work with clients in Chennai, across Tamil Nadu, and with remote clients elsewhere in India.
+              Selvi Infotech Private Limited builds software, mobile apps, and websites, maintains systems that are already live, and trains people in the same tools.
             </p>
             <Link href="/about/" className="mt-6 inline-flex h-12 items-center self-start rounded-full bg-green-800 px-6 text-sm font-semibold text-white hover:bg-green-900">
               About the company
@@ -284,7 +284,7 @@ export default function HomePage() {
               <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">FAQ</p>
               <h2 className="mt-3 font-display text-4xl text-green-900">Common questions</h2>
               <p className="mt-4 leading-relaxed text-muted-foreground">
-                We work with clients in Chennai and across Tamil Nadu, and with remote clients elsewhere in India. Call, WhatsApp, or email and we will tell you whether a meeting or a remote scope is the better start.
+                Call, WhatsApp, or email and we will tell you whether a meeting or a remote scope is the better start.
               </p>
             </div>
             <div className="mt-6 rounded-2xl border border-border bg-card p-5">
