@@ -32,14 +32,14 @@ export function HomeHero() {
             {...enter(reduce, 0)}
             className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-white/5 px-3 py-1 text-xs font-semibold tracking-[0.18em] text-gold-bright uppercase"
           >
-            Premium IT Solutions
+            Software studio
           </motion.p>
-          <motion.h1 {...enter(reduce, 0.08)} className="mt-5 font-display text-4xl leading-[0.98] text-cream sm:text-5xl md:mt-6 md:text-6xl md:leading-[0.95] xl:text-7xl">
-            Crafting Digital
-            <span className="mt-2 block text-gold-bright">Excellence</span>
+          <motion.h1 {...enter(reduce, 0.08)} className="mt-5 max-w-xl font-display text-[2.15rem] leading-[1.05] text-cream sm:text-[2.65rem] md:mt-6 md:text-5xl md:leading-[1.02] xl:text-[3.35rem]">
+            Software, mobile apps &amp; websites
+            <span className="mt-2 block text-gold-bright">for businesses in Chennai &amp; Tamil Nadu</span>
           </motion.h1>
           <motion.p {...enter(reduce, 0.16)} className="mt-6 max-w-xl text-lg leading-relaxed text-cream/80">
-            We design, build, and maintain world-class software solutions — from custom enterprise platforms to mobile apps and developer training programs that grow your team&apos;s capabilities.
+            We design, build, and maintain custom systems, phone apps, and websites, then hand them over with the source. Training uses the same tools.
           </motion.p>
           <motion.div {...enter(reduce, 0.24)} className="mt-8 flex flex-wrap items-center gap-3">
             <Link

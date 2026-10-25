@@ -4,7 +4,7 @@ import { ScrollProgress } from "@/components/scroll-progress";
 import { SiteEffects } from "@/components/site-effects";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { WhatsAppFab } from "@/components/whatsapp-fab";
+import { CallFab, WhatsAppFab } from "@/components/whatsapp-fab";
 import { JsonLd } from "@/lib/json-ld";
 import { organizationGraph } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
@@ -28,8 +28,9 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   ...pageMetadata({
-    title: "Software Development Company in Chennai & Tamil Nadu | Selvi Infotech",
-    description: site.description,
+    title: "Software, Mobile Apps & Websites in Chennai & Tamil Nadu | Selvi Infotech",
+    description:
+      "Software, mobile apps, and websites for businesses in Chennai & Tamil Nadu. Custom software, Flutter and React Native apps, web maintenance, and IT training.",
     path: "/",
   }),
   applicationName: site.shortName,
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteEffects />
         <main id="main">{children}</main>
         <SiteFooter />
+        <CallFab />
         <WhatsAppFab />
       </body>
     </html>

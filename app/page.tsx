@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ClientMarquee } from "@/components/client-marquee";
+import { ClientStrip } from "@/components/client-strip";
 import { ContactSection } from "@/components/contact-section";
 import { CtaBand } from "@/components/cta-band";
 import { FaqList } from "@/components/faq-list";
@@ -94,10 +94,10 @@ const offerings = [
 ];
 
 const advantages = [
-  ["Trusted & Secure", "We follow industry best practices for security, data privacy, and compliance in every project we deliver."],
-  ["On-Time Delivery", "Our agile approach ensures consistent, predictable delivery milestones with full transparency throughout the process."],
-  ["High Performance", "We build optimized, scalable solutions that perform exceptionally under real-world loads and traffic."],
-  ["Expert Team", "Our certified engineers and trainers bring years of industry experience across multiple domains and technologies."],
+  ["Written into the scope", "Access, data, and hosting choices are part of the written scope, including who can see what after launch."],
+  ["Visible cycles", "You see the software while it can still change, on the dates written into the scope."],
+  ["Sized for the work", "We size the system for the traffic and data you actually have, and we say so when a design will not hold."],
+  ["Builders and trainers", "The people who build the software also run the training, in the same tools."],
 ];
 
 export default function HomePage() {
@@ -181,6 +181,10 @@ export default function HomePage() {
           <div className="mt-6">
             <TechPills items={stack} showLabel={false} />
           </div>
+          <div id="clients" className="mt-5 flex flex-col items-start gap-3 border-t border-border pt-5 sm:flex-row sm:items-center sm:gap-4">
+            <p className="shrink-0 text-xs font-semibold tracking-[0.16em] text-gold uppercase">Trusted by</p>
+            <ClientStrip />
+          </div>
           <div className="mt-8 overflow-hidden rounded-2xl">
             <div data-parallax="16">
               <img
@@ -219,7 +223,7 @@ export default function HomePage() {
             </div>
             <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Why choose us</p>
             <h2 className="mt-3 font-display text-4xl text-green-900">The studio advantage</h2>
-            <p className="mt-4 text-muted-foreground">We combine technical depth with a client-first mindset to deliver exceptional results.</p>
+            <p className="mt-4 text-muted-foreground">A project starts with a written scope, moves in cycles you can see, and ends with the source and a person to call.</p>
             <p className="mt-4 text-muted-foreground">
               Selvi Infotech Private Limited builds software, mobile apps, and websites, maintains systems that are already live, and trains people in the same tools. We work with clients in Chennai, across Tamil Nadu, and with remote clients elsewhere in India.
             </p>
@@ -245,7 +249,7 @@ export default function HomePage() {
           <div className="mb-6 max-w-2xl shrink-0">
             <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">How we work</p>
             <h2 className="mt-3 font-display text-4xl text-green-900 md:text-5xl">A process you can see</h2>
-            <p className="mt-3 text-muted-foreground">A transparent, structured approach that ensures quality outcomes every time.</p>
+            <p className="mt-3 text-muted-foreground">Five steps, from the first call to handover. You can see the work at each one.</p>
           </div>
           <ProcessTimeline />
         </div>
@@ -254,39 +258,6 @@ export default function HomePage() {
 
       <StackCard>
       <FounderSpotlight variant="stack" />
-      </StackCard>
-
-      <StackCard>
-      <section id="clients" className="stack-fill py-14 md:py-16" aria-labelledby="clients-heading">
-        <div className="mx-auto w-full max-w-6xl px-5">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Trusted by</p>
-              <h2 id="clients-heading" className="mt-3 font-display text-4xl text-green-900">Clients</h2>
-            </div>
-            <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Names are shown as wordmarks. We do not use their logos here.</p>
-          </div>
-        </div>
-        <div className="mt-8">
-          <ClientMarquee />
-        </div>
-        <div className="mx-auto mt-6 w-full max-w-6xl px-5">
-          <div className="flex flex-col gap-2 rounded-2xl bg-green-900 px-5 py-3.5 text-cream sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-xs font-semibold tracking-[0.16em] text-gold-bright uppercase">Start a project</p>
-            <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-semibold">
-              <a className="underline decoration-gold-bright underline-offset-4 break-words [overflow-wrap:anywhere]" href={`mailto:${site.email}`}>
-                {site.email}
-              </a>
-              <a className="underline decoration-gold-bright underline-offset-4" href={`tel:${site.phoneTel}`}>
-                {site.phoneDisplay}
-              </a>
-            </p>
-          </div>
-          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            We work with clients in Chennai and across Tamil Nadu, and with remote clients elsewhere in India.
-          </p>
-        </div>
-      </section>
       </StackCard>
 
       {isTestimonialsPublic() ? (

@@ -112,7 +112,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
       <section className="mx-auto grid max-w-6xl items-start gap-6 px-5 py-12 md:grid-cols-12 md:py-16">
         <div className="md:col-span-7">
-          <TechPills items={service.tech} />
+          <TechPills items={service.tech} label="Tools we use" />
         </div>
         <aside className="rounded-[1.6rem] border border-border bg-card p-6 md:col-span-5">
           <h2 className="font-display text-2xl text-green-900">Talk to us</h2>

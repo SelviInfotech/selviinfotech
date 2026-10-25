@@ -20,7 +20,7 @@ const steps = [
   {
     num: "04",
     title: "Quality Assurance",
-    body: "Rigorous testing — functional, performance, security, and user acceptance — ensures your product is production-ready and defect-free.",
+    body: "We test the paths a real user takes: a failed login, a missing field, a slow report, and the steps in the handover. What we find is written down before release.",
     icon: "M5 12l4 4L19 6",
   },
   {

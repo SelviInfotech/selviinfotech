@@ -1,5 +1,23 @@
 import { site } from "@/lib/site";
 
+export function CallFab() {
+  return (
+    <a
+      href={`tel:${site.phoneTel}`}
+      aria-label={`Call ${site.phoneDisplay}`}
+      className="call-fab fixed z-30 inline-flex size-14 items-center justify-center rounded-full bg-green-800 text-cream shadow-[0_10px_24px_rgba(13,40,24,0.35)] transition hover:scale-105 hover:bg-green-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright focus-visible:ring-offset-2 focus-visible:ring-offset-cream motion-reduce:hover:scale-100 md:hidden"
+      style={{
+        right: "calc(1rem + env(safe-area-inset-right))",
+        bottom: "calc(1rem + 3.5rem + 1rem + env(safe-area-inset-bottom))",
+      }}
+    >
+      <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+        <path d="M6 4h3l2 5-2 1a12 12 0 0 0 5 5l1-2 5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 4 6a2 2 0 0 1 2-2z" />
+      </svg>
+    </a>
+  );
+}
+
 export function WhatsAppFab() {
   return (
     <a

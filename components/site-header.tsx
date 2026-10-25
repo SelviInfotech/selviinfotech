@@ -99,8 +99,8 @@ export function SiteHeader() {
   return (
     <header className={`fixed inset-x-0 top-0 z-50 overflow-visible pt-[env(safe-area-inset-top)] backdrop-blur-md transition-colors duration-300 ${barClass}`}>
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-5 md:h-[4.5rem]">
-        <Link href="/" className="shrink-0 rounded-xl bg-cream p-1" aria-label="Selvi Infotech home">
-          <img src="/logo.png" alt="" width={48} height={41} className="h-10 w-auto" />
+        <Link href="/" className="shrink-0 rounded-xl bg-cream p-1">
+          <img src="/logo.png" alt="Selvi Infotech home" width={48} height={41} className="h-10 w-auto" />
         </Link>
 
         <nav className="ml-auto hidden h-10 items-center gap-1 lg:flex" aria-label="Primary">

@@ -27,13 +27,13 @@ export default function TrainingPage() {
     <>
       <JsonLd data={faqSchema(trainingFaqs)} />
       <PageHero
-        eyebrow="Certified programs"
+        eyebrow="Courses"
         title={
           <>
-            Industry-ready <span className="text-gold-bright">training programs</span>
+            IT training in <span className="text-gold-bright">Chennai &amp; Tamil Nadu</span>
           </>
         }
-        lede="Hands-on, project-based courses designed to launch your tech career or upskill your team. Taught by industry practitioners, in Chennai and across Tamil Nadu, and online for remote learners."
+        lede="Hands-on courses for new developers and for teams. The people who teach also build software. Classes run in Chennai and across Tamil Nadu, and online for remote learners. A completion certificate can be checked on the verification page."
         crumbs={[{ name: "Home", path: "/" }, { name: "Training" }]}
       />
 

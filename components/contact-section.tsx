@@ -80,7 +80,7 @@ export function ContactSection() {
             Let&apos;s build your next idea
           </h2>
           <p className="mt-3 leading-relaxed text-muted-foreground">
-            Have a project in mind or need expert guidance? Our team is ready to help you explore the possibilities and craft the right solution for your needs. We work with clients in Chennai, across Tamil Nadu, and with remote clients elsewhere in India.
+            Tell us what the system has to do. We reply with questions, then a written scope. We work with clients in Chennai, across Tamil Nadu, and with remote clients elsewhere in India.
           </p>
           <div className="mt-5">
             <ContactCards />

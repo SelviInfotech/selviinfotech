@@ -90,12 +90,11 @@ function PhotoLayer({
     >
       <motion.img
         src={layer.image.src}
-        alt={index === 0 ? layer.image.alt : ""}
+        alt={layer.image.alt}
         width={960}
         height={640}
         className="h-full w-full scale-110 object-cover"
         style={reduce ? undefined : { x, y }}
-        aria-hidden={index === 0 ? undefined : true}
       />
     </motion.figure>
   );
