@@ -89,7 +89,7 @@ export default function HomePage() {
         ) : null}
       </section>
 
-      <section id="services" className="relative overflow-hidden px-5 py-16 md:py-20">
+      <section id="services" className="relative overflow-hidden px-5 py-16 lg:py-20">
         <LeafDecor spot="corners" />
         <div className="relative mx-auto max-w-7xl">
           <div className="max-w-2xl">
@@ -116,7 +116,7 @@ export default function HomePage() {
 
       <section className="relative overflow-hidden bg-green-900 text-cream" aria-labelledby="training-band">
         <LeafDecor spot="training" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-20">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-5 py-16 md:grid-cols-2 lg:py-20">
           <div>
             <p className="text-[11px] font-semibold tracking-[0.2em] text-[#F0C463] uppercase">Training & mentoring</p>
             <h2 id="training-band" className="mt-3 font-display text-4xl text-cream md:text-5xl">Build Skills. Build Careers.</h2>
@@ -141,7 +141,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="work" className="relative overflow-hidden px-5 py-16 md:py-20">
+      <section id="work" className="relative overflow-hidden px-5 py-16 lg:py-20">
         <LeafDecor spot="corners" />
         <div className="relative mx-auto max-w-7xl">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -180,7 +180,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="why-us" className="relative overflow-hidden bg-cream-dark/45 px-5 py-16 md:py-20">
+      <section id="why-us" className="relative overflow-hidden bg-cream-dark/45 px-5 py-16 lg:py-20">
         <LeafDecor spot="corners" />
         <div className="relative mx-auto grid max-w-7xl items-start gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
@@ -207,7 +207,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="process" className="relative overflow-hidden px-5 py-16 md:py-20">
+      <section id="process" className="relative overflow-hidden px-5 py-16 lg:py-20">
         <LeafDecor spot="corners" />
         <div className="relative mx-auto max-w-7xl">
           <div className="max-w-2xl">
@@ -221,7 +221,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-cream-dark/40 px-5 py-16 md:py-20" aria-labelledby="about-home">
+      <section className="relative overflow-hidden bg-cream-dark/40 px-5 py-16 lg:py-20" aria-labelledby="about-home">
         <LeafDecor spot="corners" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2">
           <div className="relative mx-auto h-80 w-full max-w-md overflow-hidden rounded-[1.8rem] border border-border bg-card">
@@ -289,7 +289,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="faq" className="px-5 py-16 md:py-20">
+      <section id="faq" className="px-5 py-16 lg:py-20">
         <div className="mx-auto grid max-w-7xl items-start gap-8 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <p className="text-[11px] font-semibold tracking-[0.2em] text-gold uppercase">FAQ</p>
@@ -305,7 +305,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden border-t border-border bg-[#f3ece3] px-5 py-16 md:py-20">
+      <section className="relative overflow-hidden border-t border-border bg-[#f3ece3] px-5 py-16 lg:py-20">
         <LeafDecor spot="cta" />
         <div className="relative mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div className="max-w-2xl">
