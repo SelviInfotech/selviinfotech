@@ -18,7 +18,7 @@ export default function BlogIndexPage() {
         eyebrow="Notes"
         title={
           <>
-            Notes from the <span className="text-gold-bright">studio</span>
+            Notes from the <span className="text-gold">studio</span>
           </>
         }
         lede="Short, specific writing about software, apps, and websites. No invented numbers."

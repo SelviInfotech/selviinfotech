@@ -3,7 +3,7 @@ import { CtaBand } from "@/components/cta-band";
 import { FaqList } from "@/components/faq-list";
 import { PageHero } from "@/components/page-hero";
 import { courses, trainingFaqs } from "@/data/courses";
-import { workImages } from "@/data/visuals";
+import { ClassScreen } from "@/components/class-screen";
 import { JsonLd } from "@/lib/json-ld";
 import { faqSchema } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
@@ -30,7 +30,7 @@ export default function TrainingPage() {
         eyebrow="Courses"
         title={
           <>
-            Hands-on <span className="text-gold-bright">training programs</span>
+            Hands-on <span className="text-gold">training programs</span>
           </>
         }
         lede="Courses for new developers and for teams. The people who teach also build software. Classes run in person and as live online sessions. A completion certificate can be checked on the verification page."
@@ -47,16 +47,7 @@ export default function TrainingPage() {
               <Link href="/verify/" className="font-semibold text-green-800 underline underline-offset-4">verification page</Link>.
             </p>
           </div>
-          <img
-            src={workImages.training.src}
-            alt={workImages.training.alt}
-            width={960}
-            height={640}
-            sizes="(min-width: 1024px) 40vw, 100vw"
-            loading="lazy"
-            decoding="async"
-            className="aspect-[16/10] w-full rounded-2xl object-cover lg:col-span-5"
-          />
+          <ClassScreen className="lg:col-span-5" />
         </div>
         <div className="mt-12 flex flex-col gap-8">
           {courses.map((course) => (

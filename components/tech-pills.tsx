@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const techIcons: Record<string, { src: string; alt: string }[]> = {
   "React / Next.js": [
     { src: "/icons/tech/react.svg", alt: "React logo" },
@@ -38,7 +40,7 @@ export function TechPills({
           <li key={item}>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-green-800/15 bg-green-100 px-3 py-1.5 text-sm font-medium text-green-900 transition hover:-translate-y-0.5 hover:border-gold-bright motion-reduce:hover:translate-y-0">
               {(techIcons[item] ?? []).map((icon) => (
-                <img key={icon.src + icon.alt} src={icon.src} alt={icon.alt} width={14} height={14} decoding="async" className="size-3.5 shrink-0" />
+                <Image key={icon.src + icon.alt} src={icon.src} alt={icon.alt} width={14} height={14} sizes="14px" className="size-3.5 shrink-0" />
               ))}
               {item}
             </span>

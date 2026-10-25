@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 520">
+  <defs>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C5D2B4"/>
+      <stop offset="1" stop-color="#6E8258"/>
+    </linearGradient>
+    <linearGradient id="b" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#A9BA90"/>
+      <stop offset="1" stop-color="#4E6240"/>
+    </linearGradient>
+    <linearGradient id="c" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#8FA67A"/>
+      <stop offset="1" stop-color="#5C7348"/>
+    </linearGradient>
+  </defs>
+  <g opacity="0.92">
+    <g transform="translate(210 40) rotate(18)">
+      <path d="M0 0 C 36 -8, 48 -70, 6 -150 C -8 -70, -34 -10, 0 0" fill="url(#a)"/>
+      <path d="M0 -8 C 2 -70, 4 -120, 6 -142" stroke="#3f5236" stroke-width="1.2" opacity="0.45" fill="none"/>
+    </g>
+    <g transform="translate(150 90) rotate(-28)">
+      <path d="M0 0 C 32 -6, 42 -64, 4 -132 C -6 -62, -30 -8, 0 0" fill="url(#b)" opacity="0.9"/>
+    </g>
+    <g transform="translate(250 120) rotate(42)">
+      <path d="M0 0 C 40 -4, 54 -78, 8 -168 C -10 -78, -36 -8, 0 0" fill="url(#c)" opacity="0.88"/>
+    </g>
+    <g transform="translate(120 200) rotate(-8)">
+      <path d="M0 0 C 30 -10, 40 -60, 2 -118 C -8 -58, -28 -12, 0 0" fill="#9AAD84" opacity="0.75"/>
+    </g>
+    <g transform="translate(280 210) rotate(62)">
+      <path d="M0 0 C 28 -6, 36 -52, 4 -104 C -6 -50, -24 -8, 0 0" fill="#7E9468" opacity="0.8"/>
+    </g>
+    <path d="M200 430 C 188 340, 176 250, 168 160" stroke="#5A7048" stroke-width="2" fill="none" opacity="0.55" stroke-linecap="round"/>
+  </g>
+</svg>

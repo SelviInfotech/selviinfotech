@@ -13,24 +13,25 @@ import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "600"],
   variable: "--font-inter",
   display: "swap",
 });
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600"],
   variable: "--font-playfair",
-  display: "swap",
+  display: "optional",
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   ...pageMetadata({
-    title: "Software, Mobile Apps & Websites in Chennai & Tamil Nadu | Selvi Infotech",
+    title: "Software Development Company in Chennai & Tamil Nadu | Selvi Infotech",
     description:
-      "Software, mobile apps, and websites for businesses in Chennai & Tamil Nadu. Custom software, Flutter and React Native apps, web maintenance, and IT training.",
+      "Selvi Infotech Private Limited is a software development company in Chennai and Tamil Nadu. Custom software, cloud architecture, mobile apps, web maintenance, and IT training.",
     path: "/",
   }),
   applicationName: site.shortName,
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0F3B24",
+  themeColor: "#FAF7F3",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",

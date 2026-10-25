@@ -3,23 +3,18 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
-import { BrandMark } from "@/components/brand-mark";
-import { Button } from "@/components/ui/button";
-import { SocialLinks } from "@/components/social-links";
+import { LogoLockup } from "@/components/logo-lockup";
 import { services } from "@/data/services";
-import { isPortfolioPublic } from "@/data/projects";
 
 const links = [
-  { href: "/training/", label: "Training" },
-  { href: "/about/", label: "About" },
-  { href: "/blog/", label: "Blog" },
-  { href: "/contact/", label: "Contact" },
+  { href: "/portfolio/", label: "Our Work", match: "/portfolio" },
+  { href: "/training/", label: "Training", match: "/training" },
+  { href: "/about/", label: "About", match: "/about" },
+  { href: "/contact/", label: "Contact", match: "/contact" },
 ];
 
 export function SiteHeader() {
   const pathname = usePathname() || "/";
-  const isHome = pathname === "/";
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [menuPath, setMenuPath] = useState(pathname);
@@ -28,21 +23,12 @@ export function SiteHeader() {
     setOpen(false);
     setServicesOpen(false);
   }
-  const solid = !isHome || scrolled;
-  const showPortfolio = isPortfolioPublic();
   const servicesMenuId = useId();
   const servicesRootRef = useRef<HTMLDivElement>(null);
   const servicesButtonRef = useRef<HTMLButtonElement>(null);
   const closeTimer = useRef<number | null>(null);
   const focusServicesOnOpen = useRef(false);
-
-  useEffect(() => {
-    if (!isHome) return;
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [isHome]);
+  const servicesActive = pathname.startsWith("/services/");
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -89,35 +75,34 @@ export function SiteHeader() {
     linksInMenu[next]?.focus();
   }
 
-  const onDark = isHome && !solid && !open;
-  const linkTone = onDark ? "text-cream hover:text-white" : "text-green-900 hover:text-green-800";
-  const activeTone = onDark ? "text-gold-bright" : "text-gold";
-  const servicesActive = pathname.startsWith("/services/");
-  const barClass = onDark
-    ? "border-b border-gold-bright/45 bg-green-900 text-cream shadow-[0_10px_28px_rgba(0,0,0,0.28)]"
-    : "border-b border-border bg-cream text-green-900 shadow-[0_1px_0_rgba(15,59,36,0.04)]";
+  function active(match: string) {
+    return pathname === match || pathname.startsWith(`${match}/`);
+  }
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 overflow-visible pt-[env(safe-area-inset-top)] backdrop-blur-md transition-colors duration-300 ${barClass}`}>
-      <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-5 md:h-[4.5rem]">
-        <Link href="/" aria-label="Selvi Infotech home" className="shrink-0">
-          <BrandMark className="h-10 w-10" />
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-[#eadfce] bg-[#faf7f3]/95 pt-[env(safe-area-inset-top)] text-green-900 shadow-[0_1px_0_rgba(15,59,36,0.04)] backdrop-blur-md">
+      <div className="mx-auto flex h-[4.75rem] max-w-7xl items-center gap-3 px-4 sm:px-5">
+        <Link href="/" prefetch={false} aria-label="Selvi Infotech home" className="shrink-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C9962F]">
+          <LogoLockup />
         </Link>
 
-        <nav className="ml-auto hidden h-10 items-center gap-1 lg:flex" aria-label="Primary">
+        <nav className="ml-auto hidden items-center gap-0.5 lg:flex" aria-label="Primary">
+          <Link href="/" prefetch={false} className={navClass(pathname === "/")} aria-current={pathname === "/" ? "page" : undefined}>
+            Home
+          </Link>
           <div
             ref={servicesRootRef}
             className="relative"
             onMouseEnter={openServices}
             onMouseLeave={scheduleCloseServices}
             onBlur={(event) => {
-              if (!event.currentTarget.contains(event.relatedTarget)) closeServices();
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) closeServices();
             }}
           >
             <button
               ref={servicesButtonRef}
               type="button"
-              className={`inline-flex h-10 items-center gap-1 rounded-full px-3 text-sm font-semibold ${servicesActive ? activeTone : linkTone}`}
+              className={navClass(servicesActive)}
               aria-expanded={servicesOpen}
               aria-haspopup="menu"
               aria-controls={servicesMenuId}
@@ -132,15 +117,9 @@ export function SiteHeader() {
               }}
             >
               Services
-              <span aria-hidden="true" className={`text-[10px] transition ${servicesOpen ? "rotate-180" : ""}`}>
-                ▾
-              </span>
+              <span aria-hidden="true" className={`text-[10px] transition ${servicesOpen ? "rotate-180" : ""}`}>▾</span>
             </button>
-            <div
-              inert={servicesOpen ? undefined : true}
-              aria-hidden={servicesOpen ? undefined : true}
-              className={`absolute top-full left-0 z-[80] pt-2 ${servicesOpen ? "" : "invisible pointer-events-none"}`}
-            >
+            <div inert={servicesOpen ? undefined : true} aria-hidden={servicesOpen ? undefined : true} className={`absolute top-full left-0 z-[80] pt-2 ${servicesOpen ? "" : "invisible pointer-events-none"}`}>
               <div
                 id={servicesMenuId}
                 role="menu"
@@ -174,6 +153,7 @@ export function SiteHeader() {
                     data-service-link
                     role="menuitem"
                     href={`/services/${service.slug}/`}
+                    prefetch={false}
                     className="block rounded-xl px-3 py-2.5 text-sm text-green-900 hover:bg-green-100 focus-visible:bg-green-100 focus-visible:outline-none"
                     onClick={() => closeServices()}
                   >
@@ -184,79 +164,53 @@ export function SiteHeader() {
             </div>
           </div>
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className={`inline-flex h-10 items-center rounded-full px-3 text-sm font-semibold ${pathname.startsWith(link.href) ? activeTone : linkTone}`} aria-current={pathname.startsWith(link.href) ? "page" : undefined}>
+            <Link key={link.href} href={link.href} prefetch={false} className={navClass(active(link.match))} aria-current={active(link.match) ? "page" : undefined}>
               {link.label}
             </Link>
           ))}
-          {showPortfolio ? (
-            <Link href="/portfolio/" className={`inline-flex h-10 items-center rounded-full px-3 text-sm font-semibold ${linkTone}`}>
-              Portfolio
-            </Link>
-          ) : null}
-          <SocialLinks
-            variant="icons"
-            className="flex items-center gap-1 border-l border-current/15 pl-3"
-            linkClassName={`inline-flex size-8 items-center justify-center rounded-full ${linkTone}`}
-          />
-          <Link href="/verify/" className={`inline-flex h-10 items-center rounded-full px-3 text-sm font-semibold ${activeTone}`}>
-            Verify
+          <Link href="/contact/" prefetch={false} className="ml-2 inline-flex h-11 items-center rounded-full bg-[#C9962F] px-4 text-sm font-semibold text-green-900 shadow-sm transition hover:bg-[#b8872a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-900/40">
+            Talk to an Expert
           </Link>
-          <Button nativeButton={false} render={<Link href="/contact/" />} className={`h-10 rounded-full px-4 ${onDark ? "bg-gold-bright text-green-900 hover:bg-gold-hot" : ""}`}>
-            Get started
-          </Button>
         </nav>
 
         <button
           type="button"
-          className={`ml-auto inline-flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full border lg:hidden ${onDark ? "border-white/30" : "border-border"}`}
+          className="ml-auto inline-flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full border border-border lg:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
         >
-          <span className={`block h-0.5 w-5 ${onDark ? "bg-cream" : "bg-green-900"}`} />
-          <span className={`block h-0.5 w-5 ${onDark ? "bg-cream" : "bg-green-900"}`} />
-          <span className={`block h-0.5 w-5 ${onDark ? "bg-cream" : "bg-green-900"}`} />
+          <span className="block h-0.5 w-5 bg-green-900" />
+          <span className="block h-0.5 w-5 bg-green-900" />
+          <span className="block h-0.5 w-5 bg-green-900" />
         </button>
       </div>
 
       {open ? (
-        <div className="absolute inset-x-0 top-full z-[70] max-h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain border-t border-border bg-cream text-green-900 shadow-xl lg:hidden">
-          <nav className="mx-auto flex min-h-[calc(100dvh-4.5rem)] max-w-6xl flex-col gap-1 px-5 py-4" aria-label="Mobile">
+        <div className="absolute inset-x-0 top-full z-[70] max-h-[calc(100dvh-4.75rem)] overflow-y-auto overscroll-contain border-t border-border bg-cream shadow-xl lg:hidden">
+          <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-4" aria-label="Mobile">
+            <Link href="/" className="rounded-xl px-3 py-3 text-base font-semibold" onClick={() => setOpen(false)}>Home</Link>
             <p className="px-3 pt-2 text-xs font-semibold tracking-[0.16em] text-gold uppercase">Services</p>
             {services.map((service) => (
-              <Link
-                key={service.slug}
-                href={`/services/${service.slug}/`}
-                className="rounded-xl px-3 py-3 text-base text-green-900 active:bg-green-100"
-                onClick={() => setOpen(false)}
-              >
+              <Link key={service.slug} href={`/services/${service.slug}/`} className="rounded-xl px-3 py-3 text-base" onClick={() => setOpen(false)}>
                 {service.name}
               </Link>
             ))}
             {links.map((link) => (
-              <Link key={link.href} href={link.href} className="rounded-xl px-3 py-3 text-base text-green-900 active:bg-green-100" onClick={() => setOpen(false)}>
+              <Link key={link.href} href={link.href} className="rounded-xl px-3 py-3 text-base font-semibold" onClick={() => setOpen(false)}>
                 {link.label}
               </Link>
             ))}
-            {showPortfolio ? (
-              <Link href="/portfolio/" className="rounded-xl px-3 py-3 text-base text-green-900" onClick={() => setOpen(false)}>
-                Portfolio
-              </Link>
-            ) : null}
-            <Link href="/verify/" className="rounded-xl px-3 py-3 text-base font-semibold text-gold" onClick={() => setOpen(false)}>
-              Verify certificate
+            <Link href="/contact/" className="mt-3 inline-flex h-12 items-center justify-center rounded-full bg-[#C9962F] text-sm font-semibold text-green-900" onClick={() => setOpen(false)}>
+              Talk to an Expert
             </Link>
-            <p className="px-3 pt-4 text-xs font-semibold tracking-[0.16em] text-gold uppercase">Social</p>
-            <SocialLinks
-              className="flex flex-col"
-              linkClassName="block rounded-xl px-3 py-3 text-base text-green-900 active:bg-green-100"
-            />
-            <Button nativeButton={false} render={<Link href="/contact/" onClick={() => setOpen(false)} />} className="mt-3 h-12 rounded-full">
-              Get started
-            </Button>
           </nav>
         </div>
       ) : null}
     </header>
   );
+}
+
+function navClass(isActive: boolean) {
+  return `inline-flex h-10 items-center gap-1 rounded-full px-3 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C9962F] ${isActive ? "text-gold" : "text-green-900 hover:text-green-800"}`;
 }

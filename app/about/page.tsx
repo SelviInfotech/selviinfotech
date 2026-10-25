@@ -4,7 +4,7 @@ import { CtaBand } from "@/components/cta-band";
 import { FounderSpotlight } from "@/components/founder-spotlight";
 import { PageHero } from "@/components/page-hero";
 import { TechPills } from "@/components/tech-pills";
-import { workImages } from "@/data/visuals";
+import { LeafDecor, PottedPlant } from "@/components/botanicals";
 import { pageMetadata } from "@/lib/seo";
 import { site, stack } from "@/lib/site";
 
@@ -29,7 +29,7 @@ export default function AboutPage() {
         eyebrow="The company"
         title={
           <>
-            About <span className="text-gold-bright">Selvi Infotech</span>
+            About <span className="text-gold">Selvi Infotech</span>
           </>
         }
         lede="Selvi Infotech Private Limited builds software, mobile apps, and websites, maintains systems that are already live, and trains people in the same tools."
@@ -51,16 +51,10 @@ export default function AboutPage() {
           </p>
         </div>
         <div>
-          <img
-            src={workImages["software-development"].src}
-            alt={workImages["software-development"].alt}
-            width={960}
-            height={640}
-            sizes="(min-width: 768px) 50vw, 100vw"
-            loading="lazy"
-            decoding="async"
-            className="mb-4 aspect-[16/10] w-full rounded-2xl object-cover"
-          />
+          <div className="relative mb-4 aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-card" aria-hidden="true">
+            <LeafDecor spot="page" />
+            <PottedPlant className="absolute right-2 -bottom-4 h-48 w-36" />
+          </div>
         <dl className="grid gap-3 sm:grid-cols-2">
           {facts.map(([label, value]) => (
             <div key={label} className="rounded-2xl border border-border bg-card p-5">

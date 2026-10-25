@@ -7,7 +7,7 @@ import { ProcessTimeline } from "@/components/process-timeline";
 import { RichText } from "@/components/rich-text";
 import { TechPills } from "@/components/tech-pills";
 import { getService, services } from "@/data/services";
-import { workImage } from "@/data/visuals";
+import { WorkMock } from "@/components/work-mock";
 import { JsonLd } from "@/lib/json-ld";
 import { faqSchema } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
@@ -59,23 +59,17 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           <Link href="/contact/" className="inline-flex h-12 items-center rounded-full bg-gold-bright px-6 text-sm font-semibold text-green-900 hover:bg-gold-hot">
             Start a conversation
           </Link>
-          <a href={`tel:${site.phoneTel}`} className="inline-flex h-12 items-center rounded-full border border-cream/40 px-6 text-sm font-semibold text-cream hover:bg-white/10">
+          <a href={`tel:${site.phoneTel}`} className="inline-flex h-12 items-center rounded-full border border-green-900/20 px-6 text-sm font-semibold text-green-900 hover:border-[#C9962F]">
             {site.phoneDisplay}
           </a>
         </div>
       </PageHero>
 
       <figure className="mx-auto max-w-6xl px-5 pt-8">
-        <img
-          src={workImage(service.slug).src}
-          alt={workImage(service.slug).alt}
-          width={960}
-          height={640}
-          sizes="(min-width: 1152px) 1088px, 100vw"
-          loading="lazy"
-          decoding="async"
-          className="h-52 w-full rounded-2xl object-cover md:h-64"
-        />
+        <div className="overflow-hidden rounded-2xl border border-border bg-card">
+          <WorkMock kind="grid" />
+        </div>
+        <figcaption className="sr-only">Illustration of a product interface for {service.name}. Not a photograph of a client project.</figcaption>
       </figure>
 
       <section className="mx-auto max-w-6xl px-5 py-14 md:py-16">
