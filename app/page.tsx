@@ -4,13 +4,13 @@ import { ClientStrip } from "@/components/client-strip";
 import { LeafDecor } from "@/components/botanicals";
 import { LineIcon, type LineIconName } from "@/components/line-icon";
 import { ProcessTimeline } from "@/components/process-timeline";
+import { TechMarks } from "@/components/tech-marks";
 import {
   clientLogos,
   homeServices,
   homeStats,
   homeTestimonials,
   publishedWork,
-  techLogos,
   trainingPoints,
   whyTiles,
 } from "@/data/home";
@@ -55,12 +55,12 @@ export default function HomePage() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-4 px-5 pt-24 pb-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-6 lg:pt-28 lg:pb-14">
           <div>
             <p className="text-[11px] font-semibold tracking-[0.22em] text-gold uppercase">Software · Cloud · Training · Consulting</p>
-            <h1 className="mt-3 max-w-xl font-display text-[2.65rem] leading-[1.02] font-semibold text-green-900 sm:text-5xl lg:text-[3.55rem]">
+            <h1 className="mt-3 max-w-xl font-display text-[2.65rem] leading-[1.02] font-bold text-green-900 sm:text-5xl lg:text-[3.55rem]">
               Technology that
               <br />
               grows with
               <br />
-              <span className="text-gold">your business.</span>
+              <span className="hero-gold">your business.</span>
             </h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
               We design, develop, and deliver software, cloud architecture, and practical technology training that help businesses and individuals grow.
@@ -198,7 +198,7 @@ export default function HomePage() {
           <ul className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
             {publishedWork.map((project, index) => (
               <li key={project.name} className="reveal lift overflow-hidden rounded-2xl border border-border bg-card" style={{ ["--reveal-delay" as string]: `${index * 50}ms` }}>
-                <div className="relative aspect-[16/9]">
+                <div className="relative aspect-[4/3]">
                   <Image src={project.image} alt={project.imageAlt} fill sizes="(min-width: 1280px) 300px, (min-width: 640px) 45vw, 100vw" className="object-cover" />
                 </div>
                 <div className="p-4">
@@ -241,7 +241,7 @@ export default function HomePage() {
           <ul className="grid gap-x-6 gap-y-5 sm:grid-cols-2 lg:col-span-7">
             {whyTiles.map((tile) => (
               <li key={tile.title} className="flex gap-3">
-                <span className="mt-0.5 text-[#C9962F]">
+                <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#f6e7c4] text-[#8A6416]">
                   <LineIcon name={tile.icon} className="size-6" />
                 </span>
                 <span>
@@ -276,7 +276,8 @@ export default function HomePage() {
               src="/images/about-team.webp"
               alt="A person working at a laptop in a bright workspace"
               fill
-              sizes="(min-width: 1024px) 560px, 100vw"
+              loading="eager"
+              sizes="(min-width: 1024px) 640px, 100vw"
               className="object-cover"
             />
           </div>
@@ -323,13 +324,7 @@ export default function HomePage() {
           <h2 id="tech-logos" className="text-center font-display text-3xl text-green-900 md:text-4xl">Technologies we use</h2>
           <p className="mx-auto mt-2 max-w-xl text-center text-sm text-muted-foreground">Tools in the stack we ship with.</p>
           <div className="mt-5 overflow-x-auto">
-            <ul className="mx-auto flex w-max min-w-full items-center justify-center gap-8 px-1">
-              {techLogos.map((logo) => (
-                <li key={logo.name} className="shrink-0">
-                  <Image src={logo.src} alt={`${logo.name} logo`} width={36} height={36} sizes="36px" className="size-9" />
-                </li>
-              ))}
-            </ul>
+            <TechMarks />
           </div>
           {clientLogos.length > 0 ? (
             <div className="mt-8 border-t border-border pt-6">

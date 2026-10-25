@@ -79,6 +79,7 @@
   h3,
   h4 {
     font-family: var(--font-display);
+    font-weight: 700;
     color: var(--color-green-900);
   }
 }
@@ -464,6 +465,14 @@ details.faq-item summary::-webkit-details-marker {
   .marquee-clone {
     display: none;
   }
+}
+
+.hero-gold {
+  color: #b8862b;
+  background-image: linear-gradient(105deg, #a67c2d 0%, #b8862b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-blend {
