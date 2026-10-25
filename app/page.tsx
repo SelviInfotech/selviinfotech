@@ -1,299 +1,313 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ClientMarquee } from "@/components/client-marquee";
-import { ContactSection } from "@/components/contact-section";
-import { CtaBand } from "@/components/cta-band";
-import { FaqList } from "@/components/faq-list";
-import { FounderSpotlight } from "@/components/founder-spotlight";
-import { HomeHero } from "@/components/home-hero";
+import { ClientStrip } from "@/components/client-strip";
+import { LeafDecor } from "@/components/botanicals";
+import { LineIcon, type LineIconName } from "@/components/line-icon";
 import { ProcessTimeline } from "@/components/process-timeline";
-import { TechPills } from "@/components/tech-pills";
-import { StackCard, StackingDeck } from "@/components/stacking-deck";
-import { workImages } from "@/data/visuals";
-import { isTestimonialsPublic, testimonials } from "@/data/testimonials";
-import { JsonLd } from "@/lib/json-ld";
-import { faqSchema } from "@/lib/schema";
-import { engagementSteps, site, stack } from "@/lib/site";
+import {
+  clientLogos,
+  homeServices,
+  homeStats,
+  homeTestimonials,
+  publishedWork,
+  techLogos,
+  trainingPoints,
+  whyTiles,
+} from "@/data/home";
 
-const homeFaqs = [
-  {
-    question: "Where does Selvi Infotech work?",
-    answer:
-      "We work with clients in Chennai and across Tamil Nadu, and with remote clients elsewhere in India. Call, WhatsApp, or email and we will tell you whether a meeting or a remote scope is the better start.",
-  },
-  {
-    question: "What services do you offer?",
-    answer:
-      "Software development, mobile app development with Flutter, React Native, and native Android or iOS, web development, web app maintenance, IT training, and IT consulting.",
-  },
-  {
-    question: "How do I contact Selvi Infotech?",
-    answer:
-      "Email info@selviinfotech.com, call or WhatsApp +91 9500316716, or use the contact form. The form opens an email draft. It does not send the message by itself.",
-  },
-  {
-    question: "Which technologies do you use?",
-    answer:
-      "React and Next.js, Node.js, C# and ASP.NET Core, Python, Java Spring Boot, SQL Server, and Azure. We pick from that list based on the system and on what your team can maintain.",
-  },
-  {
-    question: "Can you maintain the software after launch?",
-    answer:
-      "Yes. Ongoing fixes, updates, and small changes are covered as [web maintenance](/services/web-maintenance/), scoped separately from the original build.",
-  },
+const goldButton =
+  "inline-flex h-11 items-center gap-2 rounded-full bg-[#C9962F] px-5 text-sm font-semibold text-green-900 shadow-sm transition hover:bg-[#b8872a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-900/40";
+const ghostButton =
+  "inline-flex h-11 items-center gap-2 rounded-full border border-green-900/20 bg-white/80 px-5 text-sm font-semibold text-green-900 transition hover:border-[#C9962F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-900/30";
+
+const trustPoints: { icon: LineIconName; title: string; detail: string }[] = [
+  { icon: "quality", title: "Published", detail: "client work" },
+  { icon: "training", title: "Verifiable", detail: "certificates" },
+  { icon: "software", title: "Software", detail: "and training" },
 ];
 
-const offerings = [
-  {
-    href: "/services/software-development/",
-    title: "Software Development",
-    body: "Custom systems scoped in writing, built in cycles, and handed over with the source.",
-    cta: "Start a project",
-    featured: true,
-    image: workImages["software-development"],
-  },
-  {
-    href: "/services/mobile-app-development/",
-    title: "Mobile App Development",
-    body: "Phone apps for Android and iOS, scoped before the first screen is built.",
-    cta: "See mobile work",
-    featured: false,
-    image: workImages["mobile-app-development"],
-  },
-  {
-    href: "/services/web-development/",
-    title: "Web Development",
-    body: "Public sites and logged-in products, handed over with the source and deploy notes.",
-    cta: "Plan a site",
-    featured: false,
-    image: workImages["web-development"],
-  },
-  {
-    href: "/services/web-maintenance/",
-    title: "Web App Maintenance",
-    body: "Fixes, updates, and small changes so a live site stays true and runnable.",
-    cta: "Talk maintenance",
-    featured: false,
-    image: workImages["web-maintenance"],
-  },
-  {
-    href: "/training/",
-    title: "Training Programs",
-    body: "Hands-on programs for new developers and teams. Certificates can be verified online.",
-    cta: "View programs",
-    featured: false,
-    image: workImages.training,
-  },
-  {
-    href: "/services/it-consulting/",
-    title: "IT Consultations",
-    body: "A written note on architecture or next steps, one you can act on or take elsewhere.",
-    cta: "Book a call",
-    featured: false,
-    image: workImages["it-consulting"],
-  },
+const heroCards: { icon: LineIconName; label: string; className: string }[] = [
+  { icon: "cloud", label: "Cloud Architecture", className: "absolute top-[4%] right-[2%] sm:top-[6%] sm:right-[4%]" },
+  { icon: "software", label: "Web Applications", className: "absolute top-[38%] left-0 sm:top-[40%]" },
+  { icon: "mobile", label: "Mobile Apps", className: "absolute right-0 bottom-[12%] sm:bottom-[16%]" },
 ];
 
-const advantages = [
-  ["Trusted & Secure", "We follow industry best practices for security, data privacy, and compliance in every project we deliver."],
-  ["On-Time Delivery", "Our agile approach ensures consistent, predictable delivery milestones with full transparency throughout the process."],
-  ["High Performance", "We build optimized, scalable solutions that perform exceptionally under real-world loads and traffic."],
-  ["Expert Team", "Our certified engineers and trainers bring years of industry experience across multiple domains and technologies."],
+const aboutFacts: { icon: LineIconName; label: string }[] = [
+  { icon: "software", label: "Software and training in one studio" },
+  { icon: "plan", label: "Written scope before the build" },
+  { icon: "quality", label: "Certificates you can verify" },
 ];
+
+function ArrowIcon() {
+  return (
+    <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M3 8h10" />
+      <path d="M9 4l4 4-4 4" />
+    </svg>
+  );
+}
 
 export default function HomePage() {
   return (
     <>
-      <JsonLd data={faqSchema(homeFaqs)} />
-      <HomeHero />
-
-      <section className="border-b border-border bg-cream-dark/60" aria-label="How a project runs">
-        <ul className="mx-auto grid max-w-6xl gap-6 px-5 py-8 sm:grid-cols-3">
-          {engagementSteps.map(([title, body]) => (
-            <li key={title}>
-              <p className="font-display text-2xl text-green-900">{title}</p>
-              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{body}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <StackingDeck>
-      <StackCard>
-      <section id="services" className="stack-fill px-5 py-14 md:py-16">
-        <div className="stack-body mx-auto flex w-full max-w-6xl flex-col">
-          <div className="max-w-2xl shrink-0">
-            <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">What we offer</p>
-            <h2 className="mt-3 font-display text-4xl text-green-900 md:text-5xl">Services, built as products</h2>
-            <p className="mt-3 text-lg text-muted-foreground">
-              End-to-end digital solutions for companies in Chennai and Tamil Nadu, and for remote clients across India.
+      <section className="relative overflow-hidden border-b border-border">
+        <LeafDecor spot="hero" />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-4 px-5 pt-24 pb-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-6 lg:pt-28 lg:pb-14">
+          <div>
+            <p className="text-[11px] font-semibold tracking-[0.22em] text-gold uppercase">Software · Cloud · Training · Consulting</p>
+            <h1 className="mt-3 max-w-xl font-display text-[2.65rem] leading-[1.02] font-semibold text-green-900 sm:text-5xl lg:text-[3.55rem]">
+              Technology that
+              <br />
+              grows with
+              <br />
+              <span className="text-gold">your business.</span>
+            </h1>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
+              We design, develop, and deliver software, cloud architecture, and practical technology training that help businesses and individuals grow.
             </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link href="/contact/" prefetch={false} className={goldButton}>
+                Discuss a Project
+                <ArrowIcon />
+              </Link>
+              <Link href="/training/" prefetch={false} className={ghostButton}>
+                Explore Training
+                <ArrowIcon />
+              </Link>
+            </div>
+            <ul className="mt-5 grid max-w-lg grid-cols-3 gap-2 sm:gap-3">
+              {trustPoints.map((item) => (
+                <li key={item.title} className="flex items-center gap-2">
+                  <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#f6e7c4] text-[#8A6416] sm:size-9">
+                    <LineIcon name={item.icon} className="size-4" />
+                  </span>
+                  <span>
+                    <span className="block text-xs font-semibold leading-tight text-green-900 sm:text-sm">{item.title}</span>
+                    <span className="block text-[11px] leading-tight text-muted-foreground">{item.detail}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="offer-grid mt-8 grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {offerings.map((item, index) => (
-              <article
-                key={item.title}
-                className={`offer-card reveal lift flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border transition-colors hover:border-gold-bright ${item.featured ? "border-white/10 bg-green-900 text-cream" : "border-border bg-card"}`}
-                style={{ ["--reveal-delay" as string]: `${index * 70}ms` }}
-              >
-                <div className="overflow-hidden">
-                  <div data-parallax="8">
-                    <img
-                      src={item.image.src}
-                      alt={item.image.alt}
-                      width={960}
-                      height={640}
-                      sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
-                      loading="lazy"
-                      decoding="async"
-                      className="aspect-[16/10] w-full scale-110 object-cover"
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col p-4">
-                  <h3 className={`font-display text-2xl leading-tight ${item.featured ? "text-cream" : "text-green-900"}`}>{item.title}</h3>
-                  <p className={`mt-2 text-sm leading-relaxed ${item.featured ? "text-cream/80" : "text-muted-foreground"}`}>{item.body}</p>
-                  <Link
-                    href={item.href}
-                    className={`mt-auto pt-3 inline-flex text-sm font-semibold underline-offset-4 hover:underline ${item.featured ? "text-gold-bright" : "text-green-800"}`}
-                  >
-                    {item.cta} →
-                  </Link>
-                </div>
-              </article>
+          <div className="relative mx-auto aspect-[4/3] w-full max-w-xl lg:max-w-none">
+            <Image
+              src="/images/hero-devices.webp"
+              alt="Laptop showing code, a smartphone, and potted plants on a light desk"
+              fill
+              priority
+              sizes="(min-width: 1024px) 640px, 100vw"
+              className="hero-blend object-contain object-center"
+            />
+            {heroCards.map((card) => (
+              <p key={card.label} className={`${card.className} flex items-center gap-2 rounded-2xl border border-[#eadfce] bg-white/95 px-2.5 py-2 shadow-[0_10px_28px_rgba(15,59,36,0.08)]`}>
+                <span className="grid size-8 shrink-0 place-items-center rounded-full border border-[#C9962F] text-[#8A6416]">
+                  <LineIcon name={card.icon} className="size-4" />
+                </span>
+                <span className="text-xs font-semibold whitespace-nowrap text-green-900 sm:text-sm">{card.label}</span>
+              </p>
             ))}
           </div>
         </div>
+        {homeStats.length > 0 ? (
+          <ul className="relative mx-auto grid max-w-7xl gap-4 px-5 pb-8 sm:grid-cols-3">
+            {homeStats.map((item) => (
+              <li key={item.label} className="rounded-2xl border border-border bg-card px-5 py-4">
+                <p className="font-display text-3xl text-green-900">{item.value}</p>
+                <p className="mt-1 text-sm text-muted-foreground">{item.label}</p>
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </section>
-      </StackCard>
 
-      <StackCard>
-      <section className="stack-fill px-5 py-14 md:py-16" aria-labelledby="stack-heading">
-        <div className="stack-body mx-auto flex w-full max-w-6xl flex-col">
-          <div className="flex shrink-0 flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-xl">
-              <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Technologies we use</p>
-              <h2 id="stack-heading" className="mt-3 font-display text-4xl text-green-900 md:text-5xl">The stack we ship</h2>
-            </div>
-            <p className="max-w-md text-sm leading-relaxed text-muted-foreground lg:text-right">
-              We pick from this stack based on the system and on what your team can maintain.
-            </p>
+      <section id="services" className="relative overflow-hidden px-5 py-10 lg:py-12">
+        <LeafDecor spot="corners" />
+        <div className="relative mx-auto max-w-7xl">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-[11px] font-semibold tracking-[0.2em] text-gold uppercase">Our services</p>
+            <h2 className="mt-2 font-display text-3xl text-green-900 md:text-4xl">End-to-end Technology Services</h2>
+            <p className="mt-2 text-sm text-muted-foreground md:text-base">From idea to execution, we help you build, modernise, and scale with the right technology and architecture.</p>
           </div>
-          <div className="mt-6">
-            <TechPills items={stack} showLabel={false} />
-          </div>
-          <div className="mt-8 overflow-hidden rounded-2xl">
-            <div data-parallax="16">
-              <img
-                src={workImages["web-development"].src}
-                alt={workImages["web-development"].alt}
-                width={960}
-                height={640}
-                sizes="(min-width: 1152px) 1088px, 100vw"
-                loading="lazy"
-                decoding="async"
-                className="aspect-[21/8] w-full scale-110 object-cover"
-              />
-            </div>
-          </div>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {homeServices.map((item, index) => (
+              <li key={item.title} className="reveal lift flex h-full flex-col rounded-2xl border border-border bg-card p-4 shadow-[0_8px_24px_rgba(15,59,36,0.04)]" style={{ ["--reveal-delay" as string]: `${index * 50}ms` }}>
+                <span className="grid size-10 place-items-center rounded-full bg-[#f6e7c4] text-[#8A6416]">
+                  <LineIcon name={item.icon} className="size-5" />
+                </span>
+                <h3 className="mt-3 font-sans text-[0.95rem] leading-snug font-bold text-green-900">{item.title}</h3>
+                <p className="mt-1.5 flex-1 text-[13px] leading-snug text-muted-foreground">{item.body}</p>
+                <Link href={item.href} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-gold">
+                  Learn more
+                  <span className="sr-only"> about {item.title}</span>
+                  <ArrowIcon />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
-      </StackCard>
 
-      <StackCard>
-      <section id="why-us" className="stack-fill px-5 py-14 md:py-16">
-        <div className="why-layout mx-auto grid w-full max-w-6xl items-start gap-10 lg:grid-cols-12">
-          <div className="flex flex-col lg:col-span-4">
-            <div className="mb-5 overflow-hidden rounded-2xl">
-              <div data-parallax="14">
-                <img
-                  src={workImages["it-consulting"].src}
-                  alt={workImages["it-consulting"].alt}
-                  width={960}
-                  height={640}
-                  sizes="(min-width: 1024px) 360px, 100vw"
-                  loading="lazy"
-                  decoding="async"
-                  className="aspect-[16/10] w-full scale-110 object-cover"
-                />
-              </div>
-            </div>
-            <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Why choose us</p>
-            <h2 className="mt-3 font-display text-4xl text-green-900">The studio advantage</h2>
-            <p className="mt-4 text-muted-foreground">We combine technical depth with a client-first mindset to deliver exceptional results.</p>
-            <p className="mt-4 text-muted-foreground">
-              Selvi Infotech Private Limited builds software, mobile apps, and websites, maintains systems that are already live, and trains people in the same tools. We work with clients in Chennai, across Tamil Nadu, and with remote clients elsewhere in India.
+      <section className="relative overflow-hidden bg-green-900 text-cream" aria-labelledby="training-band">
+        <LeafDecor spot="training" />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-6 px-5 py-10 lg:grid-cols-2 lg:gap-8 lg:py-12">
+          <div className="relative aspect-[16/9] overflow-hidden rounded-2xl">
+            <Image
+              src="/images/training-session.webp"
+              alt="A person in a video call on a laptop during a live training session"
+              fill
+              sizes="(min-width: 1024px) 560px, 100vw"
+              className="object-cover"
+            />
+          </div>
+          <div>
+            <p className="text-[11px] font-semibold tracking-[0.2em] text-[#F0C463] uppercase">Training & mentoring</p>
+            <h2 id="training-band" className="mt-2 font-display text-3xl text-cream md:text-4xl">Build Skills. Build Careers.</h2>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-cream/80 md:text-base">
+              Live online training and mentoring for people learning the tools we use on real projects. Corporate programs are scoped for the team in front of us.
             </p>
-            <Link href="/about/" className="mt-6 inline-flex h-12 items-center self-start rounded-full bg-green-800 px-6 text-sm font-semibold text-white hover:bg-green-900">
-              About the company
+            <ul className="mt-4 grid grid-cols-2 gap-2">
+              {trainingPoints.map((point) => (
+                <li key={point.label} className="flex items-center gap-2 rounded-xl border border-[#F0C463]/30 bg-white/5 px-2.5 py-2">
+                  <span className="grid size-8 shrink-0 place-items-center rounded-lg border border-[#F0C463]/70 text-[#F0C463]">
+                    <LineIcon name={point.icon} className="size-4" />
+                  </span>
+                  <span className="text-xs leading-snug font-semibold text-cream">{point.label}</span>
+                </li>
+              ))}
+            </ul>
+            <Link href="/training/" className={`${goldButton} mt-4`}>
+              Explore Training Programs
+              <ArrowIcon />
             </Link>
           </div>
-          <div className="why-points grid gap-4 sm:grid-cols-2 lg:col-span-8">
-            {advantages.map(([title, body], index) => (
-              <article key={title} className="reveal lift flex h-full flex-col rounded-2xl border border-border bg-card p-5" style={{ ["--reveal-delay" as string]: `${index * 80}ms` }}>
-                <h3 className="font-display text-2xl text-green-900">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
-              </article>
+        </div>
+      </section>
+
+      <section id="work" className="relative overflow-hidden px-5 py-10 lg:py-12">
+        <LeafDecor spot="corners" />
+        <div className="relative mx-auto max-w-7xl">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-[11px] font-semibold tracking-[0.2em] text-gold uppercase">Our work</p>
+            <h2 className="mt-2 font-display text-3xl text-green-900 md:text-4xl">Some of Our Recent Projects</h2>
+            <p className="mt-2 text-sm text-muted-foreground md:text-base">Published relationships. We do not invent results or client stories.</p>
+            <Link href="/portfolio/" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-green-900">
+              View all projects
+              <ArrowIcon />
+            </Link>
+          </div>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            {publishedWork.map((project, index) => (
+              <li key={project.name} className="reveal lift overflow-hidden rounded-2xl border border-border bg-card" style={{ ["--reveal-delay" as string]: `${index * 50}ms` }}>
+                <div className="relative aspect-[16/9]">
+                  <Image src={project.image} alt={project.imageAlt} fill sizes="(min-width: 1280px) 300px, (min-width: 640px) 45vw, 100vw" className="object-cover" />
+                </div>
+                <div className="p-4">
+                  <h3 className="font-sans text-base font-bold text-green-900">
+                    <a href={project.href} target="_blank" rel="noopener noreferrer" className="hover:text-gold">
+                      {project.name}
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  </h3>
+                  <p className="mt-1 text-sm leading-snug text-muted-foreground">{project.summary}</p>
+                  <ul className="mt-2.5 flex flex-wrap gap-1.5">
+                    {project.tags.map((tag) => (
+                      <li key={tag} className="rounded-full bg-[#f6e7c4] px-2.5 py-0.5 text-[11px] font-medium text-[#6b4a12]">{tag}</li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
             ))}
+          </ul>
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 border-t border-border pt-5 sm:flex-row">
+            <p className="shrink-0 text-[11px] font-semibold tracking-[0.16em] text-gold uppercase">Trusted by</p>
+            <ClientStrip />
           </div>
         </div>
       </section>
-      </StackCard>
 
-      <StackCard>
-      <section id="process" className="stack-fill px-5 py-14 md:py-16">
-        <div className="stack-body mx-auto flex w-full max-w-6xl flex-col">
-          <div className="mb-6 max-w-2xl shrink-0">
-            <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">How we work</p>
-            <h2 className="mt-3 font-display text-4xl text-green-900 md:text-5xl">A process you can see</h2>
-            <p className="mt-3 text-muted-foreground">A transparent, structured approach that ensures quality outcomes every time.</p>
-          </div>
-          <ProcessTimeline />
-        </div>
-      </section>
-      </StackCard>
-
-      <StackCard>
-      <FounderSpotlight variant="stack" />
-      </StackCard>
-
-      <StackCard>
-      <section id="clients" className="stack-fill py-14 md:py-16" aria-labelledby="clients-heading">
-        <div className="mx-auto w-full max-w-6xl px-5">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Trusted by</p>
-              <h2 id="clients-heading" className="mt-3 font-display text-4xl text-green-900">Clients</h2>
-            </div>
-            <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Names are shown as wordmarks. We do not use their logos here.</p>
-          </div>
-        </div>
-        <div className="mt-8">
-          <ClientMarquee />
-        </div>
-        <div className="mx-auto mt-6 w-full max-w-6xl px-5">
-          <div className="flex flex-col gap-2 rounded-2xl bg-green-900 px-5 py-3.5 text-cream sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-xs font-semibold tracking-[0.16em] text-gold-bright uppercase">Start a project</p>
-            <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-semibold">
-              <a className="underline decoration-gold-bright underline-offset-4 break-words [overflow-wrap:anywhere]" href={`mailto:${site.email}`}>
-                {site.email}
-              </a>
-              <a className="underline decoration-gold-bright underline-offset-4" href={`tel:${site.phoneTel}`}>
-                {site.phoneDisplay}
-              </a>
+      <section id="why-us" className="relative overflow-hidden bg-cream-dark/45 px-5 py-10 lg:py-12">
+        <LeafDecor spot="corners" />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-6 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-5">
+            <p className="text-[11px] font-semibold tracking-[0.2em] text-gold uppercase">Why choose Selvi Infotech</p>
+            <h2 className="mt-2 font-display text-3xl text-green-900 md:text-4xl">Your Technology Partner for Long-Term Success</h2>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
+              We combine practical building experience and a clear written scope so the work stays understandable after launch.
             </p>
+            <Link href="/contact/" className="mt-4 inline-flex h-11 items-center rounded-full bg-green-900 px-5 text-sm font-semibold text-cream hover:bg-green-800">
+              Talk to an Expert
+            </Link>
           </div>
-          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            We work with clients in Chennai and across Tamil Nadu, and with remote clients elsewhere in India.
-          </p>
+          <ul className="grid gap-x-6 gap-y-5 sm:grid-cols-2 lg:col-span-7">
+            {whyTiles.map((tile) => (
+              <li key={tile.title} className="flex gap-3">
+                <span className="mt-0.5 text-[#C9962F]">
+                  <LineIcon name={tile.icon} className="size-6" />
+                </span>
+                <span>
+                  <h3 className="font-sans text-sm font-bold text-green-900">{tile.title}</h3>
+                  <p className="mt-1 text-sm leading-snug text-muted-foreground">{tile.body}</p>
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
-      </StackCard>
 
-      {isTestimonialsPublic() ? (
-        <StackCard>
-        <section className="mx-auto max-w-6xl px-5 py-16" aria-label="Client notes">
-          <ul className="grid gap-4 md:grid-cols-3">
-            {testimonials.map((item) => (
+      <section id="process" className="relative overflow-hidden px-5 py-10 lg:py-12">
+        <LeafDecor spot="corners" />
+        <div className="relative mx-auto max-w-7xl">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-[11px] font-semibold tracking-[0.2em] text-gold uppercase">Our process</p>
+            <h2 className="mt-2 font-display text-3xl text-green-900 md:text-4xl">A Simple and Proven Development Process</h2>
+            <p className="mt-2 text-sm text-muted-foreground md:text-base">Five steps, from the first conversation to handover. You can see the work at each one.</p>
+          </div>
+          <div className="mt-6">
+            <ProcessTimeline />
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-cream-dark/40 px-5 py-10 lg:py-12" aria-labelledby="about-home">
+        <LeafDecor spot="corners" />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-6 lg:grid-cols-2 lg:gap-10">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+            <Image
+              src="/images/about-team.webp"
+              alt="A person working at a laptop in a bright workspace"
+              fill
+              sizes="(min-width: 1024px) 560px, 100vw"
+              className="object-cover"
+            />
+          </div>
+          <div>
+            <p className="text-[11px] font-semibold tracking-[0.2em] text-gold uppercase">About Selvi Infotech</p>
+            <h2 id="about-home" className="mt-2 font-display text-3xl text-green-900 md:text-4xl">Driven by Passion for Technology and Knowledge Sharing</h2>
+            <p className="mt-2 leading-relaxed text-muted-foreground">
+              Selvi Infotech Private Limited builds software and trains people in the same tools. The work and the teaching sit in one studio, including for remote teams.
+            </p>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+              {aboutFacts.map((fact) => (
+                <li key={fact.label} className="flex items-start gap-2">
+                  <span className="mt-0.5 text-[#C9962F]">
+                    <LineIcon name={fact.icon} className="size-5" />
+                  </span>
+                  <span className="text-xs leading-snug font-semibold text-green-900">{fact.label}</span>
+                </li>
+              ))}
+            </ul>
+            <Link href="/about/" className={`${goldButton} mt-5`}>
+              Learn More About Us
+              <ArrowIcon />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {homeTestimonials.length > 0 ? (
+        <section className="px-5 py-10" aria-label="Client notes">
+          <ul className="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
+            {homeTestimonials.map((item) => (
               <li key={item.name} className="rounded-2xl border border-border bg-card p-5">
                 <blockquote className="text-green-900">&ldquo;{item.quote}&rdquo;</blockquote>
                 <p className="mt-3 text-sm font-semibold">{item.name}</p>
@@ -302,47 +316,49 @@ export default function HomePage() {
             ))}
           </ul>
         </section>
-        </StackCard>
       ) : null}
 
-      <StackCard>
-      <section id="faq" className="stack-fill px-5 py-14 md:py-16">
-        <div className="faq-layout mx-auto grid w-full max-w-6xl items-start gap-8 lg:grid-cols-12">
-          <div className="faq-copy lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
-            <div>
-              <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">FAQ</p>
-              <h2 className="mt-3 font-display text-4xl text-green-900">Common questions</h2>
-              <p className="mt-4 leading-relaxed text-muted-foreground">
-                We work with clients in Chennai and across Tamil Nadu, and with remote clients elsewhere in India. Call, WhatsApp, or email and we will tell you whether a meeting or a remote scope is the better start.
-              </p>
-            </div>
-            <div className="mt-6 rounded-2xl border border-border bg-card p-5">
-              <p className="text-xs font-semibold tracking-[0.16em] text-gold uppercase">Talk to the studio</p>
-              <p className="mt-3">
-                <a className="font-semibold text-green-800 underline decoration-gold-bright underline-offset-4" href={`mailto:${site.email}`}>
-                  {site.email}
-                </a>
-              </p>
-              <p className="mt-1">
-                <a className="font-semibold text-green-800 underline decoration-gold-bright underline-offset-4" href={`tel:${site.phoneTel}`}>
-                  {site.phoneDisplay}
-                </a>
-              </p>
-              <p className="mt-3 text-sm text-muted-foreground">{site.place}</p>
-            </div>
+      <section className="border-y border-border px-5 py-8 lg:py-10" aria-labelledby="tech-logos">
+        <div className="mx-auto max-w-7xl">
+          <h2 id="tech-logos" className="text-center font-display text-3xl text-green-900 md:text-4xl">Technologies we use</h2>
+          <p className="mx-auto mt-2 max-w-xl text-center text-sm text-muted-foreground">Tools in the stack we ship with.</p>
+          <div className="mt-5 overflow-x-auto">
+            <ul className="mx-auto flex w-max min-w-full items-center justify-center gap-8 px-1">
+              {techLogos.map((logo) => (
+                <li key={logo.name} className="shrink-0">
+                  <Image src={logo.src} alt={`${logo.name} logo`} width={36} height={36} sizes="36px" className="size-9" />
+                </li>
+              ))}
+            </ul>
           </div>
-          <FaqList items={homeFaqs} className="faq-list max-w-none lg:col-span-8" />
+          {clientLogos.length > 0 ? (
+            <div className="mt-8 border-t border-border pt-6">
+              <h3 className="text-center text-[11px] font-semibold tracking-[0.2em] text-gold uppercase">Our clients</h3>
+              <ul className="mt-4 flex flex-wrap items-center justify-center gap-6">
+                {clientLogos.map((logo) => (
+                  <li key={logo.name}>
+                    <a href={logo.href} target="_blank" rel="noopener noreferrer">
+                      <Image src={logo.src} alt={`${logo.name} logo`} width={120} height={36} sizes="120px" className="h-8 w-auto" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
       </section>
-      </StackCard>
 
-      <StackCard>
-      <CtaBand layout="panel" />
-      </StackCard>
-      <StackCard>
-      <ContactSection />
-      </StackCard>
-      </StackingDeck>
+      <section className="relative overflow-hidden border-t border-border bg-[#f3ece3] px-5 py-10 lg:py-14">
+        <LeafDecor spot="cta" />
+        <div className="relative mx-auto max-w-2xl text-center">
+          <h2 className="font-display text-3xl text-green-900 md:text-5xl">Let&apos;s Build Something Great Together</h2>
+          <p className="mt-2 text-muted-foreground">Have a project idea, a training requirement, or a question? We&apos;d love to hear from you.</p>
+          <Link href="/contact/" className={`${goldButton} mt-5`}>
+            Discuss a Project
+            <ArrowIcon />
+          </Link>
+        </div>
+      </section>
     </>
   );
 }

@@ -16,7 +16,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Get in touch"
         title="Let's build your next idea"
-        lede="Have a project in mind or need expert guidance? Our team is ready to help you explore the possibilities and craft the right solution for your needs. We work with clients in Chennai, across Tamil Nadu, and with remote clients elsewhere in India."
+        lede="Tell us what the system has to do. We reply with questions, then a written scope. We work with clients in Chennai, across Tamil Nadu, and with remote clients elsewhere in India."
         crumbs={[{ name: "Home", path: "/" }, { name: "Contact" }]}
       />
       <section className="mx-auto grid max-w-6xl items-start gap-8 px-5 py-12 md:grid-cols-2 md:py-16">

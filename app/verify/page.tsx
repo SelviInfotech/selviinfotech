@@ -31,7 +31,7 @@ export default function VerifyPage() {
       <section className="mx-auto max-w-6xl px-5 pb-20">
         <h2 className="font-display text-3xl text-green-900">Programs behind these certificates</h2>
         <p className="mt-3 max-w-2xl text-muted-foreground">
-          Certificates on this page come from the courses we run in Chennai and across Tamil Nadu, and online.
+          Certificates on this page come from the courses we run, in person and online.
         </p>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {programs.map(([title, body]) => (

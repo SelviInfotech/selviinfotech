@@ -70,10 +70,8 @@ export function SiteEffects() {
     if (window.location.hash) window.requestAnimationFrame(onHash);
 
     const nodes = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
-    const parallax = Array.from(document.querySelectorAll<HTMLElement>("[data-parallax]"));
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let observer: IntersectionObserver | null = null;
-    let parallaxFrame = 0;
     if (reduce) {
       nodes.forEach((node) => node.classList.add("is-in"));
     } else {
@@ -90,32 +88,9 @@ export function SiteEffects() {
       nodes.forEach((node) => observer?.observe(node));
     }
 
-    const paintParallax = () => {
-      parallaxFrame = 0;
-      if (reduce) return;
-      const view = window.innerHeight || 1;
-      parallax.forEach((node) => {
-        const rect = node.getBoundingClientRect();
-        const progress = (rect.top + rect.height / 2 - view / 2) / view;
-        const amount = Number(node.dataset.parallax || "14");
-        const shift = Math.max(-1, Math.min(1, progress)) * -(Number.isFinite(amount) ? amount : 14);
-        node.style.transform = `translate3d(0, ${shift.toFixed(2)}px, 0)`;
-      });
-    };
-    const requestParallax = () => {
-      if (reduce || parallaxFrame) return;
-      parallaxFrame = window.requestAnimationFrame(paintParallax);
-    };
-    if (!reduce) {
-      requestParallax();
-      window.addEventListener("scroll", requestParallax, { passive: true });
-    }
-
     return () => {
       document.removeEventListener("click", onClick);
       window.removeEventListener("hashchange", onHash);
-      window.removeEventListener("scroll", requestParallax);
-      if (parallaxFrame) window.cancelAnimationFrame(parallaxFrame);
       observer?.disconnect();
     };
   }, [pathname]);

@@ -29,20 +29,6 @@ export const clients: Client[] = [
     initial: "AI",
   },
   {
-    name: "Guvi",
-    tag: "EdTech Platform",
-    href: "https://guvi.in",
-    label: "Guvi, EdTech Platform",
-    initial: "G",
-  },
-  {
-    name: "Credo Systems",
-    tag: "IT Training",
-    href: "https://www.credosystemz.com/",
-    label: "Credo Systems, IT Training",
-    initial: "C",
-  },
-  {
     name: "Ains",
     tag: "IT Solutions",
     href: "https://www.ainsit.in/",

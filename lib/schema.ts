@@ -31,6 +31,16 @@ export function organizationGraph() {
         sameAs: [...sameAs],
       },
       {
+        "@type": "WebSite",
+        "@id": `${site.url}/#website`,
+        url: `${site.url}/`,
+        name: site.name,
+        alternateName: site.shortName,
+        description: site.description,
+        inLanguage: "en-IN",
+        publisher: { "@id": `${site.url}/#organization` },
+      },
+      {
         "@type": ["LocalBusiness", "ProfessionalService"],
         "@id": `${site.url}/#localbusiness`,
         name: site.name,

@@ -21,10 +21,10 @@ export const services: ServicePage[] = [
     title: "Software Development Company in Chennai & Tamil Nadu | Selvi Infotech",
     description:
       "Custom software development in Chennai and Tamil Nadu. Selvi Infotech builds business applications with React, Next.js, Node.js, .NET, Python, Java Spring Boot, and SQL Server.",
-    h1: "Software Development Company in Chennai & Tamil Nadu",
+    h1: "Software development for growing businesses",
     eyebrow: "Custom software",
     intro:
-      "Selvi Infotech Private Limited designs and builds software for businesses in Chennai and across Tamil Nadu, including remote clients elsewhere in India. A project here is a system people actually use: an internal tool, a customer portal, an API between two products, or a web application with a database behind it. We write the scope down before the build, and we stay through testing and handover.",
+      "Selvi Infotech Private Limited designs and builds software for growing businesses. A project here is a system people actually use: an internal tool, a customer portal, an API between two products, or a web application with a database behind it. We write the scope down before the build, and we stay through testing and handover.",
     sections: [
       {
         heading: "What we build",
@@ -95,10 +95,10 @@ export const services: ServicePage[] = [
     title: "Mobile App Development Company in Chennai & Tamil Nadu | Selvi Infotech",
     description:
       "Flutter, React Native, and native Android/iOS app development in Chennai and Tamil Nadu. Selvi Infotech scopes, builds, and helps release mobile apps.",
-    h1: "Mobile App Development in Chennai & Tamil Nadu",
+    h1: "Mobile apps for Android and iOS",
     eyebrow: "Flutter, React Native, native iOS & Android",
     intro:
-      "Selvi Infotech builds mobile applications for businesses in Chennai and across Tamil Nadu, and for remote clients elsewhere in India. The app might be the product itself, or the phone companion to a website you already run. We use Flutter or React Native when one codebase should serve Android and iOS, and native Android or iOS when the app depends on platform behaviour a shared toolkit would fight.",
+      "Selvi Infotech builds mobile applications for growing businesses. The app might be the product itself, or the phone companion to a website you already run. We use Flutter or React Native when one codebase should serve Android and iOS, and native Android or iOS when the app depends on platform behaviour a shared toolkit would fight.",
     sections: [
       {
         heading: "What a mobile project includes",
@@ -160,10 +160,10 @@ export const services: ServicePage[] = [
     title: "Web Development Company in Chennai & Tamil Nadu | Selvi Infotech",
     description:
       "Web development in Chennai and Tamil Nadu. Selvi Infotech builds business websites and web applications with React and Next.js, then hands them over ready to maintain.",
-    h1: "Web Development Company in Chennai & Tamil Nadu",
+    h1: "Websites and web applications",
     eyebrow: "Websites and web applications",
     intro:
-      "Selvi Infotech builds websites and web applications for businesses in Chennai and across Tamil Nadu, and for remote clients elsewhere in India. A website is the public face: pages, a clear offer, and a way to reach you. A web application is the working system behind a login. Both are web development. They are not the same project, and we scope them separately.",
+      "Selvi Infotech builds websites and web applications for growing businesses. A website is the public face: pages, a clear offer, and a way to reach you. A web application is the working system behind a login. Both are web development. They are not the same project, and we scope them separately.",
     sections: [
       {
         heading: "Websites",
@@ -223,10 +223,10 @@ export const services: ServicePage[] = [
     title: "Web Maintenance Services in Chennai & Tamil Nadu | Selvi Infotech",
     description:
       "Web maintenance services in Chennai and Tamil Nadu. Selvi Infotech updates, fixes, and looks after business websites and web apps built with React, Next.js, .NET, Python, and Java.",
-    h1: "Web Maintenance Services in Chennai & Tamil Nadu",
+    h1: "Care for websites that are already live",
     eyebrow: "Updates, fixes, and care",
     intro:
-      "Selvi Infotech looks after websites and web applications for businesses in Chennai and across Tamil Nadu, and for remote clients elsewhere in India. A site that launched and was never touched again will eventually break. Certificates expire. Dependencies receive security fixes. A form posts to an inbox nobody reads. A page still names a price you changed last year. Maintenance is the work of keeping the site true and runnable.",
+      "Selvi Infotech looks after websites and web applications for growing businesses. A site that launched and was never touched again will eventually break. Certificates expire. Dependencies receive security fixes. A form posts to an inbox nobody reads. A page still names a price you changed last year. Maintenance is the work of keeping the site true and runnable.",
     sections: [
       {
         heading: "What maintenance covers",
@@ -286,10 +286,10 @@ export const services: ServicePage[] = [
     title: "IT Consulting in Chennai & Tamil Nadu | Selvi Infotech",
     description:
       "IT consulting in Chennai and Tamil Nadu. Selvi Infotech advises on software architecture, stack choice, Azure, and whether to build, maintain, or train.",
-    h1: "IT Consulting in Chennai & Tamil Nadu",
+    h1: "A working second opinion",
     eyebrow: "A working second opinion",
     intro:
-      "IT consulting at Selvi Infotech is a working conversation with people who also build the software. You might want a second opinion on a stack, a review of an architecture before you hire, a plan for moving a workload to Azure, or a way to line a training program up with the tools your team will actually use. We work with teams in Chennai, across Tamil Nadu, and with remote clients elsewhere in India.",
+      "IT consulting at Selvi Infotech is a working conversation with people who also build the software. You might want a second opinion on a stack, a review of an architecture before you hire, a plan for moving a workload to Azure, or a way to line a training program up with the tools your team will actually use.",
     sections: [
       {
         heading: "What a consulting engagement can be",

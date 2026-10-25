@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { site } from "@/lib/site";
 
 export function FounderSpotlight({ id = "founder", variant = "page" }: { id?: string; variant?: "page" | "stack" }) {
@@ -30,13 +31,12 @@ export function FounderSpotlight({ id = "founder", variant = "page" }: { id?: st
 function FounderPortrait() {
   return (
     <div className="founder-portrait relative">
-      <img
+      <Image
         src="/images/kumaran.webp"
         alt="Kumaran, Founder and Managing Director of Selvi Infotech Private Limited"
         width={800}
         height={1068}
-        loading="lazy"
-        decoding="async"
+        sizes="(min-width: 768px) 40vw, 100vw"
         className="aspect-[4/5] w-full rounded-[2rem] object-cover object-top"
       />
       <p className="absolute bottom-4 left-4 rounded-full bg-cream/95 px-4 py-2 text-xs font-semibold tracking-[0.14em] text-green-900 uppercase">
@@ -56,7 +56,7 @@ function FounderCopy({ stacked = false }: { stacked?: boolean }) {
           Kumaran founded Selvi Infotech to close the gap between the software companies need and the people who can build and look after it. He leads the studio’s project work and its training programs.
         </p>
         <p className="mt-4 leading-relaxed text-muted-foreground">
-          A project starts with a written scope, moves in cycles you can see, and ends with a handover. Training uses the same tools. Clients in Chennai, across Tamil Nadu, and remote teams elsewhere in India follow that same path.
+          A project starts with a written scope, moves in cycles you can see, and ends with a handover. Training uses the same tools. Nearby teams and remote teams follow that same path.
         </p>
         <div className="mt-6 flex flex-wrap gap-4 text-sm font-semibold">
           <a className="text-green-800 underline decoration-gold-bright underline-offset-4" href={`mailto:${site.email}`}>

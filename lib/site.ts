@@ -1,3 +1,5 @@
+const whatsappText = "Hi Selvi Infotech, I'd like to discuss a project.";
+
 export const site = {
   name: "Selvi Infotech Private Limited",
   shortName: "Selvi Infotech",
@@ -5,7 +7,8 @@ export const site = {
   email: "info@selviinfotech.com",
   phoneDisplay: "+91 9500316716",
   phoneTel: "+919500316716",
-  whatsapp: "https://wa.me/919500316716",
+  whatsappText,
+  whatsapp: `https://wa.me/919500316716?text=${encodeURIComponent(whatsappText)}`,
   locality: "Chennai",
   region: "Tamil Nadu",
   /** Visible location line in the footer, contact cards, and metadata. */

@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { ClientMarquee } from "@/components/client-marquee";
+import { ClientStrip } from "@/components/client-strip";
 import { CtaBand } from "@/components/cta-band";
 import { FounderSpotlight } from "@/components/founder-spotlight";
 import { PageHero } from "@/components/page-hero";
 import { TechPills } from "@/components/tech-pills";
-import { workImages } from "@/data/visuals";
+import { LeafDecor, PottedPlant } from "@/components/botanicals";
 import { pageMetadata } from "@/lib/seo";
 import { site, stack } from "@/lib/site";
 
@@ -29,38 +29,32 @@ export default function AboutPage() {
         eyebrow="The company"
         title={
           <>
-            About <span className="text-gold-bright">Selvi Infotech</span>
+            About <span className="text-gold">Selvi Infotech</span>
           </>
         }
-        lede="Selvi Infotech Private Limited builds software, mobile apps, and websites, maintains systems that are already live, and trains people in the same tools. We work with clients in Chennai, across Tamil Nadu, and with remote clients elsewhere in India."
+        lede="Selvi Infotech Private Limited builds software, mobile apps, and websites, maintains systems that are already live, and trains people in the same tools."
         crumbs={[{ name: "Home", path: "/" }, { name: "About" }]}
       />
 
       <section className="mx-auto grid max-w-6xl gap-10 px-5 py-20 md:grid-cols-2 md:py-28">
         <div>
-          <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Where we work</p>
-          <h2 className="mt-3 font-display text-4xl text-green-900">Chennai, Tamil Nadu, and remote clients</h2>
+          <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">The studio</p>
+          <h2 className="mt-3 font-display text-4xl text-green-900">In person when it helps, remote when it does not</h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
             Training runs in person and as live online sessions. Cloud classes are primarily online because of the lab setup. A project starts with a written scope, whether the client is nearby or working remotely.
           </p>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            Selvi Infotech Private Limited is a premier technology company committed to delivering high-quality software solutions, mobile applications, and IT education. We combine deep technical expertise with a passion for innovation to help businesses thrive in the digital era.
+            Selvi Infotech Private Limited builds software, mobile applications, and IT training. The same people who write the software also teach the tools.
           </p>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            From startups to enterprises, we partner with organizations to design robust, scalable systems and empower their teams through our industry-leading training programs.
+            We work with startups and larger teams on systems that still need care after launch. Training uses the stacks we ship, and a completion certificate can be checked on the verification page.
           </p>
         </div>
         <div>
-          <img
-            src={workImages["software-development"].src}
-            alt={workImages["software-development"].alt}
-            width={960}
-            height={640}
-            sizes="(min-width: 768px) 50vw, 100vw"
-            loading="lazy"
-            decoding="async"
-            className="mb-4 aspect-[16/10] w-full rounded-2xl object-cover"
-          />
+          <div className="relative mb-4 aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-card" aria-hidden="true">
+            <LeafDecor spot="page" />
+            <PottedPlant className="absolute right-2 -bottom-4 h-48 w-36" />
+          </div>
         <dl className="grid gap-3 sm:grid-cols-2">
           {facts.map(([label, value]) => (
             <div key={label} className="rounded-2xl border border-border bg-card p-5">
@@ -79,7 +73,7 @@ export default function AboutPage() {
       <section className="border-y border-border bg-card py-10">
         <p className="px-5 text-center text-xs font-semibold tracking-[0.2em] text-gold uppercase">How we work</p>
         <ul className="mx-auto mt-6 flex max-w-6xl flex-wrap justify-center gap-3 px-5">
-          {["Agile Development", "Certified Trainers", "24/7 Support", "Scalable Solutions", "Transparent Process", "On-Time Delivery"].map((item) => (
+          {["Written scope", "Hands-on training", "Agreed support", "Handover notes", "Visible cycles", "Scoped dates"].map((item) => (
             <li key={item} className="rounded-full border border-border bg-cream px-4 py-2 text-sm font-medium text-green-900">
               {item}
             </li>
@@ -92,13 +86,14 @@ export default function AboutPage() {
 
       <FounderSpotlight />
 
-      <section className="border-t border-border py-16" aria-labelledby="about-clients">
-        <div className="mx-auto max-w-6xl px-5">
-          <h2 id="about-clients" className="font-display text-4xl text-green-900">Companies we work with</h2>
-          <p className="mt-3 text-muted-foreground">Names are shown as wordmarks. We do not use their logos here.</p>
-        </div>
-        <div className="mt-8">
-          <ClientMarquee />
+      <section className="border-t border-border py-12 md:py-14" aria-labelledby="about-clients">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-5 px-5 md:flex-row md:items-center md:justify-between md:gap-10">
+          <div className="max-w-md">
+            <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Trusted by</p>
+            <h2 id="about-clients" className="mt-3 font-display text-4xl text-green-900">Companies we work with</h2>
+            <p className="mt-3 text-muted-foreground">Names are shown as wordmarks. We do not use their logos here.</p>
+          </div>
+          <ClientStrip />
         </div>
         <p className="mt-8 text-center">
           <Link href="/contact/" className="text-sm font-semibold text-green-800 underline underline-offset-4">

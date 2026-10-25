@@ -1,3 +1,5 @@
+import { site } from "@/lib/site";
+
 export type Course = {
   id: string;
   title: string;
@@ -49,7 +51,7 @@ export const courses: Course[] = [
     ],
     highlights: [
       "5 real-world capstone projects",
-      "Code reviews by industry mentors",
+      "Code reviews during the course",
       "Resume and LinkedIn profile support",
       "Mock interview preparation",
       "Placement assistance for eligible students",
@@ -299,6 +301,6 @@ export const trainingFaqs = [
   {
     question: "How do I enrol?",
     answer:
-      "Use the [contact form](/contact/), email info@selviinfotech.com, or WhatsApp [+91 9500316716](https://wa.me/919500316716). We share the batch schedule, fees, and next steps from there.",
+      `Use the [contact form](/contact/), email info@selviinfotech.com, or WhatsApp [+91 9500316716](${site.whatsapp}). We share the batch schedule, fees, and next steps from there.`,
   },
 ];

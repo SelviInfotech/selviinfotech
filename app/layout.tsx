@@ -4,7 +4,7 @@ import { ScrollProgress } from "@/components/scroll-progress";
 import { SiteEffects } from "@/components/site-effects";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { WhatsAppFab } from "@/components/whatsapp-fab";
+import { CallFab, WhatsAppFab } from "@/components/whatsapp-fab";
 import { JsonLd } from "@/lib/json-ld";
 import { organizationGraph } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
@@ -13,23 +13,25 @@ import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "600"],
   variable: "--font-inter",
   display: "swap",
 });
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600"],
   variable: "--font-playfair",
-  display: "swap",
+  display: "optional",
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   ...pageMetadata({
     title: "Software Development Company in Chennai & Tamil Nadu | Selvi Infotech",
-    description: site.description,
+    description:
+      "Selvi Infotech Private Limited is a software development company in Chennai and Tamil Nadu. Custom software, cloud architecture, mobile apps, web maintenance, and IT training.",
     path: "/",
   }),
   applicationName: site.shortName,
@@ -41,7 +43,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#d4af37",
+  themeColor: "#FAF7F3",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -60,6 +62,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteEffects />
         <main id="main">{children}</main>
         <SiteFooter />
+        <CallFab />
         <WhatsAppFab />
       </body>
     </html>
