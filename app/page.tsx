@@ -4,6 +4,7 @@ import { ClientStrip } from "@/components/client-strip";
 import { LeafDecor } from "@/components/botanicals";
 import { LineIcon, type LineIconName } from "@/components/line-icon";
 import { ProcessTimeline } from "@/components/process-timeline";
+import { StatValue } from "@/components/stat-value";
 import {
   clientLogos,
   homeServices,
@@ -109,14 +110,26 @@ export default function HomePage() {
           </div>
         </div>
         {homeStats.length > 0 ? (
-          <ul className="relative mx-auto grid max-w-7xl gap-4 px-5 pb-8 sm:grid-cols-3">
-            {homeStats.map((item) => (
-              <li key={item.label} className="rounded-2xl border border-border bg-card px-5 py-4">
-                <p className="font-display text-3xl text-green-900">{item.value}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{item.label}</p>
-              </li>
-            ))}
-          </ul>
+          <div className="relative mx-auto max-w-7xl px-5 pb-8">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-[11px] font-semibold tracking-[0.2em] text-gold uppercase">Our team</p>
+              <h2 className="mt-2 font-display text-3xl text-green-900 md:text-4xl">What our team has delivered</h2>
+            </div>
+            <ul className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
+              {homeStats.map((item, index) => (
+                <li
+                  key={item.label}
+                  className="reveal rounded-2xl border border-border bg-card px-5 py-4"
+                  style={{ ["--reveal-delay" as string]: `${index * 50}ms` }}
+                >
+                  <p className="font-display text-3xl text-green-900">
+                    {"text" in item ? item.text : <StatValue value={item.count} suffix={item.suffix} />}
+                  </p>
+                  <p className="mt-1 text-sm text-muted-foreground">{item.label}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         ) : null}
       </section>
 
