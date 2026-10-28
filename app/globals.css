@@ -254,6 +254,20 @@ details.faq-item summary::-webkit-details-marker {
   }
 }
 
+/* Finished figure for no-script and reduced motion; the running total otherwise. */
+.stat-count-live {
+  display: none;
+}
+
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .stat-count-final {
+    display: none;
+  }
+  .stat-count-live {
+    display: block;
+  }
+}
+
 @keyframes reveal-in {
   from {
     transform: translateY(12px);

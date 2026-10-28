@@ -1,7 +1,7 @@
 /**
  * Homepage copy and extension points.
- * Stats, testimonials, and client logo files stay empty until the company
- * supplies figures, quotes, and logo artwork it will publish.
+ * Testimonials and client logo files stay empty until the company
+ * supplies quotes and logo artwork it will publish.
  */
 
 export type HomeService = {
@@ -198,8 +198,17 @@ export const techLogos: TechLogo[] = [
  */
 export const clientLogos: readonly { name: string; src: string; href: string }[] = [];
 
-/** Leave empty until there are figures the company will stand behind. */
-export const homeStats: readonly { value: string; label: string }[] = [];
+export type HomeStat =
+  | { label: string; count: number; suffix: string }
+  | { label: string; text: string };
+
+/** Confirmed delivery figures. Numeric values count up; 24x7 stays as written. */
+export const homeStats: readonly HomeStat[] = [
+  { count: 25, suffix: "+", label: "Projects Delivered" },
+  { count: 7000, suffix: "+", label: "Students Trained" },
+  { count: 15, suffix: "+", label: "Clients" },
+  { text: "24x7", label: "Support" },
+];
 
 /** Leave empty until there are quotes the company will publish. */
 export const homeTestimonials: readonly { quote: string; name: string; role: string }[] = [];

@@ -7,7 +7,7 @@ export function StatValue({ value, suffix = "+" }: { value: number; suffix?: str
   const ref = useRef<HTMLSpanElement>(null);
   const reduce = useReducedMotion();
   const inView = useInView(ref, { once: true, amount: 0.6 });
-  const [shown, setShown] = useState(value);
+  const [shown, setShown] = useState(0);
   const finalText = `${value.toLocaleString("en-IN")}${suffix}`;
 
   useEffect(() => {
@@ -20,14 +20,18 @@ export function StatValue({ value, suffix = "+" }: { value: number; suffix?: str
     return () => controls.stop();
   }, [inView, reduce, value]);
 
-  const text = !inView || reduce !== false ? finalText : `${shown.toLocaleString("en-IN")}${suffix}`;
-
   return (
     <span ref={ref} className="inline-grid">
+      <span className="sr-only">{finalText}</span>
       <span className="invisible col-start-1 row-start-1" aria-hidden="true">
         {finalText}
       </span>
-      <span className="col-start-1 row-start-1">{text}</span>
+      <span className="stat-count-final col-start-1 row-start-1 tabular-nums" aria-hidden="true">
+        {finalText}
+      </span>
+      <span className="stat-count-live col-start-1 row-start-1 tabular-nums" aria-hidden="true">
+        {`${shown.toLocaleString("en-IN")}${suffix}`}
+      </span>
     </span>
   );
 }
