@@ -7,9 +7,9 @@ import { pageMetadata } from "@/lib/seo";
 const caseStudies = isPortfolioPublic() ? projects : [];
 
 export const metadata = pageMetadata({
-  title: "Our Work | Software Company in Chennai & Tamil Nadu | Selvi Infotech",
+  title: "Our Work | Software Projects | Selvi Infotech",
   description:
-    "Published work by Selvi Infotech Private Limited in Chennai and Tamil Nadu, including IvyTax, ASHT, Achutha AI, and Ains.",
+    "Published work by Selvi Infotech Private Limited, including IvyTax, ASHT, Achutha AI, and Ains.",
   path: "/portfolio/",
 });
 

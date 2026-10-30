@@ -9,9 +9,9 @@ import { pageMetadata } from "@/lib/seo";
 import { site, stack } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "About Selvi Infotech | Software Company in Chennai & Tamil Nadu",
+  title: "About Selvi Infotech | Software for Businesses Worldwide",
   description:
-    "Selvi Infotech Private Limited is a software company in Chennai and Tamil Nadu, led by founder Kumaran. Software, mobile apps, web, maintenance, consulting, and IT training.",
+    "Selvi Infotech Private Limited builds software, mobile apps, websites, and IT training for businesses worldwide. The company is led by founder Kumaran.",
   path: "/about/",
 });
 
@@ -41,7 +41,7 @@ export default function AboutPage() {
           <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">The studio</p>
           <h2 className="mt-3 font-display text-4xl text-green-900">In person when it helps, remote when it does not</h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            Training runs in person and as live online sessions. Cloud classes are primarily online because of the lab setup. A project starts with a written scope, whether the client is nearby or working remotely.
+            Training runs in person and as live online sessions. Cloud classes are primarily online because of the lab setup. A project starts with a written scope, whether everyone is in the same room or working remotely.
           </p>
           <p className="mt-4 leading-relaxed text-muted-foreground">
             Selvi Infotech Private Limited builds software, mobile applications, and IT training. The same people who write the software also teach the tools.

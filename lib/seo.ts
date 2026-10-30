@@ -39,7 +39,7 @@ export function pageMetadata({
           url: "/og.png",
           width: 1200,
           height: 630,
-          alt: "Selvi Infotech Private Limited — software, apps, and IT training in Chennai and Tamil Nadu",
+          alt: "Selvi Infotech Private Limited — software, apps, and IT training for businesses worldwide",
         },
       ],
     },

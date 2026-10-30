@@ -29,9 +29,9 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   ...pageMetadata({
-    title: "Software Development Company in Chennai & Tamil Nadu | Selvi Infotech",
+    title: "Software Development for Businesses Worldwide | Selvi Infotech",
     description:
-      "Selvi Infotech Private Limited is a software development company in Chennai and Tamil Nadu. Custom software, cloud architecture, mobile apps, web maintenance, and IT training.",
+      "Selvi Infotech Private Limited builds custom software, cloud architecture, mobile apps, and websites, and runs IT training for businesses worldwide.",
     path: "/",
   }),
   applicationName: site.shortName,

@@ -291,7 +291,7 @@ export const trainingFaqs = [
   {
     question: "Are classes held online or in person?",
     answer:
-      "Most programs are available both as live online sessions and in person for clients in Chennai and across Tamil Nadu. Cloud Computing is primarily online because of the lab setup.",
+      "Most programs run as live online sessions for learners worldwide, and in person when that suits the group. Cloud Computing is primarily online because of the lab setup.",
   },
   {
     question: "Is placement assistance provided?",
