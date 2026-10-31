@@ -70,7 +70,7 @@ export function SiteFooter() {
             <li>
               <a className="hover:text-white" href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
             </li>
-            <li>{site.locality}, {site.region}</li>
+            <li>Serving clients worldwide</li>
             <li className="text-xs tracking-wide text-cream/55">Udyam {site.udyam}</li>
           </ul>
         </div>

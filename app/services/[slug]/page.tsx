@@ -9,7 +9,7 @@ import { TechPills } from "@/components/tech-pills";
 import { getService, services } from "@/data/services";
 import { WorkMock } from "@/components/work-mock";
 import { JsonLd } from "@/lib/json-ld";
-import { faqSchema } from "@/lib/schema";
+import { areaServed, faqSchema } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -42,7 +42,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     description: service.description,
     url: `${site.url}/services/${service.slug}/`,
     provider: { "@id": `${site.url}/#organization` },
-    areaServed: ["Chennai", "Tamil Nadu", "India"],
+    areaServed,
   };
 
   return (

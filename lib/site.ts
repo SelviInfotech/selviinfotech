@@ -9,15 +9,11 @@ export const site = {
   phoneTel: "+919500316716",
   whatsappText,
   whatsapp: `https://wa.me/919500316716?text=${encodeURIComponent(whatsappText)}`,
-  locality: "Chennai",
-  region: "Tamil Nadu",
-  /** Visible location line in the footer, contact cards, and metadata. */
-  place: "Chennai & Tamil Nadu",
   country: "IN",
   countryName: "India",
   udyam: "UDYAM-TN-24-0163072",
   description:
-    "Selvi Infotech Private Limited is a software development company in Chennai and Tamil Nadu. We build custom software, Flutter and React Native apps, websites, and web maintenance, and we run IT training programs.",
+    "Selvi Infotech Private Limited is a software development company serving clients worldwide. We build custom software, Flutter and React Native apps, websites, and web maintenance, and we run IT training programs.",
   founder: {
     name: "Kumaran",
     role: "Founder & Managing Director, Selvi Infotech Pvt. Ltd.",

@@ -18,9 +18,9 @@ export const services: ServicePage[] = [
   {
     slug: "software-development",
     name: "Software Development",
-    title: "Software Development Company in Chennai & Tamil Nadu | Selvi Infotech",
+    title: "Custom Software Development for Businesses Worldwide | Selvi Infotech",
     description:
-      "Custom software development in Chennai and Tamil Nadu. Selvi Infotech builds business applications with React, Next.js, Node.js, .NET, Python, Java Spring Boot, and SQL Server.",
+      "Custom software development for businesses worldwide. Selvi Infotech builds business applications with React, Next.js, Node.js, .NET, Python, Java Spring Boot, and SQL Server.",
     h1: "Software development for growing businesses",
     eyebrow: "Custom software",
     intro:
@@ -45,7 +45,7 @@ export const services: ServicePage[] = [
       {
         heading: "Who this is for",
         paragraphs: [
-          "This is for owners and teams in Chennai and across Tamil Nadu who want the people building the software to be reachable, and for remote clients elsewhere in India who are fine working with the same written scope. If you already have a system and it needs care rather than a rewrite, start with maintenance. If you are choosing a stack or a plan before any code, start with [IT consulting](/services/it-consulting/).",
+          "This is for owners and teams who want the people building the software to be reachable, including clients working remotely from anywhere. If you already have a system and it needs care rather than a rewrite, start with maintenance. If you are choosing a stack or a plan before any code, start with [IT consulting](/services/it-consulting/).",
           "We will not quote a price from a one-line description, and we will not invent a launch date for it either. A login screen and a multi-role system with reports and an admin side are different projects. Ask for a written scope. The number and the calendar come after that.",
         ],
       },
@@ -68,9 +68,9 @@ export const services: ServicePage[] = [
     ],
     faqs: [
       {
-        question: "Do you only work with companies in Chennai and Tamil Nadu?",
+        question: "Do you work with clients worldwide?",
         answer:
-          "We work with clients in Chennai, across Tamil Nadu, and with remote clients elsewhere in India. Remote work is normal once the scope is written down.",
+          "Yes. We work with clients worldwide. Remote work is normal once the scope is written down.",
       },
       {
         question: "Which technologies do you use?",
@@ -92,9 +92,9 @@ export const services: ServicePage[] = [
   {
     slug: "mobile-app-development",
     name: "Mobile App Development",
-    title: "Mobile App Development Company in Chennai & Tamil Nadu | Selvi Infotech",
+    title: "Mobile App Development for Businesses Worldwide | Selvi Infotech",
     description:
-      "Flutter, React Native, and native Android/iOS app development in Chennai and Tamil Nadu. Selvi Infotech scopes, builds, and helps release mobile apps.",
+      "Flutter, React Native, and native Android/iOS app development for businesses worldwide. Selvi Infotech scopes, builds, and helps release mobile apps.",
     h1: "Mobile apps for Android and iOS",
     eyebrow: "Flutter, React Native, native iOS & Android",
     intro:
@@ -157,9 +157,9 @@ export const services: ServicePage[] = [
   {
     slug: "web-development",
     name: "Web Development",
-    title: "Web Development Company in Chennai & Tamil Nadu | Selvi Infotech",
+    title: "Web Development for Businesses Worldwide | Selvi Infotech",
     description:
-      "Web development in Chennai and Tamil Nadu. Selvi Infotech builds business websites and web applications with React and Next.js, then hands them over ready to maintain.",
+      "Web development for businesses worldwide. Selvi Infotech builds business websites and web applications with React and Next.js, then hands them over ready to maintain.",
     h1: "Websites and web applications",
     eyebrow: "Websites and web applications",
     intro:
@@ -220,9 +220,9 @@ export const services: ServicePage[] = [
   {
     slug: "web-maintenance",
     name: "Web Maintenance",
-    title: "Web Maintenance Services in Chennai & Tamil Nadu | Selvi Infotech",
+    title: "Web Maintenance for Businesses Worldwide | Selvi Infotech",
     description:
-      "Web maintenance services in Chennai and Tamil Nadu. Selvi Infotech updates, fixes, and looks after business websites and web apps built with React, Next.js, .NET, Python, and Java.",
+      "Web maintenance for businesses worldwide. Selvi Infotech updates, fixes, and looks after business websites and web apps built with React, Next.js, .NET, Python, and Java.",
     h1: "Care for websites that are already live",
     eyebrow: "Updates, fixes, and care",
     intro:
@@ -283,9 +283,9 @@ export const services: ServicePage[] = [
   {
     slug: "it-consulting",
     name: "IT Consulting",
-    title: "IT Consulting in Chennai & Tamil Nadu | Selvi Infotech",
+    title: "IT Consulting for Businesses Worldwide | Selvi Infotech",
     description:
-      "IT consulting in Chennai and Tamil Nadu. Selvi Infotech advises on software architecture, stack choice, Azure, and whether to build, maintain, or train.",
+      "IT consulting for businesses worldwide. Selvi Infotech advises on software architecture, stack choice, Azure, and whether to build, maintain, or train.",
     h1: "A working second opinion",
     eyebrow: "A working second opinion",
     intro:
@@ -338,7 +338,7 @@ export const services: ServicePage[] = [
       {
         question: "Do you consult remotely?",
         answer:
-          "Yes. We meet clients in and around Chennai when a meeting helps, and we work with remote clients across India. Most follow-up is remote.",
+          "Yes. We work with clients worldwide. Most follow-up is remote, and we meet in person when a meeting helps.",
       },
       {
         question: "Can consulting turn into a build?",

@@ -23,9 +23,9 @@ const channels = [
     note: "We reply from this address",
   },
   {
-    label: "Location",
-    value: site.place,
-    note: site.countryName,
+    label: "Clients",
+    value: "Worldwide",
+    note: "Remote work with businesses globally",
   },
 ];
 
@@ -80,7 +80,7 @@ export function ContactSection() {
             Let&apos;s build your next idea
           </h2>
           <p className="mt-3 leading-relaxed text-muted-foreground">
-            Tell us what the system has to do. We reply with questions, then a written scope. We work with clients in Chennai, across Tamil Nadu, and with remote clients elsewhere in India.
+            Tell us what the system has to do. We reply with questions, then a written scope. We work with clients worldwide.
           </p>
           <div className="mt-5">
             <ContactCards />

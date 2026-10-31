@@ -2,10 +2,14 @@ import { sameAs, site } from "@/lib/site";
 
 const address = {
   "@type": "PostalAddress",
-  addressLocality: site.locality,
-  addressRegion: site.region,
   addressCountry: site.country,
 };
+
+/** Public service area. No city or state. */
+export const areaServed = {
+  "@type": "Place",
+  name: "Worldwide",
+} as const;
 
 export function organizationGraph() {
   return {
@@ -52,11 +56,7 @@ export function organizationGraph() {
         description: site.description,
         address,
         parentOrganization: { "@id": `${site.url}/#organization` },
-        areaServed: [
-          { "@type": "City", name: "Chennai" },
-          { "@type": "State", name: "Tamil Nadu" },
-          { "@type": "Country", name: "India" },
-        ],
+        areaServed,
         sameAs: [...sameAs],
         identifier: {
           "@type": "PropertyValue",
